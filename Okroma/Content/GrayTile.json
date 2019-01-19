@@ -3,6 +3,6 @@
     "sprite": {
         "texture":"Textures\\GrayTile",
         "sourceRectangle":"0 0 64 64",
-        "origin":"32, 32"
+        "origin":"32 32"
     }
 }

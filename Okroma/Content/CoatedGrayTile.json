@@ -3,7 +3,7 @@
     "sprite": {
         "texture":"Textures\\GrayTile",
         "sourceRectangle":"64 0 64 64",
-        "origin":"32, 32"
+        "origin":"32 32"
     },
     "isWallJumpable":"true"
 }

@@ -15,7 +15,7 @@ namespace OkromaContentPipeline.TilePipeline
         {
             using (var reader = new StreamReader(filename))
             {
-                return JsonConvert.DeserializeObject<TileFile>(reader.ReadToEnd(), new XnaRectangleJsonConverter());
+                return JsonConvert.DeserializeObject<TileFile>(reader.ReadToEnd());
             }
         }
     }
