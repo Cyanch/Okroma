@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework.Content.Pipeline;
 using Microsoft.Xna.Framework.Content.Pipeline.Serialization.Compiler;
+using OkromaContentPipeline.ContentWriters;
 
 namespace OkromaContentPipeline.TilePipeline
 {
@@ -8,13 +9,15 @@ namespace OkromaContentPipeline.TilePipeline
     {
         public override string GetRuntimeReader(TargetPlatform targetPlatform)
         {
-            throw new System.NotImplementedException();
+            return "Okroma.ContentReaders.TileContentReader";
         }
 
         protected override void Write(ContentWriter output, ProcessorResult<TileFile> value)
         {
             var result = value.Result;
             output.Write(result.Type);
+            output.WriteObject(result.Sprite, new SpriteContentWriter());
+            output.Write(result.IsWallJumpable);
         }
     }
 }
