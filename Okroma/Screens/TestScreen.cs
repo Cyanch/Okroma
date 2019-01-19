@@ -32,7 +32,6 @@ namespace Okroma.Screens
             playerCamera = new PlayerCamera(Game, player);
             playerCamera.Zoom = 0.5f;
 
-            var tileSize = GameScale.TileSize;
             collidableSources = new CollidableSourceCollection();
         }
 
