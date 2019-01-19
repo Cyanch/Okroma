@@ -10,7 +10,7 @@ namespace OkromaContentPipeline.TilePipeline
         [JsonProperty("sprite", Required = Required.Always)]
         public Sprite Sprite { get; set; }
 
-        [JsonProperty("canWallJumpOn")]
+        [JsonProperty("isWallJumpable")]
         public bool IsWallJumpable { get; set; }
     }
 }

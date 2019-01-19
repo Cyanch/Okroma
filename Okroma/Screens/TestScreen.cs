@@ -26,16 +26,13 @@ namespace Okroma.Screens
         /// <see cref="Chunk2D"/> size in tiles.
         /// </summary>
         const int chunkSize = 8;
-
-        Tile grayTile, darkGrayTile;
+        
         protected override void Initialize()
         {
             playerCamera = new PlayerCamera(Game, player);
             playerCamera.Zoom = 0.5f;
 
             var tileSize = GameScale.TileSize;
-            grayTile = new CollidableTile("GrayTile", new Sprite(CreateSingleColorTexture(Color.Gray, tileSize, tileSize), null, new Vector2(tileSize / 2, tileSize / 2)), (int)CollisionMask.Tile) { IsWallJumpable = false };
-            darkGrayTile = new CollidableTile("GrayTile", new Sprite(CreateSingleColorTexture(new Color(64, 64, 64), tileSize, tileSize), null, new Vector2(tileSize / 2, tileSize / 2)), (int)CollisionMask.Tile) { IsWallJumpable = true };
             collidableSources = new CollidableSourceCollection();
         }
 
@@ -55,6 +52,9 @@ namespace Okroma.Screens
             collidableSources.AddSingle(player);
             playerCamera.SetTargetPlayer(player);
 
+            var grayTile = content.Load<ITile>("GrayTile");
+            var coatedGrayTile = content.Load<ITile>("CoatedGrayTile");
+
             for (int mY = 0; mY < mapTexture.Height; mY++)
             {
                 for (int mX = 0; mX < mapTexture.Width; mX++)
@@ -66,7 +66,7 @@ namespace Okroma.Screens
                     }
                     else if (color == new Color(64, 64, 64))
                     {
-                        world.PlaceTile(mX, mY, (int)Layer.Forward, darkGrayTile);
+                        world.PlaceTile(mX, mY, (int)Layer.Forward, coatedGrayTile);
                     }
                 }
             }

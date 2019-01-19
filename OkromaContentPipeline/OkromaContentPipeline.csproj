@@ -43,8 +43,7 @@
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ContentWriters\SpriteContentWriter.cs" />
-    <Compile Include="ContentWriters\XnaRectangleContentWriter.cs" />
+    <Compile Include="ContentWriters\ContentWriterExtensions.cs" />
     <Compile Include="ProcessorResult.cs" />
     <Compile Include="JsonConverters\XnaRectangleJsonConverter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

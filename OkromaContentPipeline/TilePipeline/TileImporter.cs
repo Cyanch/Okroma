@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework.Content.Pipeline;
 using Newtonsoft.Json;
+using OkromaContentPipeline.JsonConverters;
 using System.IO;
 
 namespace OkromaContentPipeline.TilePipeline
@@ -14,7 +15,7 @@ namespace OkromaContentPipeline.TilePipeline
         {
             using (var reader = new StreamReader(filename))
             {
-                return JsonConvert.DeserializeObject<TileFile>(reader.ReadToEnd());
+                return JsonConvert.DeserializeObject<TileFile>(reader.ReadToEnd(), new XnaRectangleJsonConverter());
             }
         }
     }
