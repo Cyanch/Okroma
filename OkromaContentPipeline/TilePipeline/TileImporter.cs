@@ -1,17 +1,21 @@
 ﻿using Microsoft.Xna.Framework.Content.Pipeline;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Newtonsoft.Json;
+using System.IO;
 
 namespace OkromaContentPipeline.TilePipeline
 {
     [ContentImporter(
-        ".json", 
-        DefaultProcessor = nameof(TileProcessor), 
+        ".json",
+        DefaultProcessor = nameof(TileProcessor),
         DisplayName = "Tile Importer -- " + nameof(OkromaContentPipeline))]
-    public class TileImporter : ContentImporter<Tile>
+    public class TileImporter : ContentImporter<TileFile>
     {
+        public override TileFile Import(string filename, ContentImporterContext context)
+        {
+            using (var reader = new StreamReader(filename))
+            {
+                return JsonConvert.DeserializeObject<TileFile>(reader.ReadToEnd());
+            }
+        }
     }
 }
