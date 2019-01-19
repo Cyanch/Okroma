@@ -62,6 +62,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)Common\MonoGame\" />
+    <Folder Include="$(MSBuildThisFileDirectory)ContentReaders\" />
     <Folder Include="$(MSBuildThisFileDirectory)World\Tiles\Objects\" />
   </ItemGroup>
 </Project>
