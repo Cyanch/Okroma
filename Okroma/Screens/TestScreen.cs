@@ -43,7 +43,7 @@ namespace Okroma.Screens
 
             world = new World2D(GameScale.TileSize, (byte)Enum.GetValues(typeof(Layer)).Length, new Range<float>(0, 1), chunkSize, mapTexture.Width / chunkSize, mapTexture.Height / chunkSize);
             collidableSources.AddSource(world);
-            playerCamera.SetBoundaries(new Rectangle(0, 0, GameScale.FromTile(mapTexture.Width).Pixels, mapTexture.Height * GameScale.FromTile(mapTexture.Height).Pixels));
+            playerCamera.SetBoundaries(new Rectangle(0, 0, GameScale.FromTile(mapTexture.Width).Pixels, GameScale.FromTile(mapTexture.Height).Pixels));
 
             int playerWidth = 64;
             int playerHeight = 64;
