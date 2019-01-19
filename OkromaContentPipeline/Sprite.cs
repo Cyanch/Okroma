@@ -10,9 +10,11 @@ namespace OkromaContentPipeline
     {
         [JsonProperty("texture", Required = Required.Always)]
         public string TexturePath { get; set; }
-        [JsonProperty("sourceRectangle", ItemConverterType = typeof(XnaRectangleJsonConverter))]
+        [JsonProperty("sourceRectangle")]
+        [JsonConverter(typeof(XnaRectangleJsonConverter))]
         public Rectangle SourceRectangle { get; set; } = Rectangle.Empty;
         [JsonProperty("origin")]
+        [JsonConverter(typeof(XnaVector2JsonConverter))]
         public Vector2 Origin { get; set; }
     }
 
