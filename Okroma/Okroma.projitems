@@ -13,6 +13,8 @@
     <Compile Include="$(MSBuildThisFileDirectory)Cameras\PlayerCamera.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)CollisionMask.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Common\Range.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ContentReaders\ContentReaderExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ContentReaders\TileContentReader.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)GameObject2D.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)GameScale.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Input\GameControlsManager.cs" />
@@ -52,17 +54,10 @@
     <MonoGameContentReference Include="$(MSBuildThisFileDirectory)Content\Content.mgcb" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="$(MSBuildThisFileDirectory)Content\Background.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="$(MSBuildThisFileDirectory)Content\map.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="$(MSBuildThisFileDirectory)Content\Content.mgcb" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)Common\MonoGame\" />
-    <Folder Include="$(MSBuildThisFileDirectory)ContentReaders\" />
     <Folder Include="$(MSBuildThisFileDirectory)World\Tiles\Objects\" />
   </ItemGroup>
 </Project>

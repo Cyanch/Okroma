@@ -8,6 +8,9 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Platforms", "Platforms", "{7F7BEBFD-F9B8-429D-8ED6-4320AE1162E1}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DesktopGL", "Platforms\DesktopGL\DesktopGL.csproj", "{1923D4E0-F543-4BCE-8AA1-0FBFC05E2257}"
+	ProjectSection(ProjectDependencies) = postProject
+		{B02DB3A8-BB6F-4821-B0C8-C7AFBDBE2E82} = {B02DB3A8-BB6F-4821-B0C8-C7AFBDBE2E82}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OkromaContentPipeline", "OkromaContentPipeline\OkromaContentPipeline.csproj", "{B02DB3A8-BB6F-4821-B0C8-C7AFBDBE2E82}"
 EndProject

@@ -43,12 +43,15 @@
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ContentWriters\SpriteContentWriter.cs" />
-    <Compile Include="ContentWriters\XnaRectangleContentWriter.cs" />
+    <Compile Include="ContentWriters\ContentWriterExtensions.cs" />
     <Compile Include="ProcessorResult.cs" />
     <Compile Include="JsonConverters\XnaRectangleJsonConverter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Sprite.cs" />
+    <Compile Include="TilePipeline\TileFile.cs" />
+    <Compile Include="TilePipeline\TileImporter.cs" />
+    <Compile Include="TilePipeline\TileProcessor.cs" />
+    <Compile Include="TilePipeline\TileWriter.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

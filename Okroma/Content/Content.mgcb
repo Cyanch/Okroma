@@ -26,6 +26,16 @@
 /processorParam:TextureFormat=Color
 /build:Background.png
 
+#begin CoatedGrayTile.json
+/importer:TileImporter
+/processor:TileProcessor
+/build:CoatedGrayTile.json
+
+#begin GrayTile.json
+/importer:TileImporter
+/processor:TileProcessor
+/build:GrayTile.json
+
 #begin map.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -37,4 +47,28 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:map.png
+
+#begin Textures/CoatedGrayTile.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Textures/CoatedGrayTile.png
+
+#begin Textures/GrayTile.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Textures/GrayTile.png
 
