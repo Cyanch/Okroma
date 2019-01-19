@@ -4,7 +4,6 @@ using Microsoft.Xna.Framework.Content.Pipeline.Serialization.Compiler;
 
 namespace OkromaContentPipeline.ContentWriters
 {
-    [ContentTypeWriter]
     public class XnaRectangleContentWriter : ContentTypeWriter<Rectangle>
     {
         public override string GetRuntimeReader(TargetPlatform targetPlatform)
