@@ -3,7 +3,6 @@ using Microsoft.Xna.Framework.Content.Pipeline.Serialization.Compiler;
 
 namespace OkromaContentPipeline.ContentWriters
 {
-    [ContentTypeWriter]
     public class SpriteContentWriter : ContentTypeWriter<Sprite>
     {
         public override string GetRuntimeReader(TargetPlatform targetPlatform)
