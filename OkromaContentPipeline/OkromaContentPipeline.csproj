@@ -50,6 +50,7 @@
     <Compile Include="TilePipeline\TileFile.cs" />
     <Compile Include="TilePipeline\TileImporter.cs" />
     <Compile Include="TilePipeline\TileProcessor.cs" />
+    <Compile Include="TilePipeline\TileWriter.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
