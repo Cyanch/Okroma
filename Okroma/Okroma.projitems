@@ -9,12 +9,59 @@
     <Import_RootNamespace>Okroma</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="$(MSBuildThisFileDirectory)Game1.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="$(MSBuildThisFileDirectory)Content\" />
+    <Compile Include="$(MSBuildThisFileDirectory)Cameras\Camera.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Cameras\PlayerCamera.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)CollisionMask.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Common\Range.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)GameObject2D.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)GameScale.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Input\GameControlsManager.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Input\MouseManager.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Input\ScreenInteractManager.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Input\TouchManager.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Physics\CollisionData.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Physics\CollisionProperties.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Physics\Controller2D.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Physics\ICollidableGameObject2D.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Physics\ICollidableSource.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)World\Tiles\CollidableTile.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)World\Tiles\Objects\CollidableTileObject.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Player.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Screens\TestScreen.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Common\MonoGame\TexturePathReference2D.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)UI\UIManager.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Utils\C3\Primitives2D.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)World\Chunk2D.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)World\ChunkLocation.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)World\Tiles\Tile.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)World\TileLocation.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)World\Tiles\Objects\TileObject.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)World\World2D.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Common\Invalidatable.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)OkromaGame.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)RectTransform2D.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Screens\FadingSplashScreen.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Screens\GameScreen.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Screens\GameScreenInfo.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Screens\ScreenManager.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Screens\SplashScreen.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Sprite.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Transform2D.cs" />
   </ItemGroup>
   <ItemGroup>
     <MonoGameContentReference Include="$(MSBuildThisFileDirectory)Content\Content.mgcb" />
   </ItemGroup>
- </Project>
+  <ItemGroup>
+    <Content Include="$(MSBuildThisFileDirectory)Content\Background.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="$(MSBuildThisFileDirectory)Content\map.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="$(MSBuildThisFileDirectory)Content\Content.mgcb" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="$(MSBuildThisFileDirectory)Common\MonoGame\" />
+    <Folder Include="$(MSBuildThisFileDirectory)World\Tiles\Objects\" />
+  </ItemGroup>
+</Project>
