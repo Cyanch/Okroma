@@ -51,8 +51,8 @@ namespace Okroma.Screens
             collidableSources.AddSingle(player);
             playerCamera.SetTargetPlayer(player);
 
-            var grayTile = content.Load<ITile>("GrayTile");
-            var coatedGrayTile = content.Load<ITile>("CoatedGrayTile");
+            var grayTile = content.Load<ITile>(@"Tiles\GrayTile");
+            var coatedGrayTile = content.Load<ITile>(@"Tiles\CoatedGrayTile");
 
             for (int mY = 0; mY < mapTexture.Height; mY++)
             {
