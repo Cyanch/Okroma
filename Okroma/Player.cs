@@ -17,7 +17,7 @@ namespace Okroma
         float gravity;
         float jumpVelocity;
 
-        public float Speed = GameScale.FromTile(10).Pixels;
+        float speed = GameScale.FromTile(10).Pixels;
 
         const float accelerationInAir = 0.2f;
         const float accelerationOnGround = 0.2f;
@@ -82,7 +82,7 @@ namespace Okroma
                 }
             }
 
-            float targetVelocityX = inputX * Speed;
+            float targetVelocityX = inputX * speed;
             velocity.X = SmoothMovement(
                 velocity.X,
                 targetVelocityX,
