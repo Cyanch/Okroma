@@ -7,7 +7,6 @@ using Okroma.Input;
 using Okroma.Physics;
 using Okroma.World;
 using System;
-using System.Collections.Generic;
 
 namespace Okroma.Screens
 {
