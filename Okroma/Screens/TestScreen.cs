@@ -17,9 +17,6 @@ namespace Okroma.Screens
         Player player;
         PlayerCamera playerCamera;
         CollidableSourceCollection collidableSources;
-        public TestScreen()
-        {
-        }
 
         /// <summary>
         /// <see cref="Chunk2D"/> size in tiles.
