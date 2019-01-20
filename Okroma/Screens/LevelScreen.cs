@@ -11,13 +11,23 @@ namespace Okroma.Screens
     {
         Player player;
         Camera camera;
+        const float initialCameraZoom = 0.5f;
 
         const int chunkSize = 8;
         World2D world;
         ICollidableSource collidables;
 
+        string levelPath;
+        public LevelScreen(string levelPath)
+        {
+            this.levelPath = levelPath;
+        }
+
         protected override void Initialize()
         {
+            camera = new PlayerCamera(Game, null);
+            camera.Zoom = initialCameraZoom;
+                
             var collidableSourceCollection = new CollidableSourceCollection();
             collidables = collidableSourceCollection;
             collidableSourceCollection.AddSingle(player);
@@ -26,13 +36,17 @@ namespace Okroma.Screens
 
         public override void LoadContent(ContentManager content)
         {
-            base.LoadContent(content);
             player = new Player("Player", null, Transform2D.None, collidables);
+            (camera as PlayerCamera)?.SetTargetPlayer(player);
+
         }
 
         public override void Update(GameTime gameTime, IGameScreenInfo info)
         {
-            base.Update(gameTime, info);
+            player.HandleInput(Game.Services.GetService<Input.IGameControlsService>());
+            player.Update(gameTime);
+            camera.Update(gameTime);
+            world.Update(gameTime);
         }
 
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
