@@ -46,6 +46,9 @@
     <Compile Include="ContentWriters\ContentWriterExtensions.cs" />
     <Compile Include="JsonConverters\XnaVector2JsonConverter.cs" />
     <Compile Include="LevelPipeline\LevelFile.cs" />
+    <Compile Include="LevelPipeline\LevelImporter.cs" />
+    <Compile Include="LevelPipeline\LevelProcessor.cs" />
+    <Compile Include="LevelPipeline\LevelWriter.cs" />
     <Compile Include="ProcessorResult.cs" />
     <Compile Include="JsonConverters\XnaRectangleJsonConverter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

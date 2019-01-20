@@ -4,10 +4,10 @@ namespace OkromaContentPipeline.LevelPipeline
 {
     public class LevelFile
     {
-        [JsonProperty("tilesets")]
+        [JsonProperty("tilesets", Required = Required.Always)]
         public string[] TilesetPaths { get; set; }
 
-        [JsonProperty("tilemap")]
-        public string TileMapPath { get; set; }
+        [JsonProperty("tilemaps", Required = Required.Always)]
+        public string[] TileMapPaths { get; set; }
     }
 }

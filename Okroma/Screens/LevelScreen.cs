@@ -38,7 +38,7 @@ namespace Okroma.Screens
         {
             player = new Player("Player", null, Transform2D.None, collidables);
             (camera as PlayerCamera)?.SetTargetPlayer(player);
-
+            var level = content.Load<Level>(levelPath);
         }
 
         public override void Update(GameTime gameTime, IGameScreenInfo info)
