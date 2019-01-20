@@ -24,7 +24,7 @@ namespace Okroma.Screens
 
         protected override void Initialize()
         {
-            playerCamera = new PlayerCamera(Game, player);
+            playerCamera = new PlayerCamera(Game, null);
             playerCamera.Zoom = 0.5f;
 
             collidableSources = new CollidableSourceCollection();
