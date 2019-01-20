@@ -26,6 +26,13 @@
 /processorParam:TextureFormat=Color
 /build:Background.png
 
+#begin Fonts/Cyfont-I.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/Cyfont-I.spritefont
+
 #begin map.png
 /importer:TextureImporter
 /processor:TextureProcessor

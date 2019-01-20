@@ -109,6 +109,7 @@ namespace Okroma.Screens
                 player.Draw(gameTime, spriteBatch, world.LayerToDepth((int)Layer.Back));
             }
             spriteBatch.End();
+            spriteBatch.End();
         }
 
         public class CollidableSourceCollection : ICollidableSource
