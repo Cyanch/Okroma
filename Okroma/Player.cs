@@ -8,23 +8,33 @@ namespace Okroma
 {
     public class Player : Controller2D, IUpdateableGameObject2D, IDrawableGameObject2D, IHandleInput
     {
-        public ISprite Sprite { get; }
+        //Physics
+        public override int CollisionMask => (int)Okroma.CollisionMask.Player;
+        //Movement
         Vector2 velocity;
-
+        float speed = GameScale.FromTile(10).Pixels;
+        //Jumping/Gravity
         float jumpHeight = GameScale.FromTile(3.2f).Pixels;
         float timeToJumpApex = .3f;
+        float gravity, jumpVelocity;
 
-        float gravity;
-        float jumpVelocity;
+        //Rendering
+        public float RenderDepth { get; set; }
+        public ISprite Sprite { get; }
 
-        float speed = GameScale.FromTile(10).Pixels;
+        //Width & Height
+        protected override int Width => Sprite.TextureWidth;
+        protected override int Height => Sprite.TextureHeight;
 
+        //Accelerations
         const float accelerationInAir = 0.2f;
         const float accelerationOnGround = 0.2f;
 
+        //Wall Jumping
         const float wallJumpTimeLimit = .1f;
         WallJumpController wallJumpController;
-        public Player(string id, ISprite sprite, ITransform2D transform, ICollidableSource collidableSource, int width, int height) : base(id, transform, collidableSource, width, height)
+
+        public Player(string id, ISprite sprite, ITransform2D transform, ICollidableSource collidableSource) : base(id, transform, collidableSource)
         {
             this.Sprite = sprite;
 
@@ -33,10 +43,6 @@ namespace Okroma
 
             wallJumpController = new WallJumpController(this, TimeSpan.FromSeconds(wallJumpTimeLimit), 1.25f, 0.75f);
         }
-
-        public float RenderDepth { get; set; }
-
-        public override int CollisionMask => (int)Okroma.CollisionMask.Player;
 
         bool moveLeft, moveRight, jump, wallJump, shouldWallJumpUpward;
         public void HandleInput(IGameControlsService controls)
