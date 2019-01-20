@@ -36,7 +36,7 @@ namespace Okroma.Input
                     return keyboard.IsKeyDown(Keys.Left) || keyboard.IsKeyDown(Keys.A);
                 case Control.MoveRight:
                     return keyboard.IsKeyDown(Keys.Right) || keyboard.IsKeyDown(Keys.D);
-                case Control.ShouldWallJumpUpward:
+                case Control.MoveUp:
                     return keyboard.IsKeyDown(Keys.Up) || keyboard.IsKeyDown(Keys.W);
                 case Control.Jump:
                     return keyboard.IsKeyDown(Keys.Space);
@@ -53,7 +53,7 @@ namespace Okroma.Input
     {
         MoveLeft,
         MoveRight,
-        ShouldWallJumpUpward,
+        MoveUp,
         /// <summary>
         /// When Jump key is held.
         /// </summary>
