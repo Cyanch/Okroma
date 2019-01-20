@@ -67,3 +67,8 @@
 /processor:TileProcessor
 /build:Tiles/GrayTile.json
 
+#begin Tilesets/MainTileset.json
+/importer:TilesetImporter
+/processor:TilesetProcessor
+/build:Tilesets/MainTileset.json
+
