@@ -7,16 +7,14 @@ namespace Okroma.Physics
 {
     public abstract class Controller2D : GameObject2D, ICollidableGameObject2D, IHasTransform2D
     {
-        protected int Width { get; }
-        protected int Height { get; }
+        protected abstract int Width { get; }
+        protected abstract int Height { get; }
         protected ICollidableSource CollidableSource { get; }
         public CollisionProperties CollisionProperties { get; } = new CollisionProperties();
-        public Controller2D(string id, ITransform2D transform, ICollidableSource collidableSource, int width, int height) : base(id)
+        public Controller2D(string id, ITransform2D transform, ICollidableSource collidableSource) : base(id)
         {
             this.CollidableSource = collidableSource;
             this.Transform = transform;
-            this.Width = width;
-            this.Height = height;
         }
 
         public Rectangle Bounds { get; protected set; }
