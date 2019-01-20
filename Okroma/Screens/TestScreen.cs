@@ -6,7 +6,6 @@ using Okroma.Common;
 using Okroma.Input;
 using Okroma.Physics;
 using Okroma.World;
-using Okroma.World.Tiles;
 using System;
 using System.Collections.Generic;
 
@@ -21,12 +20,12 @@ namespace Okroma.Screens
         public TestScreen()
         {
         }
-        
+
         /// <summary>
         /// <see cref="Chunk2D"/> size in tiles.
         /// </summary>
         const int chunkSize = 8;
-        
+
         protected override void Initialize()
         {
             playerCamera = new PlayerCamera(Game, player);
@@ -41,7 +40,7 @@ namespace Okroma.Screens
             Color[] colorArray = new Color[mapTexture.Width * mapTexture.Height];
             mapTexture.GetData(colorArray);
 
-            world = new World2D(GameScale.TileSize, (byte)Enum.GetValues(typeof(Layer)).Length, new Range<float>(0, 1), chunkSize, mapTexture.Width / chunkSize, mapTexture.Height / chunkSize);
+            world = new World2D(GameScale.TileSize, (byte)Enum.GetValues(typeof(Layer)).Length, new Range<float>(0, 1), chunkSize, (int)Math.Ceiling(mapTexture.Width / (float)chunkSize), (int)Math.Ceiling(mapTexture.Height / (float)chunkSize));
             collidableSources.AddSource(world);
             playerCamera.SetBoundaries(new Rectangle(0, 0, GameScale.FromTile(mapTexture.Width).Pixels, GameScale.FromTile(mapTexture.Height).Pixels));
 
@@ -50,22 +49,17 @@ namespace Okroma.Screens
             player = new Player("Player", new Sprite(CreateSingleColorTexture(Color.BurlyWood, playerWidth, playerHeight)), new Transform2D(64, 64), collidableSources, playerWidth, playerHeight);
             collidableSources.AddSingle(player);
             playerCamera.SetTargetPlayer(player);
-
-            var grayTile = content.Load<ITile>(@"Tiles\GrayTile");
-            var coatedGrayTile = content.Load<ITile>(@"Tiles\CoatedGrayTile");
+            
+            var tileset = content.Load<Tileset>(@"Tilesets\MainTileset");
 
             for (int mY = 0; mY < mapTexture.Height; mY++)
             {
                 for (int mX = 0; mX < mapTexture.Width; mX++)
                 {
                     Color color = colorArray[mX + mY * mapTexture.Width];
-                    if (color == Color.Gray)
+                    if (tileset.ContainsKey(color))
                     {
-                        world.PlaceTile(mX, mY, (int)Layer.Forward, grayTile);
-                    }
-                    else if (color == new Color(64, 64, 64))
-                    {
-                        world.PlaceTile(mX, mY, (int)Layer.Forward, coatedGrayTile);
+                        world.PlaceTile(mX, mY, (int)Layer.Forward, tileset[color]);
                     }
                 }
             }
