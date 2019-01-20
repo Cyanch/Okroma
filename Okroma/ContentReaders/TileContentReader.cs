@@ -1,6 +1,5 @@
 ﻿using Microsoft.Xna.Framework.Content;
 using Okroma.World.Tiles;
-using System.IO;
 
 namespace Okroma.ContentReaders
 {
