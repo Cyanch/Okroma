@@ -69,7 +69,7 @@ namespace Okroma
 #if DEBUG
             if (DebugSettings.SkipSplash)
             {
-                LoadTestScene();
+                LoadTestLevel();
             }
             else
             {
@@ -79,14 +79,14 @@ namespace Okroma
                 //splashScreen.OnRemovedFromScreenManager += (sender, args) => LoadTestScene();
 
                 //there is no splashscreen yet.
-                LoadTestScene();
+                LoadTestLevel();
 #if DEBUG
             }
 #endif
 
-            void LoadTestScene()
+            void LoadTestLevel()
             {
-                screenManager.AddScreen(new TestScreen(), Content);
+                screenManager.AddScreen(new LevelScreen("Levels\\Test"), Content);
             }
         }
 

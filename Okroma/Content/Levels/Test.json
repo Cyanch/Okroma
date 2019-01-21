@@ -1,0 +1,12 @@
+{
+    "tilesets":
+    [
+        "Tilesets\\Test"
+    ],
+    "tilemaps":
+    [
+        "TileMaps\\Test"
+    ],
+    "playerSpawnPosition":"96 8126",
+    "playerLayer":0
+}

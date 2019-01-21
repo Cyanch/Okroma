@@ -80,8 +80,7 @@ namespace Okroma
         {
             if (obj is RectTransform2D)
                 return Equals((RectTransform2D)obj);
-
-            throw new InvalidCastException("Passed object is not a " + nameof(RectTransform2D));
+            return false;
         }
 
         public static bool operator ==(RectTransform2D rect1, RectTransform2D rect2)
