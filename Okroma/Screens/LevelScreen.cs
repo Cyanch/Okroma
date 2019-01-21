@@ -74,10 +74,12 @@ namespace Okroma.Screens
 
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
+            var renderArea = camera.ViewRectangle;
+            renderArea.Inflate(GameScale.TileSize, GameScale.TileSize);
             spriteBatch.Begin(SpriteSortMode.FrontToBack, null, null, null, null, null, camera.ViewMatrix);
             {
                 player.Draw(gameTime, spriteBatch, world.LayerToDepth(levelReference.Content.PlayerLayer));
-                world.Draw(gameTime, spriteBatch, camera.ViewRectangle);
+                world.Draw(gameTime, spriteBatch, renderArea);
             }
             spriteBatch.End();
         }
