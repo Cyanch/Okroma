@@ -24,6 +24,8 @@ namespace OkromaContentPipeline.LevelPipeline
             {
                 output.Write(path);
             }
+            output.Write(result.PlayerSpawnPosition);
+            output.Write(result.PlayerLayer);
         }
     }
 }

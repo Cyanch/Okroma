@@ -5,6 +5,7 @@ using Okroma.Cameras;
 using Okroma.Common;
 using Okroma.Input;
 using Okroma.Physics;
+using Okroma.Utils.C3;
 using Okroma.World;
 using System;
 
@@ -42,7 +43,7 @@ namespace Okroma.Screens
 
             int playerWidth = 64;
             int playerHeight = 64;
-            player = new Player("Player", new Sprite(CreateSingleColorTexture(Color.BurlyWood, playerWidth, playerHeight)), new Transform2D(64, 64), collidableSources);
+            player = new Player("Player", new Sprite(CreateSingleColorTexture(Color.BurlyWood, playerWidth, playerHeight), null, new Vector2(playerWidth / 2, playerHeight)), new Transform2D(96, 128), collidableSources);
             collidableSources.AddSingle(player);
             playerCamera.SetTargetPlayer(player);
             

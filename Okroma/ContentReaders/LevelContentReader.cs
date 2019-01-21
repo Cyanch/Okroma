@@ -34,8 +34,10 @@ namespace Okroma.ContentReaders
                     throw new ContentLoadException("Maps with varying sizes from eachother cannot be loaded together!");
                 }
             }
+            Vector2 playerSpawnLocation = input.ReadVector2();
+            byte playerLayer = input.ReadInt32();
 
-            return new Level(tilesets, mapSize, colorMaps);
+            return new Level(tilesets, mapSize, colorMaps, playerSpawnLocation, playerLayer);
         }
     }
 }

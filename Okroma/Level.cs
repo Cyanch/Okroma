@@ -13,11 +13,16 @@ namespace Okroma
         Point mapSize;
         IList<Color[]> colorMaps;
 
-        public Level(ICollection<Tileset> tilesets, Point mapSize, IList<Color[]> colorMaps)
+        public Vector2 PlayerSpawnLocation { get; }
+        public byte PlayerLayer { get; }
+
+        public Level(ICollection<Tileset> tilesets, Point mapSize, IList<Color[]> colorMaps, Vector2 playerSpawnLocation, byte playerLayer)
         {
             this.tilesets = tilesets ?? throw new ArgumentNullException(nameof(tilesets));
             this.mapSize = mapSize;
             this.colorMaps = colorMaps ?? throw new ArgumentNullException(nameof(colorMaps));
+            PlayerSpawnLocation = playerSpawnLocation;
+            PlayerLayer = playerLayer;
         }
 
         public World2D Create(Range<float> depthRange, int chunkSize)

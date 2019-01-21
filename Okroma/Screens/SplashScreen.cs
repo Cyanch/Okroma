@@ -19,12 +19,12 @@ namespace Okroma.Screens
             }
         }
 
-        private TextureReference2D imageReference;
+        private ContentReference<Texture2D> imageReference;
         protected Texture2D Image => imageReference;
 
         ContentManager content;
 
-        public SplashScreen(TextureReference2D imageReference)
+        public SplashScreen(ContentReference<Texture2D> imageReference)
         {
             this.imageReference = imageReference;
         }
@@ -37,7 +37,7 @@ namespace Okroma.Screens
         public override void LoadContent(ContentManager content)
         {
             this.content = new ContentManager(content.ServiceProvider, content.RootDirectory);
-            content.Load<Texture2D>(imageReference);
+            content.Load(imageReference);
         }
 
         public override void UnloadContent()
