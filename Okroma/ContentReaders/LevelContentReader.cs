@@ -25,7 +25,7 @@ namespace Okroma.ContentReaders
                 mapImage.GetData(colorMap);
                 colorMaps.Add(colorMap);
                 var imageSize = new Point(mapImage.Width, mapImage.Height);
-                if (mapSize == null)
+                if (mapSize == Point.Zero)
                 {
                     mapSize = imageSize;
                 }
@@ -35,7 +35,7 @@ namespace Okroma.ContentReaders
                 }
             }
             Vector2 playerSpawnLocation = input.ReadVector2();
-            byte playerLayer = input.ReadInt32();
+            byte playerLayer = input.ReadByte();
 
             return new Level(tilesets, mapSize, colorMaps, playerSpawnLocation, playerLayer);
         }
