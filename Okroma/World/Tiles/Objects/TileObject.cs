@@ -15,7 +15,7 @@ namespace Okroma.World.Tiles.Objects
     {
         public ISprite Sprite { get; protected set; }
         public ITransform2D Transform { get; set; }
-        public float RenderDepth { get; }
+        public float RenderDepth { get; set; }
 
         public TileLocation Location { get; } 
 
@@ -52,7 +52,7 @@ namespace Okroma.World.Tiles.Objects
 
         public void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
-            BaseTile.Draw(gameTime, spriteBatch, Transform, default(float));
+            BaseTile.Draw(gameTime, spriteBatch, Transform, RenderDepth);
         }
 
         void ITile.Draw(GameTime gameTime, SpriteBatch spriteBatch, ITransform2D transform, Color color, SpriteEffects spriteEffects, float depth)

@@ -5,7 +5,7 @@ namespace Okroma
 {
     public interface IDrawableGameObject2D : IGameObject2D, IHasTransform2D
     {
-        float RenderDepth { get; }
+        float RenderDepth { get; set; }
         void Draw(GameTime gameTime, SpriteBatch spriteBatch);
     }
 

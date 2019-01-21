@@ -1,4 +1,4 @@
 {
-    "404040FF":"Tiles\\CoatedGrayTile",
-    "808080FF":"Tiles\\GrayTile"
+    "404040FF":"Tiles\\Normal\\CoatedGrayTile",
+    "808080FF":"Tiles\\Normal\\GrayTile"
 }
