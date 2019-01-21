@@ -2,22 +2,64 @@
 using Microsoft.Xna.Framework.Graphics;
 using Okroma.Input;
 using Okroma.Screens;
-using System;
+using System.Collections.Generic;
 
 namespace Okroma
 {
     /// <summary>
     /// Settings that are applied when OkromaGame.IsDebugBuild is true.
     /// </summary>
-    public static class DebugSettings
+    public struct DebugSetting
     {
-        public static readonly bool DisableDebugOptions = false;
+        public const bool EnableDebugSettings = true;
 
-        // Group - Bypasses.
-       /// <summary>
-       /// Skips Splash Screen.
-       /// </summary>
-        public static readonly bool SkipSplash = !DisableDebugOptions && true;
+        static DebugSetting() 
+        {
+            SkipSplash = true;
+            ShowCameraBounds = new DebugSetting(false, Color.Orange, 8f);
+            ShowRenderBounds = new DebugSetting(false, Color.Yellow, 4f);
+        }
+
+        /// <summary>
+        /// Skip Splash Screen at start of application.
+        /// </summary>
+        public static DebugSetting SkipSplash { get; private set; }
+        /// <summary>
+        /// Shows the camera boundaries.
+        /// </summary>
+        public static DebugSetting ShowCameraBounds { get; private set; }
+        /// <summary>
+        /// Shows the boundaries of the designated render area.
+        /// </summary>
+        public static DebugSetting ShowRenderBounds { get; private set; }
+
+        public bool Enabled { get; private set; }
+        public IReadOnlyList<object> Arguments { get; private set; }
+
+        public DebugSetting(bool enabled) : this(enabled, null)
+        {
+        }
+
+        public DebugSetting(bool enabled, params object[] args) : this()
+        {
+            this.Enabled = EnableDebugSettings && enabled;
+            this.Arguments = args;
+        }
+
+        public T GetArg<T>(int index)
+        {
+            return (T)Arguments[index];
+        }
+
+        public static implicit operator bool(DebugSetting setting)
+        {
+            return setting.Enabled;
+        }
+
+        public static implicit operator DebugSetting(bool enabled)
+        {
+            return new DebugSetting(enabled);
+        }
     }
 
     public class OkromaGame : Game
@@ -67,7 +109,7 @@ namespace Okroma
             var screenManager = Services.GetService<IScreenManagerService>();
 
 #if DEBUG
-            if (DebugSettings.SkipSplash)
+            if (DebugSetting.SkipSplash)
             {
                 LoadTestLevel();
             }
