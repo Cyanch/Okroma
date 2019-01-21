@@ -15,7 +15,7 @@ namespace Okroma.Screens
 
         private readonly float a, b, c;
 
-        public FadingSplashScreen(TextureReference2D imageReference, TimeSpan normalDuration, TimeSpan fadeDuration) : base(imageReference)
+        public FadingSplashScreen(ContentReference<Texture2D> imageReference, TimeSpan normalDuration, TimeSpan fadeDuration) : base(imageReference)
         {
             this.normalDuration = normalDuration;
             this.fadeDuration = fadeDuration;

@@ -33,17 +33,10 @@
 /processorParam:TextureFormat=Compressed
 /build:Fonts/Cyfont-I.spritefont
 
-#begin map.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:map.png
+#begin Levels/Test.json
+/importer:LevelImporter
+/processor:LevelProcessor
+/build:Levels/Test.json
 
 #begin Textures/Tiles/GrayTile.png
 /importer:TextureImporter
@@ -57,6 +50,18 @@
 /processorParam:TextureFormat=Color
 /build:Textures/Tiles/GrayTile.png
 
+#begin TileMaps/Test.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:TileMaps/Test.png
+
 #begin Tiles/CoatedGrayTile.json
 /importer:TileImporter
 /processor:TileProcessor
@@ -67,8 +72,8 @@
 /processor:TileProcessor
 /build:Tiles/GrayTile.json
 
-#begin Tilesets/MainTileset.json
+#begin Tilesets/Test.json
 /importer:TilesetImporter
 /processor:TilesetProcessor
-/build:Tilesets/MainTileset.json
+/build:Tilesets/Test.json
 

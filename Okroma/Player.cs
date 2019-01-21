@@ -107,7 +107,7 @@ namespace Okroma
             }
 
             Move(velocity * (float)gameTime.ElapsedGameTime.TotalSeconds);
-            Bounds = new Rectangle((int)Transform.Position.X, (int)Transform.Position.Y, Sprite.TextureWidth, Sprite.TextureHeight);
+            Bounds = new Rectangle((int)(Transform.Position.X - Width / 2), (int)(Transform.Position.Y - Height), Sprite.TextureWidth, Sprite.TextureHeight);
         }
 
         public void Draw(GameTime gameTime, SpriteBatch spriteBatch, float depth)
