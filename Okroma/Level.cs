@@ -4,6 +4,7 @@ using Okroma.World;
 using Okroma.World.Tiles;
 using System;
 using System.Collections.Generic;
+using Okroma.World.Tiles.Objects;
 
 namespace Okroma
 {
@@ -17,6 +18,11 @@ namespace Okroma
         public Vector2 PlayerSpawnLocation { get; }
         public byte PlayerLayer { get; }
 
+        /// <summary>
+        /// The size of a <see cref="Chunk2D"/> in <see cref="ITileObject"/>
+        /// </summary>
+        public const int ChunkSize = 8;
+
         public Level(ICollection<Tileset> tilesets, Point mapSize, IList<Color[]> colorMaps, Vector2 playerSpawnLocation, byte playerLayer)
         {
             this.tilesets = tilesets ?? throw new ArgumentNullException(nameof(tilesets));
@@ -26,10 +32,10 @@ namespace Okroma
             PlayerLayer = playerLayer;
         }
 
-        public World2D Create(Range<float> depthRange, int chunkSize)
+        public World2D Create(Range<float> depthRange)
         {
             byte layerCount = (byte)colorMaps.Count;
-            var world = new World2D(GameScale.TileSize, layerCount, depthRange, chunkSize, (int)Math.Ceiling(LevelSize.X / (float)chunkSize), (int)Math.Ceiling(LevelSize.Y / (float)chunkSize));
+            var world = new World2D(GameScale.TileSize, layerCount, depthRange, ChunkSize, (int)Math.Ceiling(LevelSize.X / (float)ChunkSize), (int)Math.Ceiling(LevelSize.Y / (float)ChunkSize));
 
             for (var layer = 0; layer < layerCount; layer++)
             {

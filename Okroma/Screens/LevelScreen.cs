@@ -15,12 +15,11 @@ namespace Okroma.Screens
         Player player;
         Camera camera;
         const float initialCameraZoom = 0.5f;
-
-        const int chunkSize = 8;
+        
         World2D world;
-        CollidableSourceCollection collidables;
-
         ContentReference<Level> levelReference;
+
+        CollidableSourceCollection collidables;
         public LevelScreen(ContentReference<Level> levelReference)
         {
             this.levelReference = levelReference;
@@ -38,7 +37,7 @@ namespace Okroma.Screens
         {
             //Level / World
             var level = content.Load(levelReference);
-            world = level.Create(new Range<float>(0, 1), chunkSize);
+            world = level.Create(new Range<float>(0, 1));
             collidables.AddSource(world);
             (camera as PlayerCamera)?.SetBoundaries(new Rectangle(0, 0, GameScale.FromTile(level.LevelSize.X).Pixels, GameScale.FromTile(level.LevelSize.Y).Pixels));
 
