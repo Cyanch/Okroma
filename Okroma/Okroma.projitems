@@ -35,7 +35,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)World\Tiles\CollidableTile.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)World\Tiles\Objects\CollidableTileObject.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Player.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Screens\TestScreen.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Common\MonoGame\ContentReference.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)UI\UIManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Utils\C3\Primitives2D.cs" />
