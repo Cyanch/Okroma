@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
+using System;
 using System.Collections.Generic;
 
 namespace Okroma.Screens
@@ -9,10 +10,12 @@ namespace Okroma.Screens
     {
         GameScreen FocusedScreen { get; }
         void AddScreen(GameScreen screen, ContentManager content);
+        void AddScreen(GameScreen screen, ContentManager content, bool waitUntilNextUpdate);
     }
 
     public class ScreenManager : DrawableGameComponent, IScreenManagerService
     {
+        private List<Tuple<GameScreen, ContentManager>> screensToAdd = new List<Tuple<GameScreen, ContentManager>>();
         private Stack<GameScreen> screenStack = new Stack<GameScreen>();
         private SpriteBatch spriteBatch;
 
@@ -34,6 +37,18 @@ namespace Okroma.Screens
             screen.LoadContent(content);
         }
 
+        public void AddScreen(GameScreen screen, ContentManager content, bool waitUntilNextUpdate)
+        {
+            if (waitUntilNextUpdate)
+            {
+                screensToAdd.Add(new Tuple<GameScreen, ContentManager>(screen, content));
+            }
+            else
+            {
+                AddScreen(screen, content);
+            }
+        }
+
         public override void Update(GameTime gameTime)
         {
             if (screenStack.Count != 0)
@@ -44,14 +59,23 @@ namespace Okroma.Screens
                     var exitedScreen = screenStack.Pop();
                     exitedScreen.NotifyRemovedFromScreenManager();
                 }
+            }
 
-                foreach (var screen in screenStack.ToArray())
+            if (screensToAdd.Count > 0)
+            {
+                foreach (var screen in screensToAdd)
                 {
-                    screen.Update(gameTime, GetGameScreenInfo(screen));
+                    AddScreen(screen.Item1, screen.Item2);
                 }
+                screensToAdd.Clear();
+            }
+
+            foreach (var screen in screenStack)
+            {
+                screen?.Update(gameTime, GetGameScreenInfo(screen));
             }
         }
-        
+
         protected virtual IGameScreenInfo GetGameScreenInfo(GameScreen screen)
         {
             return new GameScreenInfo(screen == FocusedScreen);

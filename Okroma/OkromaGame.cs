@@ -112,7 +112,7 @@ namespace Okroma
 #if DEBUG
             if (DebugSetting.SkipSplash)
             {
-                LoadTestLevel();
+                LoadMenuScreen();
             }
             else
             {
@@ -122,14 +122,14 @@ namespace Okroma
                 //splashScreen.OnRemovedFromScreenManager += (sender, args) => LoadTestScene();
 
                 //there is no splashscreen yet.
-                LoadTestLevel();
+                LoadMenuScreen();
 #if DEBUG
             }
 #endif
 
-            void LoadTestLevel()
+            void LoadMenuScreen()
             {
-                screenManager.AddScreen(new LevelScreen(Path.Combine("Levels", "Test")), Content);
+                screenManager.AddScreen(new MenuScreen(), Content);
             }
         }
 
