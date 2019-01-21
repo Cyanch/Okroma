@@ -74,7 +74,7 @@ namespace Okroma.Screens
 
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
-            spriteBatch.Begin(SpriteSortMode.BackToFront, null, null, null, null, null, camera.ViewMatrix);
+            spriteBatch.Begin(SpriteSortMode.FrontToBack, null, null, null, null, null, camera.ViewMatrix);
             {
                 player.Draw(gameTime, spriteBatch, world.LayerToDepth(levelReference.Content.PlayerLayer));
                 world.Draw(gameTime, spriteBatch, camera.ViewRectangle);

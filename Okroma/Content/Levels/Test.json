@@ -1,12 +1,14 @@
 {
     "tilesets":
     [
+        "Tilesets\\TestBackground",
         "Tilesets\\Test"
     ],
     "tilemaps":
     [
+        "TileMaps\\TestBackground",
         "TileMaps\\Test"
     ],
     "playerSpawnPosition":"96 8126",
-    "playerLayer":0
+    "playerLayer":1
 }
