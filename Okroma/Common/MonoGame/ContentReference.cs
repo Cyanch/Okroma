@@ -12,9 +12,9 @@ namespace Okroma.Common.MonoGame
         public string ContentPath { get; }
         public TContent Content { get; private set; }
 
-        ContentReference(string texturePath)
+        ContentReference(string contentPath)
         {
-            this.ContentPath = texturePath ?? throw new ArgumentNullException(nameof(texturePath));
+            this.ContentPath = contentPath ?? throw new ArgumentNullException(nameof(contentPath));
         }
 
         ContentReference(TContent content)
