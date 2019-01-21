@@ -8,7 +8,7 @@ using System.IO;
 namespace Okroma
 {
     /// <summary>
-    /// Settings that are applied when OkromaGame.IsDebugBuild is true.
+    /// Settings that are applied when <see cref="DebugSetting.EnableDebugSettings"/> is true.
     /// </summary>
     public struct DebugSetting
     {
