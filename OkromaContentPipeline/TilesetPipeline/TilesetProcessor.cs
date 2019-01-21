@@ -13,17 +13,22 @@ namespace OkromaContentPipeline.TilesetPipeline
             {
                 string hex = item.Key;
                 string tilePath = item.Value;
+                
+                var packedColorValue = RGBAHexadecimalToARGBPackedValue(hex);
 
-                //RGBA Hex to ARGB uint.
-                var r = uint.Parse(hex.Substring(0, 2), System.Globalization.NumberStyles.HexNumber);
-                var g = uint.Parse(hex.Substring(2, 2), System.Globalization.NumberStyles.HexNumber);
-                var b = uint.Parse(hex.Substring(4, 2), System.Globalization.NumberStyles.HexNumber);
-                var alpha = uint.Parse(hex.Substring(6, 2), System.Globalization.NumberStyles.HexNumber);
-
-                uint packedColorValue = (alpha << 24) | (b << 16) | (g << 8) | r;
                 data.AddColorTilePair(packedColorValue, tilePath);
             }
             return data;
+        }
+
+        public uint RGBAHexadecimalToARGBPackedValue(string hexadecimal)
+        {
+            var r = uint.Parse(hexadecimal.Substring(0, 2), System.Globalization.NumberStyles.HexNumber);
+            var g = uint.Parse(hexadecimal.Substring(2, 2), System.Globalization.NumberStyles.HexNumber);
+            var b = uint.Parse(hexadecimal.Substring(4, 2), System.Globalization.NumberStyles.HexNumber);
+            var alpha = uint.Parse(hexadecimal.Substring(6, 2), System.Globalization.NumberStyles.HexNumber);
+
+            return (alpha << 24) | (b << 16) | (g << 8) | r;
         }
     }
 }
