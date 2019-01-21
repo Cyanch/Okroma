@@ -1,6 +1,5 @@
 ﻿using Microsoft.Xna.Framework.Content;
 using Okroma.World.Tiles;
-using System.IO;
 
 namespace Okroma.ContentReaders
 {
@@ -15,9 +14,12 @@ namespace Okroma.ContentReaders
 
             if (type == "normal")
             {
-                return new CollidableTile(input.AssetName, sprite, (int)CollisionMask.Tile) { IsWallJumpable = isWallJumpable };
+                return new CollidableTile(input.AssetName, sprite, (int)CollisionMask.NormalTile) { IsWallJumpable = isWallJumpable };
             }
-            else
+            else if (type == "background")
+            {
+                return new Tile(input.AssetName, sprite);
+            }
             {
                 throw new ContentLoadException(nameof(ITile) + " could not load, missing ITile type.");
             }
