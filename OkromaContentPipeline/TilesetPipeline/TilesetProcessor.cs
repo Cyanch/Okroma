@@ -4,11 +4,11 @@ using System.Collections.Generic;
 namespace OkromaContentPipeline.TilesetPipeline
 {
     [ContentProcessor(DisplayName = "Tileset -- " + nameof(OkromaContentPipeline))]
-    public class TilesetProcessor : ContentProcessor<Dictionary<string, string>, TilesetData>
+    public class TilesetProcessor : ContentProcessor<Dictionary<string, string>, TilesetProcessorResult>
     {
-        public override TilesetData Process(Dictionary<string, string> input, ContentProcessorContext context)
+        public override TilesetProcessorResult Process(Dictionary<string, string> input, ContentProcessorContext context)
         {
-            var data = new TilesetData(input.Count);
+            var data = new TilesetProcessorResult(input.Count);
             foreach (var item in input)
             {
                 string hex = item.Key;

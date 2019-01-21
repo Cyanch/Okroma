@@ -2,12 +2,12 @@
 
 namespace OkromaContentPipeline.TilesetPipeline
 {
-    public class TilesetData
+    public class TilesetProcessorResult
     {
         public int ColorTilePairCount { get; }
         Dictionary<uint, string> packedColorTilePairs = new Dictionary<uint, string>();
 
-        public TilesetData(int colorTilePairCount)
+        public TilesetProcessorResult(int colorTilePairCount)
         {
             this.ColorTilePairCount = colorTilePairCount;
         }
