@@ -1,7 +1,7 @@
 {
     "type":"background",
     "sprite": {
-        "texture":"Textures\\Tiles\\GrayTile",
+        "texture":"Textures/Tiles/GrayTile",
         "sourceRectangle":"0 64 64 64",
         "origin":"32 32"
     }

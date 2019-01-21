@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Okroma.Input;
 using Okroma.Screens;
 using System.Collections.Generic;
+using System.IO;
 
 namespace Okroma
 {
@@ -128,7 +129,7 @@ namespace Okroma
 
             void LoadTestLevel()
             {
-                screenManager.AddScreen(new LevelScreen("Levels\\Test"), Content);
+                screenManager.AddScreen(new LevelScreen(Path.Combine("Levels", "Test")), Content);
             }
         }
 
