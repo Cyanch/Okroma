@@ -2,7 +2,7 @@
 {
     public enum CollisionMask
     {
-        Player = 0,
-        Tile = 0
+        Player = 1,
+        NormalTile = 1
     }
 }

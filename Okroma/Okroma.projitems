@@ -13,22 +13,29 @@
     <Compile Include="$(MSBuildThisFileDirectory)Cameras\PlayerCamera.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)CollisionMask.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Common\Range.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ContentReaders\ContentReaderExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ContentReaders\LevelContentReader.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ContentReaders\TileContentReader.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ContentReaders\TilesetContentReader.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)GameObject2D.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)GameScale.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Input\GameControlsManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Input\MouseManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Input\ScreenInteractManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Input\TouchManager.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Level.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Physics\CollidableSourceCollection.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Physics\CollisionData.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Physics\CollisionProperties.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Physics\Controller2D.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Physics\ICollidableGameObject2D.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Physics\ICollidableSource.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Screens\LevelScreen.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Tileset.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)World\Tiles\CollidableTile.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)World\Tiles\Objects\CollidableTileObject.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Player.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Screens\TestScreen.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Common\MonoGame\TexturePathReference2D.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Common\MonoGame\ContentReference.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)UI\UIManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Utils\C3\Primitives2D.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)World\Chunk2D.cs" />
@@ -50,12 +57,6 @@
   </ItemGroup>
   <ItemGroup>
     <MonoGameContentReference Include="$(MSBuildThisFileDirectory)Content\Content.mgcb" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="$(MSBuildThisFileDirectory)Content\Background.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="$(MSBuildThisFileDirectory)Content\map.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="$(MSBuildThisFileDirectory)Content\Content.mgcb" />

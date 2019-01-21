@@ -27,9 +27,9 @@ namespace Okroma.World
                 );
         }
 
-        public bool PlaceTile(int x, int y, int z, ITile tile)
+        public bool PlaceTile(int x, int y, int layer, ITile tile)
         {
-            return PlaceTile(x, y, z, tile, out var temp);
+            return PlaceTile(x, y, layer, tile, out var temp);
         }
 
         /// <summary>
@@ -37,20 +37,20 @@ namespace Okroma.World
         /// </summary>
         /// <param name="tile"></param>
         /// <returns></returns>
-        public bool PlaceTile(int x, int y, int z, ITile tile, out ITileObject tileObject)
+        public bool PlaceTile(int x, int y, int layer, ITile tile, out ITileObject tileObject)
         {
-            if (0 > z && z > World.Info.LayerCount)
-                throw new System.ArgumentOutOfRangeException(nameof(z));
+            if (0 > layer && layer > World.Info.LayerCount)
+                throw new System.ArgumentOutOfRangeException(nameof(layer));
 
             if (IsValidChunkCoordinate(World, x, y))
             {
                 if (tile == null)
                 {
-                    tiles[x, y, z] = tileObject = null;
+                    tiles[x, y, layer] = tileObject = null;
                 }
                 else
                 {
-                    TileLocation location = new TileLocation(x + this.Location.AsTile.X, y + this.Location.AsTile.Y, z, this, x, y);
+                    TileLocation location = new TileLocation(x + this.Location.AsTile.X, y + this.Location.AsTile.Y, layer, this, x, y);
                     if (!tile.TileModifier.CanPlace(tile, location))
                     {
                         tileObject = null;
@@ -58,11 +58,12 @@ namespace Okroma.World
                     }
 
                     tileObject = tile?.TileModifier.Place(tile, location);
+                    tileObject.RenderDepth = World.LayerToDepth(layer);
                 }
             }
             else
             {
-                return World.PlaceTile(x + Location.AsTile.X, y + Location.AsTile.Y, z, tile, out tileObject);
+                return World.PlaceTile(x + Location.AsTile.X, y + Location.AsTile.Y, layer, tile, out tileObject);
             }
             return true;
         }
@@ -70,9 +71,6 @@ namespace Okroma.World
         /// <summary>
         /// Sets a prepared tile.
         /// </summary>
-        /// <param name="x"></param>
-        /// <param name="y"></param>
-        /// <param name="z"></param>
         /// <param name="tile"></param>
         public void AddTile(ITileObject tile)
         {

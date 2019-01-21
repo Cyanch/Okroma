@@ -36,7 +36,7 @@ namespace Okroma
         {
             Window.Title = "Okroma";
 #if DEBUG
-            Window.Title += " (Development and debug build, do not redistribute)";
+            Window.Title += " (Developmental build. Do not redistribute)";
 #endif
 
             graphics.PreferredBackBufferWidth = 1600;
@@ -60,14 +60,16 @@ namespace Okroma
 
             base.Initialize();
         }
+
         protected override void LoadContent()
         {
             //TODO: use this.Content to load your game content here 
             var screenManager = Services.GetService<IScreenManagerService>();
+
 #if DEBUG
             if (DebugSettings.SkipSplash)
             {
-                LoadTestScene();
+                LoadTestLevel();
             }
             else
             {
@@ -77,14 +79,14 @@ namespace Okroma
                 //splashScreen.OnRemovedFromScreenManager += (sender, args) => LoadTestScene();
 
                 //there is no splashscreen yet.
-                LoadTestScene();
+                LoadTestLevel();
 #if DEBUG
             }
 #endif
 
-            void LoadTestScene()
+            void LoadTestLevel()
             {
-                screenManager.AddScreen(new TestScreen(), Content);
+                screenManager.AddScreen(new LevelScreen("Levels\\Test"), Content);
             }
         }
 

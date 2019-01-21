@@ -10,6 +10,7 @@
 
 #-------------------------------- References --------------------------------#
 
+/reference:..\..\OkromaContentPipeline\bin\Release\OkromaContentPipeline.dll
 
 #---------------------------------- Content ---------------------------------#
 
@@ -25,7 +26,19 @@
 /processorParam:TextureFormat=Color
 /build:Background.png
 
-#begin map.png
+#begin Fonts/Cyfont-I.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/Cyfont-I.spritefont
+
+#begin Levels/Test.json
+/importer:LevelImporter
+/processor:LevelProcessor
+/build:Levels/Test.json
+
+#begin Textures/Tiles/GrayTile.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -35,5 +48,54 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:map.png
+/build:Textures/Tiles/GrayTile.png
+
+#begin TileMaps/Test.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:TileMaps/Test.png
+
+#begin TileMaps/TestBackground.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:TileMaps/TestBackground.png
+
+#begin Tiles/Background/GrayTile.json
+/importer:TileImporter
+/processor:TileProcessor
+/build:Tiles/Background/GrayTile.json
+
+#begin Tiles/Normal/CoatedGrayTile.json
+/importer:TileImporter
+/processor:TileProcessor
+/build:Tiles/Normal/CoatedGrayTile.json
+
+#begin Tiles/Normal/GrayTile.json
+/importer:TileImporter
+/processor:TileProcessor
+/build:Tiles/Normal/GrayTile.json
+
+#begin Tilesets/Test.json
+/importer:TilesetImporter
+/processor:TilesetProcessor
+/build:Tilesets/Test.json
+
+#begin Tilesets/TestBackground.json
+/importer:TilesetImporter
+/processor:TilesetProcessor
+/build:Tilesets/TestBackground.json
 

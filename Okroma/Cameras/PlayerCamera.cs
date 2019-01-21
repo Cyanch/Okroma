@@ -6,6 +6,7 @@ namespace Okroma.Cameras
     public class PlayerCamera : Camera
     {
         public Player TargetPlayer { get; protected set; }
+        public Rectangle Boundaries { get; protected set; }
         public PlayerCamera(Game game, Player player) : base(game)
         {
             this.TargetPlayer = player;
@@ -15,16 +16,16 @@ namespace Okroma.Cameras
         public override void Update(GameTime gameTime)
         {
             Vector2 focus = GetPlayerPosition();
-            // TODO: make this less hardcoded, more dynamic, and more flexible.
+            //// TODO: make this less hardcoded, more dynamic, and more flexible.
             Vector2 target = new Vector2(
                 MathHelper.Clamp(
                     focus.X - Game.GraphicsDevice.Viewport.TitleSafeArea.Center.X / Zoom,
-                    focus.X < 4096 ? 0 : 4096,
-                    focus.X < 4096 ? 4096f - Game.GraphicsDevice.Viewport.TitleSafeArea.Width / Zoom : 128 * 64f - Game.GraphicsDevice.Viewport.TitleSafeArea.Width / Zoom),
+                    Boundaries.Left,
+                    Boundaries.Right - Game.GraphicsDevice.Viewport.TitleSafeArea.Width / Zoom),
                 MathHelper.Clamp(
                     focus.Y - Game.GraphicsDevice.Viewport.TitleSafeArea.Center.Y / Zoom,
-                    0,
-                    128 * 64f - Game.GraphicsDevice.Viewport.TitleSafeArea.Height / Zoom));
+                    Boundaries.Top,
+                    Boundaries.Bottom - Game.GraphicsDevice.Viewport.TitleSafeArea.Height / Zoom));
 
             currentCameraPos.X = SmoothTransition(currentCameraPos.X, target.X, 0.2f);
             currentCameraPos.Y = target.Y;
@@ -51,6 +52,11 @@ namespace Okroma.Cameras
         public void SetTargetPlayer(Player player)
         {
             this.TargetPlayer = player;
+        }
+
+        public void SetBoundaries(Rectangle boundaries)
+        {
+            this.Boundaries = boundaries;
         }
 
         Vector2 GetPlayerPosition()

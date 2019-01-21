@@ -8,23 +8,36 @@ namespace Okroma
 {
     public class Player : Controller2D, IUpdateableGameObject2D, IDrawableGameObject2D, IHandleInput
     {
-        public ISprite Sprite { get; }
+        //Physics
+        public override int CollisionMask => (int)Okroma.CollisionMask.Player;
+        //Movement
         Vector2 velocity;
-
+        float speed = GameScale.FromTile(10).Pixels;
+        //Jumping/Gravity
         float jumpHeight = GameScale.FromTile(3.2f).Pixels;
         float timeToJumpApex = .3f;
+        float gravity, jumpVelocity;
 
-        float gravity;
-        float jumpVelocity;
+        //Rendering
+        public float RenderDepth { get; set; }
+        public ISprite Sprite { get; }
 
-        public float Speed = GameScale.FromTile(10).Pixels;
+        //Width & Height
+        protected override int Width => Sprite.TextureWidth;
+        protected override int Height => Sprite.TextureHeight;
 
+        //Accelerations
         const float accelerationInAir = 0.2f;
         const float accelerationOnGround = 0.2f;
 
+        //Wall Jumping
         const float wallJumpTimeLimit = .1f;
         WallJumpController wallJumpController;
-        public Player(string id, ISprite sprite, ITransform2D transform, ICollidableSource collidableSource, int width, int height) : base(id, transform, collidableSource, width, height)
+        const float accelerationOnWall = 0.2f; // Acceleration toward 0. So deacceleration really.
+
+        //Input
+        PlayerControls input;
+        public Player(string id, ISprite sprite, ITransform2D transform, ICollidableSource collidableSource) : base(id, transform, collidableSource)
         {
             this.Sprite = sprite;
 
@@ -34,18 +47,14 @@ namespace Okroma
             wallJumpController = new WallJumpController(this, TimeSpan.FromSeconds(wallJumpTimeLimit), 1.25f, 0.75f);
         }
 
-        public float RenderDepth { get; set; }
-
-        public override int CollisionMask => (int)Okroma.CollisionMask.Player;
-
-        bool moveLeft, moveRight, jump, wallJump, shouldWallJumpUpward;
         public void HandleInput(IGameControlsService controls)
         {
-            moveLeft = controls.Get(Control.MoveLeft);
-            moveRight = controls.Get(Control.MoveRight);
-            jump = controls.Get(Control.Jump);
-            wallJump = controls.Get(Control.WallJump);
-            shouldWallJumpUpward = controls.Get(Control.ShouldWallJumpUpward);
+            input.Reset();
+            input.MoveLeft = controls.Get(Control.MoveLeft);
+            input.MoveRight = controls.Get(Control.MoveRight);
+            input.MoveUp = controls.Get(Control.MoveUp);
+            input.Jump = controls.Get(Control.Jump);
+            input.WallJump = controls.Get(Control.WallJump);
         }
 
         public void Update(GameTime gameTime)
@@ -54,9 +63,9 @@ namespace Okroma
 
             int inputX = 0;
 
-            if (moveLeft)
+            if (input.MoveLeft)
                 inputX -= 1;
-            if (moveRight)
+            if (input.MoveRight)
                 inputX += 1;
 
             if (Collision.Below || Collision.Above)
@@ -70,19 +79,19 @@ namespace Okroma
 
             wallJumpController.Update(gameTime);
 
-            if (jump)
+            if (input.Jump)
             {
                 if (isGrounded)
                 {
                     velocity.Y = jumpVelocity;
                 }
-                else if (wallJump && wallJumpController.IsOnWall)
+                else if (input.WallJump && wallJumpController.IsOnWall)
                 {
                     wallJumpController.PerformWallJump(ref velocity);
                 }
             }
 
-            float targetVelocityX = inputX * Speed;
+            float targetVelocityX = inputX * speed;
             velocity.X = SmoothMovement(
                 velocity.X,
                 targetVelocityX,
@@ -90,7 +99,7 @@ namespace Okroma
 
             if (wallJumpController.IsOnWall)
             {
-                velocity.Y = SmoothMovement(velocity.Y, 0, 0.25f);
+                velocity.Y = SmoothMovement(velocity.Y, 0, accelerationOnWall);
             }
             else
             {
@@ -98,7 +107,7 @@ namespace Okroma
             }
 
             Move(velocity * (float)gameTime.ElapsedGameTime.TotalSeconds);
-            Bounds = new Rectangle((int)Transform.Position.X, (int)Transform.Position.Y, Sprite.TextureWidth, Sprite.TextureHeight);
+            Bounds = new Rectangle((int)(Transform.Position.X - Width / 2), (int)(Transform.Position.Y - Height), Sprite.TextureWidth, Sprite.TextureHeight);
         }
 
         public void Draw(GameTime gameTime, SpriteBatch spriteBatch, float depth)
@@ -110,6 +119,20 @@ namespace Okroma
         void IDrawableGameObject2D.Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
             Draw(gameTime, spriteBatch, RenderDepth);
+        }
+
+        private struct PlayerControls
+        {
+            public bool MoveLeft { get; set; }
+            public bool MoveRight { get; set; }
+            public bool MoveUp { get; set; }
+            public bool Jump { get; set; }
+            public bool WallJump { get; set; }
+
+            public void Reset()
+            {
+                MoveLeft = MoveRight = MoveUp = Jump = WallJump = false;
+            }
         }
 
         private class WallJumpController
@@ -162,7 +185,7 @@ namespace Okroma
             public void PerformWallJump(ref Vector2 velocity)
             {
                 velocity.X = player.jumpVelocity * VelocityXModifier * ((int)Direction - 1);
-                if (player.shouldWallJumpUpward)
+                if (player.input.MoveUp)
                 {
                     velocity.Y = player.jumpVelocity * VelocityYModifier;
                 }
