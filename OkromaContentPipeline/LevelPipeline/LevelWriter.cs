@@ -4,28 +4,27 @@ using Microsoft.Xna.Framework.Content.Pipeline.Serialization.Compiler;
 namespace OkromaContentPipeline.LevelPipeline
 {
     [ContentTypeWriter]
-    public class LevelWriter : ContentTypeWriter<ProcessorResult<LevelFile>>
+    public class LevelWriter : ContentTypeWriter<LevelProcessorResult>
     {
         public override string GetRuntimeReader(TargetPlatform targetPlatform)
         {
             return "Okroma.ContentReaders.LevelContentReader, Okroma";
         }
 
-        protected override void Write(ContentWriter output, ProcessorResult<LevelFile> value)
+        protected override void Write(ContentWriter output, LevelProcessorResult value)
         {
-            var result = value.Result;
-            output.Write(result.TilesetPaths.Length);
-            foreach (var path in result.TilesetPaths)
+            output.Write(value.TilesetPaths.Length);
+            foreach (var path in value.TilesetPaths)
             {
                 output.Write(path);
             }
-            output.Write(result.TileMapPaths.Length);
-            foreach (var path in result.TileMapPaths)
+            output.Write(value.TileMapPaths.Length);
+            foreach (var path in value.TileMapPaths)
             {
                 output.Write(path);
             }
-            output.Write(result.PlayerSpawnPosition);
-            output.Write(result.PlayerLayer);
+            output.Write(value.PlayerSpawnPosition);
+            output.Write(value.PlayerLayer);
         }
     }
 }
