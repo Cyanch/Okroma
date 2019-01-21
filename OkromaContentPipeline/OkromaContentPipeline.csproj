@@ -57,7 +57,7 @@
     <Compile Include="TilePipeline\TileImporter.cs" />
     <Compile Include="TilePipeline\TileProcessor.cs" />
     <Compile Include="TilePipeline\TileWriter.cs" />
-    <Compile Include="TilesetPipeline\TilesetData.cs" />
+    <Compile Include="TilesetPipeline\TilesetProcessorResult.cs" />
     <Compile Include="TilesetPipeline\TilesetImporter.cs" />
     <Compile Include="TilesetPipeline\TilesetProcessor.cs" />
     <Compile Include="TilesetPipeline\TilesetWriter.cs" />
