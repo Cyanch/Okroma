@@ -3,41 +3,45 @@ using System;
 
 namespace Okroma.Common.MonoGame
 {
-    public class ContentReference<T>
+    /// <summary>
+    /// Allows <typeparamref name="TContent"/> to be passed as either a path to be loaded or as a preloaded <typeparamref name="TContent"/>
+    /// </summary>
+    /// <typeparam name="TContent"></typeparam>
+    public class ContentReference<TContent>
     {
         public string ContentPath { get; }
-        public T Content { get; private set; }
+        public TContent Content { get; private set; }
 
         ContentReference(string texturePath)
         {
             this.ContentPath = texturePath ?? throw new ArgumentNullException(nameof(texturePath));
         }
 
-        ContentReference(T content)
+        ContentReference(TContent content)
         {
             this.Content = content;
         }
 
-        public T Load(ContentManager content)
+        public TContent Load(ContentManager content)
         {
             if (Content == null)
-                Content = content.Load<T>(ContentPath);
+                Content = content.Load<TContent>(ContentPath);
             return Content;
         }
 
-        public static implicit operator T(ContentReference<T> contentReference)
+        public static implicit operator TContent(ContentReference<TContent> contentReference)
         {
             return contentReference.Content;
         }
 
-        public static implicit operator ContentReference<T>(T content)
+        public static implicit operator ContentReference<TContent>(TContent content)
         {
-            return new ContentReference<T>(content);
+            return new ContentReference<TContent>(content);
         }
 
-        public static implicit operator ContentReference<T>(string path)
+        public static implicit operator ContentReference<TContent>(string path)
         {
-            return new ContentReference<T>(path);
+            return new ContentReference<TContent>(path);
         }
     }
 
