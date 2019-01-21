@@ -41,9 +41,13 @@ namespace Okroma.Screens
             {
                 selectedIndex = (selectedIndex + 1) % options.Length;
             }
-            else if (kb.IsKeyDown(Keys.Up) && oldKb.IsKeyDown(Keys.Up))
+            else if (kb.IsKeyDown(Keys.Up) && oldKb.IsKeyUp(Keys.Up))
             {
-                selectedIndex = (selectedIndex - 1) % options.Length;
+                selectedIndex = (selectedIndex - 1);
+                if (selectedIndex == -1)
+                {
+                    selectedIndex = options.Length - 1;
+                }
             }
 
             if (kb.IsKeyDown(Keys.Enter))
