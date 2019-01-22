@@ -17,6 +17,28 @@ namespace Okroma.Screens
         int selectedIndex = 0;
         float fontHeight;
 
+        struct GameText
+        {
+            public Color Color { get; }
+            public string Text { get; }
+
+            public GameText(Color color, string text) : this()
+            {
+                Color = color;
+                Text = text;
+            }
+
+            public static implicit operator GameText(ValueTuple<Color, string> valueTuple)
+            {
+                return new GameText(valueTuple.Item1, valueTuple.Item2);
+            }
+
+            public static implicit operator GameText(string text)
+            {
+                return new GameText(Color.White, text);
+            }
+        }
+
         struct Menu
         {
             public static Menu Main { get; private set; } = new Menu(null,
@@ -24,17 +46,17 @@ namespace Okroma.Screens
                 ("Controls", screen => screen.AddMenu(Controls)),
                 ("Exit", screen => screen.Game.Exit()));
             public static Menu Level { get; set; }
-            public static Menu Controls { get; private set; } = new Menu("Controls",
+            public static Menu Controls { get; private set; } = new Menu((Color.LightBlue, "Controls"),
                 ("Movement", screen => screen.AddMenu(ControlMovement)),
                 ("Back", screen => screen.MenuPop()));
-            public static Menu ControlMovement { get; private set; } = new Menu("Movement Control Selection",
+            public static Menu ControlMovement { get; private set; } = new Menu((Color.LightYellow, "Movement Control Selection"),
                 ("Arrows", screen => { screen.MenuPop(); GameControl.MoveLeft.ChangeKey(Keys.Left); GameControl.MoveRight.ChangeKey(Keys.Right); GameControl.MoveUp.ChangeKey(Keys.Up); }),
                 ("WASD", screen => { screen.MenuPop(); GameControl.MoveLeft.ChangeKey(Keys.A); GameControl.MoveRight.ChangeKey(Keys.D); GameControl.MoveUp.ChangeKey(Keys.W); }));
 
-            public string Title { get; }
+            public GameText Title { get; }
             public MenuOption[] Options { get; }
 
-            public Menu(string title, params MenuOption[] options) : this()
+            public Menu(GameText title, params MenuOption[] options) : this()
             {
                 Title = title;
                 Options = options ?? throw new ArgumentNullException(nameof(options));
@@ -64,7 +86,7 @@ namespace Okroma.Screens
             {
                 if (obj is Menu other)
                 {
-                    return Title == other.Title && Options == other.Options;
+                    return Title.Text == other.Title.Text && Options == other.Options;
                 }
                 return false;
             }
@@ -111,7 +133,7 @@ namespace Okroma.Screens
             }
 
             Menu.Level = new Menu(
-                "Level Select",
+                (Color.LightGreen, "Level Select"),
                 levelOptions
                 );
 
@@ -178,15 +200,15 @@ namespace Okroma.Screens
             var startY = (fontHeight * menu.Options.Length / 2);
             int centerX = (Game.GraphicsDevice.Viewport.TitleSafeArea.Width / 2);
             int centerY = (Game.GraphicsDevice.Viewport.TitleSafeArea.Height / 2);
-            if (menu.Title != null)
-                spriteBatch.DrawString(font, menu.Title, new Vector2(centerX - (MeasureString(menu.Title).X / 2), centerY - startY - fontHeight), Color.LightGreen);
+            if (menu.Title.Text != null)
+                spriteBatch.DrawString(font, menu.Title.Text, new Vector2(centerX - (MeasureString(menu.Title.Text).X / 2), centerY - startY - fontHeight), menu.Title.Color);
 
             for (int i = 0; i < menu.Options.Length; i++)
             {
                 string text = menu.Options[i].Name;
                 Vector2 position = new Vector2(
                     centerX - (MeasureString(text).X / 2),
-                    centerY - startY + (fontHeight * (i + (menu.Title != null ? 1 : 0)))
+                    centerY - startY + (fontHeight * (i + (menu.Title.Text != null ? 1 : 0)))
                     );
                 spriteBatch.DrawString(font, text, position, selectedIndex == i ? Color.White : Color.Gray);
             }
