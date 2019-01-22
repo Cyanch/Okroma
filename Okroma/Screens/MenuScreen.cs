@@ -14,6 +14,7 @@ namespace Okroma.Screens
         SpriteFont font;
         Menu menu;
         int selectedIndex = 0;
+        float fontHeight;
 
         struct Menu
         {
@@ -52,12 +53,15 @@ namespace Okroma.Screens
             {
                 if (!textMeasures.ContainsKey(str))
                     textMeasures.Add(str, font.MeasureString(str));
+                if (fontHeight == 0)
+                    fontHeight = font.MeasureString(str).Y;
             }
             foreach (var str in Menu.Level.Options)
             {
                 if (!textMeasures.ContainsKey(str))
                     textMeasures.Add(str, font.MeasureString(str));
             }
+            textMeasures.Add("Level Select", font.MeasureString("Level Select"));
         }
 
         KeyboardState kb;
@@ -113,12 +117,19 @@ namespace Okroma.Screens
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
             spriteBatch.Begin(SpriteSortMode.Deferred, null, SamplerState.PointClamp);
+
+            var startY = (fontHeight * menu.Options.Length / 2);
+            int centerX = (Game.GraphicsDevice.Viewport.TitleSafeArea.Width / 2);
+            int centerY = (Game.GraphicsDevice.Viewport.TitleSafeArea.Height / 2);
+            if (menu.Options == Menu.Level.Options)
+                spriteBatch.DrawString(font, "Level Select", new Vector2(centerX - (textMeasures["Level Select"].X / 2), centerY - startY - fontHeight - fontHeight), Color.LightGray);
+
             for (int i = 0; i < menu.Options.Length; i++)
             {
                 string text = menu.Options[i];
                 Vector2 position = new Vector2(
-                    (Game.GraphicsDevice.Viewport.TitleSafeArea.Width / 2) - (textMeasures[text].X / 2),
-                    (Game.GraphicsDevice.Viewport.TitleSafeArea.Height / 2) - (textMeasures[text].Y * menu.Options.Length / 2) + (textMeasures[text].Y * i)
+                    centerX - (textMeasures[text].X / 2),
+                    centerY - startY + (fontHeight * i)
                     );
                 spriteBatch.DrawString(font, text, position, selectedIndex == i ? Color.White : Color.Gray);
             }
