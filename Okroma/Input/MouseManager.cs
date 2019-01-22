@@ -1,83 +1,58 @@
 ﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Input;
-using System;
-using System.Linq;
+using System.Collections.Generic;
 
 namespace Okroma.Input
 {
-    public interface IClickable : IScreenInteractable
+    public interface IClickService
     {
-        Rectangle TriggerArea { get; }
-        int Layer { get; }
+        void Register(IClickable clickable);
+        void Unregister(IClickable clickable);
     }
 
-    public class MouseClickInteractInfo : InteractInfo
+    public interface IClickable
     {
-        public Point Position { get; }
+        Rectangle ClickTriggerArea { get; }
+        int ClickLayer { get; }
 
-        public MouseClickInteractInfo(int type, Point position) : base(type)
+        /// <summary>
+        /// This will be triggered while the mouse is hovering over this <see cref="IClickable"/>. You may check to see if the required button is being pressed.
+        /// </summary>
+        /// <param name="mouse">Access to mouse-related services.</param>
+        void NotifyMouseAction(IInputManagerMouse mouse);
+    }
+
+    public class ClickManager : GameComponent, IClickService
+    {
+        private List<IClickable> registeredClickables = new List<IClickable>();
+
+        public ClickManager(Game game) : base(game)
         {
-            this.Position = position;
         }
-    }
 
-    public static class MouseClickInteractInfoExtensions
-    {
-        public static MouseInteractType GetInteractType(this MouseClickInteractInfo info)
+        public void Register(IClickable interactable)
         {
-            return (MouseInteractType)Enum.GetValues(typeof(MouseInteractType)).GetValue(info.Type);
+            registeredClickables.Add(interactable);
         }
-    }
 
-    public enum MouseInteractType
-    {
-        Unknown = 0,
-        Left = 1,
-        Right = 2
-    }
-
-    public class MouseManager : ScreenInteractManager
-    {
-        public MouseManager(Game game) : base(game)
+        public void Unregister(IClickable clickable)
         {
+            registeredClickables.Remove(clickable);
         }
 
         public override void Update(GameTime gameTime)
         {
-            var info = (MouseClickInteractInfo)GetInteractInfo();
-            if (info.GetInteractType() == MouseInteractType.Unknown)
-                return;
+            var input = Game.Services.GetService<IInputManagerService>();
 
             IClickable best = null;
-            foreach (var clickable in RegisteredInterables.Select(x => (IClickable)x))
+            foreach (var clickable in registeredClickables)
             {
-                if (clickable.TriggerArea.Contains(info.Position) && (best == null || best.Layer < clickable.Layer))
+                if (clickable.ClickTriggerArea.Contains(input.GetMousePosition()) && (best == null || best.ClickLayer < clickable.ClickLayer))
                 {
                     best = clickable;
                 }
             }
 
-            best?.NotifyInteract(info);
-        }
-
-        MouseState oldMouseState;
-        public override InteractInfo GetInteractInfo()
-        {
-            var mouse = Mouse.GetState();
-            var position = mouse.Position;
-            int type = (int)MouseInteractType.Unknown;
-
-            if (mouse.LeftButton == ButtonState.Released && oldMouseState.LeftButton == ButtonState.Pressed)
-            {
-                type = (int)MouseInteractType.Left;
-            }
-            else if (mouse.RightButton == ButtonState.Released && oldMouseState.RightButton == ButtonState.Pressed)
-            {
-                type = (int)MouseInteractType.Right;
-            }
-
-            oldMouseState = mouse;
-            return new MouseClickInteractInfo(type, position);
+            best?.NotifyMouseAction(input);
         }
     }
 }

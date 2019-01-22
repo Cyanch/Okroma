@@ -15,7 +15,7 @@ namespace Okroma.Screens
 
     public class ScreenManager : DrawableGameComponent, IScreenManagerService
     {
-        private List<Tuple<GameScreen, ContentManager>> screensToAdd = new List<Tuple<GameScreen, ContentManager>>();
+        private List<ValueTuple<GameScreen, ContentManager>> screensToAdd = new List<ValueTuple<GameScreen, ContentManager>>();
         private Stack<GameScreen> screenStack = new Stack<GameScreen>();
         private SpriteBatch spriteBatch;
 
@@ -41,7 +41,7 @@ namespace Okroma.Screens
         {
             if (waitUntilNextUpdate)
             {
-                screensToAdd.Add(new Tuple<GameScreen, ContentManager>(screen, content));
+                screensToAdd.Add((screen, content));
             }
             else
             {

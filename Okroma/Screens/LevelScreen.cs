@@ -4,7 +4,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Okroma.Cameras;
 using Okroma.Common;
 using Okroma.Common.MonoGame;
-using Okroma.Input;
+using Okroma.GameControls;
 using Okroma.Physics;
 using Okroma.World;
 

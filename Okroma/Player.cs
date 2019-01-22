@@ -1,12 +1,13 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Okroma.GameControls;
 using Okroma.Input;
 using Okroma.Physics;
 using System;
 
 namespace Okroma
 {
-    public class Player : Controller2D, IUpdateableGameObject2D, IDrawableGameObject2D, IHandleInput
+    public class Player : Controller2D, IUpdateableGameObject2D, IDrawableGameObject2D, IHandleGameControlInput
     {
         //Physics
         public override int CollisionMask => (int)Okroma.CollisionMask.Player;
@@ -36,7 +37,7 @@ namespace Okroma
         const float accelerationOnWall = 0.2f; // Acceleration toward 0. So deacceleration really.
 
         //Input
-        PlayerControls input;
+        PlayerControls control;
         public Player(string id, ISprite sprite, ITransform2D transform, ICollidableSource collidableSource) : base(id, transform, collidableSource)
         {
             this.Sprite = sprite;
@@ -49,12 +50,12 @@ namespace Okroma
 
         public void HandleInput(IGameControlsService controls)
         {
-            input.Reset();
-            input.MoveLeft = controls.Get(Control.MoveLeft);
-            input.MoveRight = controls.Get(Control.MoveRight);
-            input.MoveUp = controls.Get(Control.MoveUp);
-            input.Jump = controls.Get(Control.Jump);
-            input.WallJump = controls.Get(Control.WallJump);
+            control.Reset();
+            control.MoveLeft = controls.Get(Control.MoveLeft);
+            control.MoveRight = controls.Get(Control.MoveRight);
+            control.MoveUp = controls.Get(Control.MoveUp);
+            control.Jump = controls.Get(Control.Jump);
+            control.WallJump = controls.Get(Control.JumpOnce);
         }
 
         public void Update(GameTime gameTime)
@@ -63,9 +64,9 @@ namespace Okroma
 
             int inputX = 0;
 
-            if (input.MoveLeft)
+            if (control.MoveLeft)
                 inputX -= 1;
-            if (input.MoveRight)
+            if (control.MoveRight)
                 inputX += 1;
 
             if (Collision.Below || Collision.Above)
@@ -79,13 +80,13 @@ namespace Okroma
 
             wallJumpController.Update(gameTime);
 
-            if (input.Jump)
+            if (control.Jump)
             {
                 if (isGrounded)
                 {
                     velocity.Y = jumpVelocity;
                 }
-                else if (input.WallJump && wallJumpController.IsOnWall)
+                else if (control.WallJump && wallJumpController.IsOnWall)
                 {
                     wallJumpController.PerformWallJump(ref velocity);
                 }
@@ -185,7 +186,7 @@ namespace Okroma
             public void PerformWallJump(ref Vector2 velocity)
             {
                 velocity.X = player.jumpVelocity * VelocityXModifier * ((int)Direction - 1);
-                if (player.input.MoveUp)
+                if (player.control.MoveUp)
                 {
                     velocity.Y = player.jumpVelocity * VelocityYModifier;
                 }

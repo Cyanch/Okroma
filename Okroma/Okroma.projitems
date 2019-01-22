@@ -19,10 +19,11 @@
     <Compile Include="$(MSBuildThisFileDirectory)ContentReaders\TilesetContentReader.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)GameObject2D.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)GameScale.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Input\GameControlsManager.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)GameControls\GameControlsManager.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Input\InputManager.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Input\MouseButton.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Input\MouseManager.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Input\ScreenInteractManager.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Input\TouchManager.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Input\MouseStateExtensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Level.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Physics\CollidableSourceCollection.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Physics\CollisionData.cs" />
@@ -64,6 +65,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)Common\MonoGame\" />
+    <Folder Include="$(MSBuildThisFileDirectory)GameControls\" />
     <Folder Include="$(MSBuildThisFileDirectory)World\Tiles\Objects\" />
   </ItemGroup>
 </Project>

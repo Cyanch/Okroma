@@ -1,9 +1,9 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Okroma.GameControls;
 using Okroma.Input;
 using Okroma.Screens;
 using System.Collections.Generic;
-using System.IO;
 
 namespace Okroma
 {
@@ -93,9 +93,13 @@ namespace Okroma
             Components.Add(screenManager);
             Services.AddService<IScreenManagerService>(screenManager);
 
-            var mouseClickManager = new MouseManager(this);
-            Components.Add(mouseClickManager);
-            Services.AddService<IScreenInteractService>(mouseClickManager);
+            var clickManager = new ClickManager(this);
+            Components.Add(clickManager);
+            Services.AddService<IClickService>(clickManager);
+
+            var inputManager = new InputManager(this);
+            Components.Add(inputManager);
+            Services.AddService<IInputManagerService>(inputManager);
 
             var controlsManager = new GameControlsManager(this);
             Components.Add(controlsManager);

@@ -1,9 +1,10 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
+using Okroma.Input;
 
-namespace Okroma.Input
+namespace Okroma.GameControls
 {
-    public interface IHandleInput
+    public interface IHandleGameControlInput
     {
         void HandleInput(IGameControlsService controls);
     }
@@ -15,37 +16,39 @@ namespace Okroma.Input
 
     public class GameControlsManager : GameComponent, IGameControlsService
     {
-        KeyboardState keyboard;
-        KeyboardState keyboardOld;
-
         public GameControlsManager(Game game) : base(game)
         {
         }
 
-        public override void Update(GameTime gameTime)
-        {
-            keyboardOld = keyboard;
-            keyboard = Keyboard.GetState();
-        }
-
         public bool Get(Control control)
         {
+            var input = Game.Services.GetService<IInputManagerService>();
             switch (control)
             {
                 case Control.MoveLeft:
-                    return keyboard.IsKeyDown(Keys.Left) || keyboard.IsKeyDown(Keys.A);
+                    return IsAnyHeld(input, Keys.Left, Keys.A);
                 case Control.MoveRight:
-                    return keyboard.IsKeyDown(Keys.Right) || keyboard.IsKeyDown(Keys.D);
+                    return IsAnyHeld(input, Keys.Right, Keys.D);
                 case Control.MoveUp:
-                    return keyboard.IsKeyDown(Keys.Up) || keyboard.IsKeyDown(Keys.W);
+                    return IsAnyHeld(input, Keys.Up, Keys.Up);
                 case Control.Jump:
-                    return keyboard.IsKeyDown(Keys.Space);
-                case Control.WallJump:
-                    return keyboardOld.IsKeyUp(Keys.Space) && keyboard.IsKeyDown(Keys.Space);
+                    return input.IsHeld(Keys.Space);
+                case Control.JumpOnce:
+                    return input.WasPressed(Keys.Space);
 
                 default:
                     return false;
             }
+        }
+
+        private bool IsAnyHeld(IInputManagerService input, params Keys[] keys)
+        {
+            for (int i = 0; i < keys.Length; i++)
+            {
+                if (input.IsHeld(keys[0]))
+                    return true;
+            }
+            return false;
         }
     }
 
@@ -61,6 +64,6 @@ namespace Okroma.Input
         /// <summary>
         /// When Jump key is pressed.
         /// </summary>
-        WallJump
+        JumpOnce
     }
 }
