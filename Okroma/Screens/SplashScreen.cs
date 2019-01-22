@@ -19,7 +19,7 @@ namespace Okroma.Screens
             }
         }
 
-        private ContentReference<Texture2D> imageReference;
+        private readonly ContentReference<Texture2D> imageReference;
         protected Texture2D Image => imageReference;
 
         ContentManager content;

@@ -30,7 +30,7 @@ namespace Okroma.GameControls
                 case Control.MoveRight:
                     return IsAnyHeld(input, Keys.Right, Keys.D);
                 case Control.MoveUp:
-                    return IsAnyHeld(input, Keys.Up, Keys.Up);
+                    return IsAnyHeld(input, Keys.Up, Keys.W);
                 case Control.Jump:
                     return input.IsHeld(Keys.Space);
                 case Control.JumpOnce:
@@ -45,7 +45,7 @@ namespace Okroma.GameControls
         {
             for (int i = 0; i < keys.Length; i++)
             {
-                if (input.IsHeld(keys[0]))
+                if (input.IsHeld(keys[i]))
                     return true;
             }
             return false;

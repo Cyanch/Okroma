@@ -19,26 +19,12 @@ namespace Okroma.Screens
 
         struct Menu
         {
-            static Menu()
-            {
-                Main = new Menu(
-                    new string[]
-                    {
-                        "Play Game",
-                        "Exit"
-                    });
-            }
-
-            public static Menu Main { get; private set; }
+            public static Menu Main { get; private set; } = new Menu(null, "Play Game", "Exit");
             public static Menu Level { get; set; }
 
             public string Title { get; }
             public string[] Options { get; }
-
-            public Menu(string[] options) : this(null, options)
-            {
-            }
-
+            
             public Menu(string title, params string[] options) : this()
             {
                 Title = title;
