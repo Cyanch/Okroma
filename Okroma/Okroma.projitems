@@ -17,6 +17,8 @@
     <Compile Include="$(MSBuildThisFileDirectory)ContentReaders\LevelContentReader.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ContentReaders\TileContentReader.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ContentReaders\TilesetContentReader.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)GameControls\ControlProperty.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)GameControls\GameControl.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)GameObject2D.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)GameScale.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)GameControls\GameControlsManager.cs" />
@@ -65,7 +67,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)Common\MonoGame\" />
-    <Folder Include="$(MSBuildThisFileDirectory)GameControls\" />
     <Folder Include="$(MSBuildThisFileDirectory)World\Tiles\Objects\" />
   </ItemGroup>
 </Project>
