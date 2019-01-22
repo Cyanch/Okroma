@@ -70,7 +70,7 @@ namespace Okroma.Screens
                 screensToAdd.Clear();
             }
 
-            foreach (var screen in screenStack)
+            foreach (var screen in screenStack.ToArray())
             {
                 screen?.Update(gameTime, GetGameScreenInfo(screen));
             }

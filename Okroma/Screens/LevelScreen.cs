@@ -5,6 +5,7 @@ using Okroma.Cameras;
 using Okroma.Common;
 using Okroma.Common.MonoGame;
 using Okroma.GameControls;
+using Okroma.Input;
 using Okroma.Physics;
 using Okroma.World;
 
@@ -67,10 +68,17 @@ namespace Okroma.Screens
 
         public override void Update(GameTime gameTime, IGameScreenInfo info)
         {
-            player.HandleInput(Game.Services.GetService<IGameControlsService>());
+            IGameControlsService controls = Game.Services.GetService<IGameControlsService>();
+            player.HandleInput(controls);
             player.Update(gameTime);
             camera.Update(gameTime);
             world.Update(gameTime);
+
+            if (Game.Services.GetService<IInputManagerService>().WasPressed(Microsoft.Xna.Framework.Input.Keys.Escape))
+            {
+                Exit();
+                Game.Services.GetService<IScreenManagerService>().AddScreen(new MenuScreen(), Game.Content, true);
+            }
         }
 
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)

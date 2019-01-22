@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 using Okroma.Input;
+using System;
 
 namespace Okroma.GameControls
 {
@@ -11,7 +12,7 @@ namespace Okroma.GameControls
 
     public interface IGameControlsService
     {
-        bool Get(Control control);
+        ControlProperty Get(GameControl control);
     }
 
     public class GameControlsManager : GameComponent, IGameControlsService
@@ -20,50 +21,58 @@ namespace Okroma.GameControls
         {
         }
 
-        public bool Get(Control control)
+        public ControlProperty Get(GameControl control)
         {
             var input = Game.Services.GetService<IInputManagerService>();
-            switch (control)
-            {
-                case Control.MoveLeft:
-                    return IsAnyHeld(input, Keys.Left, Keys.A);
-                case Control.MoveRight:
-                    return IsAnyHeld(input, Keys.Right, Keys.D);
-                case Control.MoveUp:
-                    return IsAnyHeld(input, Keys.Up, Keys.W);
-                case Control.Jump:
-                    return input.IsHeld(Keys.Space);
-                case Control.JumpOnce:
-                    return input.WasPressed(Keys.Space);
 
-                default:
-                    return false;
-            }
-        }
-
-        private bool IsAnyHeld(IInputManagerService input, params Keys[] keys)
-        {
-            for (int i = 0; i < keys.Length; i++)
+            var controlProperty = ControlProperty.None;
+            if (input.WasPressed(control))
             {
-                if (input.IsHeld(keys[i]))
-                    return true;
+                controlProperty |= ControlProperty.JustPressed;
             }
-            return false;
+
+            if (input.IsHeld(control))
+            {
+                controlProperty |= ControlProperty.Held;
+            }
+            return controlProperty;
         }
     }
 
-    public enum Control
+    public class GameControl
     {
-        MoveLeft,
-        MoveRight,
-        MoveUp,
-        /// <summary>
-        /// When Jump key is held.
-        /// </summary>
-        Jump,
-        /// <summary>
-        /// When Jump key is pressed.
-        /// </summary>
-        JumpOnce
+        public static GameControl MoveLeft { get; } = new GameControl(Keys.Left);
+        public static GameControl MoveRight { get; } = new GameControl(Keys.Right);
+        public static GameControl MoveUp { get; } = new GameControl(Keys.Up);
+
+        public static GameControl Jump { get; } = new GameControl(Keys.Space);
+        
+        public Keys Key { get; private set; }
+
+        public GameControl(Keys key) 
+        {
+            Key = key;
+        }
+
+        public void ChangeKey(Keys key)
+        {
+            Key = key;
+        }
+
+        public static implicit operator Keys(GameControl control)
+        {
+            return control.Key;
+        }
+    }
+    
+    [Flags]
+    public enum ControlProperty
+    {
+        None = 0,
+
+        JustPressed = 1 << 0,
+        Held = 1 << 1,
+
+        Pressed = JustPressed | Held
     }
 }

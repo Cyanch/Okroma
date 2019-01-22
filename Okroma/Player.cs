@@ -51,11 +51,12 @@ namespace Okroma
         public void HandleInput(IGameControlsService controls)
         {
             control.Reset();
-            control.MoveLeft = controls.Get(Control.MoveLeft);
-            control.MoveRight = controls.Get(Control.MoveRight);
-            control.MoveUp = controls.Get(Control.MoveUp);
-            control.Jump = controls.Get(Control.Jump);
-            control.WallJump = controls.Get(Control.JumpOnce);
+            control.MoveLeft = controls.Get(GameControl.MoveLeft).HasFlag(ControlProperty.Held);
+            control.MoveRight = controls.Get(GameControl.MoveRight).HasFlag(ControlProperty.Held);
+            control.MoveUp = controls.Get(GameControl.MoveUp).HasFlag(ControlProperty.Held);
+            ControlProperty jumpControl = controls.Get(GameControl.Jump);
+            control.Jump = jumpControl.HasFlag(ControlProperty.Held);
+            control.WallJump = jumpControl.HasFlag(ControlProperty.JustPressed);
         }
 
         public void Update(GameTime gameTime)
