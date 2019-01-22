@@ -122,7 +122,7 @@ namespace Okroma.Screens
             int centerX = (Game.GraphicsDevice.Viewport.TitleSafeArea.Width / 2);
             int centerY = (Game.GraphicsDevice.Viewport.TitleSafeArea.Height / 2);
             if (menu.Options == Menu.Level.Options)
-                spriteBatch.DrawString(font, "Level Select", new Vector2(centerX - (textMeasures["Level Select"].X / 2), centerY - startY - fontHeight), Color.LightGray);
+                spriteBatch.DrawString(font, "Level Select", new Vector2(centerX - (textMeasures["Level Select"].X / 2), centerY - startY - fontHeight), Color.LightGreen);
 
             for (int i = 0; i < menu.Options.Length; i++)
             {
