@@ -1,12 +1,11 @@
 ﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Okroma.Common;
 using Okroma.Common.MonoGame;
 
 namespace Okroma.Screens
 {
-    public class SplashScreen : GameScreen
+    public class SplashScreen : BackgroundScreen
     {
         private Invalidatable<Rectangle> bounds;
         private Invalidatable<Rectangle> Bounds
@@ -19,14 +18,8 @@ namespace Okroma.Screens
             }
         }
 
-        private readonly ContentReference<Texture2D> imageReference;
-        protected Texture2D Image => imageReference;
-
-        ContentManager content;
-
-        public SplashScreen(ContentReference<Texture2D> imageReference)
+        public SplashScreen(ContentReference<Texture2D> imageReference) : base(imageReference)
         {
-            this.imageReference = imageReference;
         }
 
         protected override void Initialize()
@@ -34,31 +27,14 @@ namespace Okroma.Screens
             Game.Window.ClientSizeChanged += Window_ClientSizeChanged;
         }
 
-        public override void LoadContent()
-        {
-            this.content = CreateContentManager();
-
-            content.Load(imageReference);
-        }
-
         public override void UnloadContent()
         {
             Game.Window.ClientSizeChanged -= Window_ClientSizeChanged;
-            content.Unload();
         }
 
-        protected override void Draw(GameTime gameTime)
+        protected override Rectangle GetDestinationRectangle()
         {
-            var spriteBatch = ScreenManager.SpriteBatch;
-
-            spriteBatch.Begin();
-            DrawImage(gameTime, spriteBatch, Image, Bounds);
-            spriteBatch.End();
-        }
-
-        protected virtual void DrawImage(GameTime gameTime, SpriteBatch spriteBatch, Texture2D image, Rectangle destRect)
-        {
-            spriteBatch.Draw(image, destRect, Color.White);
+            return Bounds;
         }
 
         private void Window_ClientSizeChanged(object sender, System.EventArgs e)
