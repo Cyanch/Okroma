@@ -26,6 +26,12 @@ namespace Okroma.Screens.TextMenus
             }
         }
 
+        public override void OnEscape()
+        {
+            // escape should head back immediately and not transition out.
+            ScreenManager.RemoveScreen(this);
+        }
+
         private void LevelEntry_OnSelected(object sender, System.EventArgs e)
         {
             if (sender is MenuEntry entry)
