@@ -26,6 +26,13 @@
 /processorParam:TextureFormat=Color
 /build:Background.png
 
+#begin Fonts/CyanchFont48.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/CyanchFont48.spritefont
+
 #begin Fonts/Cyfont-I.spritefont
 /importer:FontDescriptionImporter
 /processor:FontDescriptionProcessor
