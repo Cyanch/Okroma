@@ -18,7 +18,7 @@ namespace Okroma.Screens
         readonly List<GameScreen> screens = new List<GameScreen>();
         readonly List<GameScreen> screensToAdd = new List<GameScreen>();
 
-        readonly string fontPath = Path.Combine("Fonts", "Cyfont-I");
+        readonly string fontPath = Path.Combine("Fonts", "CyanchFont48");
 
         /// <summary>
         /// General-use SpriteBatch that all screens may use.
@@ -55,7 +55,7 @@ namespace Okroma.Screens
             SpriteBatch = new SpriteBatch(GraphicsDevice);
 
             //Set Font.
-            Font = content.Load<SpriteFont>(Path.Combine("Fonts", "Cyfont-I"));
+            Font = content.Load<SpriteFont>(fontPath);
 
             //Set White Pixel.
             WhitePixel = new Texture2D(GraphicsDevice, 1, 1);
