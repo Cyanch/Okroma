@@ -3,6 +3,8 @@ using Microsoft.Xna.Framework.Graphics;
 using Okroma.GameControls;
 using Okroma.Input;
 using Okroma.Screens;
+using Okroma.Screens.TextMenus;
+using System;
 using System.Collections.Generic;
 
 namespace Okroma
@@ -123,21 +125,25 @@ namespace Okroma
 #if DEBUG
             if (DebugSetting.SkipSplash)
             {
-                LoadMenuScreen();
+                LoadMenuScreen(screenManager);
             }
             else
             {
 #endif
                 //there is no splashscreen yet.
-                LoadMenuScreen();
+                LoadMenuScreen(screenManager);
 #if DEBUG
             }
 #endif
+        }
 
-            void LoadMenuScreen()
-            {
-                screenManager.AddScreen(new MenuScreen());
-            }
+        public void LoadMenuScreen(IScreenManagerService screenManager)
+        {
+            var screen = new BackgroundScreen("Background");
+            screen.SetTransitionTime(TimeSpan.FromSeconds(0.5f), TimeSpan.FromSeconds(0.5f));
+            screenManager.AddScreen(screen);
+            //screenManager.AddScreen(new MenuScreen());
+            screenManager.AddScreen(new MainMenuScreen());
         }
 
         protected override void Update(GameTime gameTime)

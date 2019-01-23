@@ -33,9 +33,15 @@
     <Compile Include="$(MSBuildThisFileDirectory)Physics\Controller2D.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Physics\ICollidableGameObject2D.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Physics\ICollidableSource.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Screens\AsyncLoadingGameScreen.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Screens\BackgroundScreen.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Screens\LevelScreen.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Screens\MenuScreen.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Screens\TextMenus\ControlMenuScreen.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Screens\TextMenus\LevelSelectMenuScreen.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Screens\LoadingScreen.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Screens\TextMenus\MainMenuScreen.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Screens\TextMenus\OptionsMenuScreen.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Screens\TextMenus\TextMenuScreen.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Tileset.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)World\Tiles\CollidableTile.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)World\Tiles\Objects\CollidableTileObject.cs" />
@@ -52,7 +58,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)Common\Invalidatable.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)OkromaGame.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)RectTransform2D.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Screens\FadingSplashScreen.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Screens\GameScreen.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Screens\GameScreenInfo.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Screens\ScreenManager.cs" />

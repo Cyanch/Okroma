@@ -1,5 +1,4 @@
 ﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Okroma.Cameras;
 using Okroma.Common;
@@ -7,7 +6,9 @@ using Okroma.Common.MonoGame;
 using Okroma.GameControls;
 using Okroma.Input;
 using Okroma.Physics;
+using Okroma.Screens.TextMenus;
 using Okroma.World;
+using System;
 
 namespace Okroma.Screens
 {
@@ -28,11 +29,13 @@ namespace Okroma.Screens
 
         protected override void Initialize()
         {
+            this.TransitionInTime = TimeSpan.FromSeconds(0.5f);
+
             camera = new PlayerCamera(Game, null)
             {
                 Zoom = initialCameraZoom
             };
-
+            DarkenEffectWhenCovered = 0.5f;
             collidables = new CollidableSourceCollection();
         }
 
@@ -67,19 +70,23 @@ namespace Okroma.Screens
             return texture;
         }
 
-        public override void Update(GameTime gameTime, IGameScreenInfo info)
+        bool paused = false;
+        public override void HandleInput()
         {
-            IGameControlsService controls = Game.Services.GetService<IGameControlsService>();
-            player.HandleInput(controls);
-            player.Update(gameTime);
-            camera.Update(gameTime);
-            world.Update(gameTime);
+            player.HandleInput(Game.Services.GetService<IGameControlsService>());
 
             if (Game.Services.GetService<IInputManagerService>().WasPressed(Microsoft.Xna.Framework.Input.Keys.Escape))
             {
-                ExitScreen();
-                Game.Services.GetService<IScreenManagerService>().AddScreen(new MenuScreen());
+                Game.Services.GetService<IScreenManagerService>().AddScreen(new OptionsMenuScreen(true));
+                paused = true;
             }
+        }
+
+        protected override void Update(GameTime gameTime, IGameScreenInfo info)
+        {
+            player.Update(gameTime);
+            camera.Update(gameTime);
+            world.Update(gameTime);
         }
 
         protected override void Draw(GameTime gameTime)

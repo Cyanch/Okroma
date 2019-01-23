@@ -1,5 +1,4 @@
 ﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
 using System.IO;
@@ -9,7 +8,9 @@ namespace Okroma.Screens
     public interface IScreenManagerService
     {
         void AddScreen(GameScreen screen);
+        void AddPreloadedScreen(GameScreen screen);
         void RemoveScreen(GameScreen screen);
+        IReadOnlyList<GameScreen> GetScreens();
     }
 
     public class ScreenManager : DrawableGameComponent, IScreenManagerService
@@ -41,7 +42,7 @@ namespace Okroma.Screens
         public override void Initialize()
         {
             base.Initialize();
-            
+
             isInitialized = true;
         }
 
@@ -52,13 +53,13 @@ namespace Okroma.Screens
 
             //Set SpriteBatch.
             SpriteBatch = new SpriteBatch(GraphicsDevice);
-            
+
             //Set Font.
             Font = content.Load<SpriteFont>(Path.Combine("Fonts", "Cyfont-I"));
 
             //Set White Pixel.
             WhitePixel = new Texture2D(GraphicsDevice, 1, 1);
-            WhitePixel.SetData(new []{ Color.White });
+            WhitePixel.SetData(new[] { Color.White });
 
             foreach (var screen in screens)
             {
@@ -82,9 +83,14 @@ namespace Okroma.Screens
             var screenCount = screens.Count;
             for (int i = screenCount - 1; i >= 0; i--)
             {
-                var screen = screens[i];
+                if (screens.Count <= i)
+                    continue;
 
-                screen.Update(gameTime, new GameScreenInfo(i == screenCount));
+                var screen = screens[i];
+                bool isFocused = i == screenCount - 1;
+                if (isFocused)
+                    screen.HandleInput();
+                screen.UpdateScreen(gameTime, new GameScreenInfo(isFocused));
             }
         }
 
@@ -99,12 +105,17 @@ namespace Okroma.Screens
         public void AddScreen(GameScreen screen)
         {
             screen.Initialize(this);
+            screensToAdd.Add(screen);
 
             if (isInitialized)
             {
                 screen.LoadContent();
             }
+        }
 
+        public void AddPreloadedScreen(GameScreen screen)
+        {
+            screen.Initialize(this);
             screensToAdd.Add(screen);
         }
 
@@ -117,6 +128,23 @@ namespace Okroma.Screens
 
             screens.Remove(screen);
             screensToAdd.Remove(screen);
+        }
+
+        public IReadOnlyList<GameScreen> GetScreens()
+        {
+            return new List<GameScreen>(screens);
+        }
+
+        /// <summary>
+        /// Draws a black sprite across the entire screen.
+        /// </summary>
+        /// <param name="alpha">0-1 transparency</param>
+        public void FadeBackBufferToBlack(float alpha)
+        {
+            var viewport = GraphicsDevice.Viewport;
+            SpriteBatch.Begin();
+            SpriteBatch.Draw(WhitePixel, GraphicsDevice.Viewport.Bounds, Color.Black * alpha);
+            SpriteBatch.End();
         }
     }
 }
