@@ -25,7 +25,7 @@ namespace Okroma.Screens
             c = b + a;
         }
 
-        public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
+        protected override void Draw(GameTime gameTime)
         {
             elapsedTime += (float)gameTime.ElapsedGameTime.TotalSeconds;
 
@@ -34,9 +34,9 @@ namespace Okroma.Screens
                 1 - ((elapsedTime - b) / (c - b));
 
             if (elapsedTime >= c)
-                Exit();
+                ExitScreen();
 
-            base.Draw(gameTime, spriteBatch);
+            base.Draw(gameTime);
         }
 
         protected override void DrawImage(GameTime gameTime, SpriteBatch spriteBatch, Texture2D image, Rectangle destRect)

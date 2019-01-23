@@ -24,7 +24,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)GameControls\GameControlsManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Input\InputManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Input\MouseButton.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Input\MouseManager.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Input\ClickManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Input\MouseStateExtensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Level.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Physics\CollidableSourceCollection.cs" />
@@ -33,6 +33,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Physics\Controller2D.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Physics\ICollidableGameObject2D.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Physics\ICollidableSource.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Screens\BackgroundScreen.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Screens\LevelScreen.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Screens\MenuScreen.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Tileset.cs" />

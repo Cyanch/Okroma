@@ -117,10 +117,10 @@ namespace Okroma.Screens
         Dictionary<string, Vector2> textMeasures = new Dictionary<string, Vector2>();
 
         ContentManager content;
-        public override void LoadContent(ContentManager content)
+        public override void LoadContent()
         {
-            this.content = content;
-            font = content.Load<SpriteFont>(Path.Combine("Fonts", "Cyfont-I"));
+            this.content = CreateContentManager();
+            font = ScreenManager.Font;
             fontHeight = font.MeasureString("|").Y;
 
             var levelFileNames = Directory.GetFiles(Path.Combine(content.RootDirectory, "Levels"));
@@ -129,7 +129,7 @@ namespace Okroma.Screens
             for (int i = 0; i < levelFileNames.Length; i++)
             {
                 var levelName = Path.GetFileNameWithoutExtension(levelFileNames[i]);
-                levelOptions[i] = new Menu.MenuOption(levelName, screen => { screen.Exit(); screen.Game.Services.GetService<IScreenManagerService>().AddScreen(new LevelScreen(Path.Combine("Levels", levelName)), content, true); });
+                levelOptions[i] = new Menu.MenuOption(levelName, screen => { screen.ExitScreen(); screen.Game.Services.GetService<IScreenManagerService>().AddScreen(new LevelScreen(Path.Combine("Levels", levelName))); });
             }
 
             Menu.Level = new Menu(
@@ -192,8 +192,9 @@ namespace Okroma.Screens
             selectedIndex = 0;
         }
 
-        public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
+        protected override void Draw(GameTime gameTime)
         {
+            var spriteBatch = ScreenManager.SpriteBatch;
             spriteBatch.Begin(SpriteSortMode.Deferred, null, SamplerState.PointClamp);
             var menu = this.menu.Peek();
 

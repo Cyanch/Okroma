@@ -88,6 +88,7 @@ namespace Okroma
 
             IsMouseVisible = true;
             Window.AllowUserResizing = true;
+            Window.ClientSizeChanged += Window_ClientSizeChanged;
 
             var screenManager = new ScreenManager(this);
             Components.Add(screenManager);
@@ -108,6 +109,12 @@ namespace Okroma
             base.Initialize();
         }
 
+        private void Window_ClientSizeChanged(object sender, System.EventArgs e)
+        {
+            //graphics.PreferredBackBufferWidth = MathHelper.Clamp(Window.ClientBounds.X);
+            System.Console.WriteLine(Window.ClientBounds);
+        }
+
         protected override void LoadContent()
         {
             //TODO: use this.Content to load your game content here 
@@ -121,10 +128,6 @@ namespace Okroma
             else
             {
 #endif
-                //var splashScreen = new FadingSplashScreen("", TimeSpan.FromSeconds(1), TimeSpan.FromSeconds(1));
-                //screenManager.AddScreen(splashScreen, Content);
-                //splashScreen.OnRemovedFromScreenManager += (sender, args) => LoadTestScene();
-
                 //there is no splashscreen yet.
                 LoadMenuScreen();
 #if DEBUG
@@ -133,7 +136,7 @@ namespace Okroma
 
             void LoadMenuScreen()
             {
-                screenManager.AddScreen(new MenuScreen(), Content);
+                screenManager.AddScreen(new MenuScreen());
             }
         }
 

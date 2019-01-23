@@ -34,9 +34,10 @@ namespace Okroma.Screens
             Game.Window.ClientSizeChanged += Window_ClientSizeChanged;
         }
 
-        public override void LoadContent(ContentManager content)
+        public override void LoadContent()
         {
-            this.content = new ContentManager(content.ServiceProvider, content.RootDirectory);
+            this.content = CreateContentManager();
+
             content.Load(imageReference);
         }
 
@@ -46,8 +47,10 @@ namespace Okroma.Screens
             content.Unload();
         }
 
-        public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
+        protected override void Draw(GameTime gameTime)
         {
+            var spriteBatch = ScreenManager.SpriteBatch;
+
             spriteBatch.Begin();
             DrawImage(gameTime, spriteBatch, Image, Bounds);
             spriteBatch.End();

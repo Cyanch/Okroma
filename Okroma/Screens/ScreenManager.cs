@@ -1,92 +1,122 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
-using System;
 using System.Collections.Generic;
+using System.IO;
 
 namespace Okroma.Screens
 {
     public interface IScreenManagerService
     {
-        GameScreen FocusedScreen { get; }
-        void AddScreen(GameScreen screen, ContentManager content);
-        void AddScreen(GameScreen screen, ContentManager content, bool waitUntilNextUpdate);
+        void AddScreen(GameScreen screen);
+        void RemoveScreen(GameScreen screen);
     }
 
     public class ScreenManager : DrawableGameComponent, IScreenManagerService
     {
-        private List<ValueTuple<GameScreen, ContentManager>> screensToAdd = new List<ValueTuple<GameScreen, ContentManager>>();
-        private Stack<GameScreen> screenStack = new Stack<GameScreen>();
-        private SpriteBatch spriteBatch;
+        readonly List<GameScreen> screens = new List<GameScreen>();
+        readonly List<GameScreen> screensToAdd = new List<GameScreen>();
 
+        readonly string fontPath = Path.Combine("Fonts", "Cyfont-I");
+
+        /// <summary>
+        /// General-use SpriteBatch that all screens may use.
+        /// </summary>
+        public SpriteBatch SpriteBatch { get; private set; }
+        /// <summary>
+        /// Main font.
+        /// </summary>
+        public SpriteFont Font { get; private set; }
+        /// <summary>
+        /// A White Pixel Texture.
+        /// </summary>
+        public Texture2D WhitePixel { get; private set; }
+
+        bool isInitialized;
         public ScreenManager(Game game) : base(game)
         {
+
+        }
+
+        public override void Initialize()
+        {
+            base.Initialize();
+            
+            isInitialized = true;
         }
 
         protected override void LoadContent()
         {
-            spriteBatch = new SpriteBatch(Game.GraphicsDevice);
-        }
+            //Set Content.
+            var content = Game.Content;
 
-        public GameScreen FocusedScreen => screenStack.Peek();
+            //Set SpriteBatch.
+            SpriteBatch = new SpriteBatch(GraphicsDevice);
+            
+            //Set Font.
+            Font = content.Load<SpriteFont>(Path.Combine("Fonts", "Cyfont-I"));
 
-        public void AddScreen(GameScreen screen, ContentManager content)
-        {
-            screen.Initialize(Game);
-            screenStack.Push(screen);
-            screen.LoadContent(content);
-        }
+            //Set White Pixel.
+            WhitePixel = new Texture2D(GraphicsDevice, 1, 1);
+            WhitePixel.SetData(new []{ Color.White });
 
-        public void AddScreen(GameScreen screen, ContentManager content, bool waitUntilNextUpdate)
-        {
-            if (waitUntilNextUpdate)
+            foreach (var screen in screens)
             {
-                screensToAdd.Add((screen, content));
+                screen.LoadContent();
             }
-            else
+        }
+
+        protected override void UnloadContent()
+        {
+            foreach (var screen in screens)
             {
-                AddScreen(screen, content);
+                screen.UnloadContent();
             }
         }
 
         public override void Update(GameTime gameTime)
         {
-            if (screenStack.Count != 0)
-            {
-                GameScreen focusedScreen = FocusedScreen;
-                if (FocusedScreen.Exited)
-                {
-                    var exitedScreen = screenStack.Pop();
-                    exitedScreen.NotifyRemovedFromScreenManager();
-                }
-            }
+            screens.AddRange(screensToAdd);
+            screensToAdd.Clear();
 
-            if (screensToAdd.Count > 0)
+            var screenCount = screens.Count;
+            for (int i = screenCount - 1; i >= 0; i--)
             {
-                foreach (var screen in screensToAdd)
-                {
-                    AddScreen(screen.Item1, screen.Item2);
-                }
-                screensToAdd.Clear();
-            }
+                var screen = screens[i];
 
-            foreach (var screen in screenStack.ToArray())
-            {
-                screen?.Update(gameTime, GetGameScreenInfo(screen));
+                screen.Update(gameTime, new GameScreenInfo(i == screenCount));
             }
-        }
-
-        protected virtual IGameScreenInfo GetGameScreenInfo(GameScreen screen)
-        {
-            return new GameScreenInfo(screen == FocusedScreen);
         }
 
         public override void Draw(GameTime gameTime)
         {
-            foreach (var screen in screenStack.ToArray())
+            foreach (var screen in screens)
             {
-                screen.Draw(gameTime, spriteBatch);
+                screen.DrawScreen(gameTime);
             }
+        }
+
+        public void AddScreen(GameScreen screen)
+        {
+            screen.Initialize(this);
+
+            if (isInitialized)
+            {
+                screen.LoadContent();
+            }
+
+            screensToAdd.Add(screen);
+        }
+
+        public void RemoveScreen(GameScreen screen)
+        {
+            if (isInitialized)
+            {
+                screen.UnloadContent();
+            }
+
+            screens.Remove(screen);
+            screensToAdd.Remove(screen);
         }
     }
 }

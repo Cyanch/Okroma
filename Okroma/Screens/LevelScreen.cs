@@ -36,8 +36,9 @@ namespace Okroma.Screens
             collidables = new CollidableSourceCollection();
         }
 
-        public override void LoadContent(ContentManager content)
+        public override void LoadContent()
         {
+            var content = CreateContentManager();
             //Level / World
             var level = content.Load(levelReference);
             world = level.Create(new Range<float>(0, 1));
@@ -76,13 +77,14 @@ namespace Okroma.Screens
 
             if (Game.Services.GetService<IInputManagerService>().WasPressed(Microsoft.Xna.Framework.Input.Keys.Escape))
             {
-                Exit();
-                Game.Services.GetService<IScreenManagerService>().AddScreen(new MenuScreen(), Game.Content, true);
+                ExitScreen();
+                Game.Services.GetService<IScreenManagerService>().AddScreen(new MenuScreen());
             }
         }
 
-        public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
+        protected override void Draw(GameTime gameTime)
         {
+            var spriteBatch = ScreenManager.SpriteBatch;
             var renderArea = camera.ViewRectangle;
             renderArea.Inflate(GameScale.TileSize, GameScale.TileSize);
             spriteBatch.Begin(SpriteSortMode.FrontToBack, null, SamplerState.PointClamp, null, null, null, camera.ViewMatrix);
