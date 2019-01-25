@@ -121,7 +121,9 @@ namespace Okroma
         {
             //TODO: use this.Content to load your game content here 
             var screenManager = Services.GetService<IScreenManagerService>();
-
+            List<int> numArray = new List<int>(new[] { 1, 3, 5, 2, 4 });
+            numArray.Sort((x, y) => x.CompareTo(y));
+            System.Diagnostics.Debug.WriteLine(string.Join(",", numArray));
 #if DEBUG
             if (DebugSetting.SkipSplash)
             {

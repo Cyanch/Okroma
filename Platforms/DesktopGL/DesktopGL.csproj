@@ -111,6 +111,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="..\..\Okroma\Okroma.projitems" Label="Shared" />
+  <Import Project="..\..\Cyanch.UI\Cyanch.UI.projitems" Label="Shared" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\MonoGame\v3.0\MonoGame.Content.Builder.targets" />
   <Import Project="..\..\packages\MonoGame.Framework.DesktopGL.3.7.1.189\build\MonoGame.Framework.DesktopGL.targets" Condition="Exists('..\..\packages\MonoGame.Framework.DesktopGL.3.7.1.189\build\MonoGame.Framework.DesktopGL.targets')" />

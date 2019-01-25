@@ -14,9 +14,13 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DesktopGL", "Platforms\Desk
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OkromaContentPipeline", "OkromaContentPipeline\OkromaContentPipeline.csproj", "{B02DB3A8-BB6F-4821-B0C8-C7AFBDBE2E82}"
 EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Cyanch.UI", "Cyanch.UI\Cyanch.UI.shproj", "{3499177E-4414-4BA5-9D69-CAC5EC6D7CD6}"
+EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		Cyanch.UI\Cyanch.UI.projitems*{1923d4e0-f543-4bce-8aa1-0fbfc05e2257}*SharedItemsImports = 4
 		Okroma\Okroma.projitems*{1923d4e0-f543-4bce-8aa1-0fbfc05e2257}*SharedItemsImports = 4
+		Cyanch.UI\Cyanch.UI.projitems*{3499177e-4414-4ba5-9d69-cac5ec6d7cd6}*SharedItemsImports = 13
 		Okroma\Okroma.projitems*{a0cdbd0e-3a41-42b7-9425-a838bc2c7383}*SharedItemsImports = 13
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
