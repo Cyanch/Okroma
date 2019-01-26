@@ -24,6 +24,7 @@ namespace Cyanch.UI
         event EventHandler<MouseStateEventArgs> MouseExit;
         event EventHandler<MouseStateEventArgs> MouseDown;
         event EventHandler<MouseStateEventArgs> MouseUp;
+        event EventHandler AlignmentChanged;
         event EventHandler FontChanged;
         event EventHandler RenderOrderChanged;
 
@@ -118,7 +119,18 @@ namespace Cyanch.UI
         public float Width { get; set; }
         public float Height { get; set; }
 
-        public Alignment Alignment { get; set; }
+        public Alignment Alignment
+        {
+            get
+            {
+                return _alignment;
+            }
+            set
+            {
+                _alignment = value;
+                OnAlignmentChanged(this, EventArgs.Empty);
+            }
+        }
 
         public UIElement Parent { get; private set; }
         public bool HasParent => Parent != null;
@@ -131,6 +143,7 @@ namespace Cyanch.UI
         private bool _isMouseHovering;
         private bool _isMouseDown;
         private SpriteBatch _spriteBatch;
+        private Alignment _alignment;
 
         public virtual void HandleInput()
         {
@@ -230,35 +243,35 @@ namespace Cyanch.UI
             }
         }
 
-        //TODO: Use Origin parameter instead. Related to TextElement#23.
         /// <summary>
         /// Gets the draw position.
         /// </summary>
         /// <returns>The draw position.</returns>
-        protected Vector2 GetAlignedDrawPosition()
+        protected Vector2 GetAlignedPosition()
         {
+            var bounds = GetBounds();
             switch (Alignment)
             {
                 default:
-                    //Inc. Alignment.TopLeft
-                    return Vector2.Zero;
-                    
+                    return new Vector2(bounds.Left, bounds.Top);
                 case Alignment.TopCenter:
-                    return new Vector2(Position.X - (Width / 2), 0);
+                    return new Vector2(bounds.Center.X, bounds.Top);
                 case Alignment.TopRight:
-                    return new Vector2(Position.X - Width, 0);
+                    return new Vector2(bounds.Right, bounds.Top);
+
                 case Alignment.MiddleLeft:
-                    return new Vector2(0, Position.Y - (Height / 2));
+                    return new Vector2(bounds.Left, bounds.Center.Y);
                 case Alignment.MiddleCenter:
-                    return new Vector2(Position.X - (Width / 2), Position.Y - (Height / 2));
+                    return new Vector2(bounds.Center.X, bounds.Center.Y);
                 case Alignment.MiddleRight:
-                    return new Vector2(Position.X - Width, Position.Y - (Height / 2));
+                    return new Vector2(bounds.Right, bounds.Center.Y);
+
                 case Alignment.BottomLeft:
-                    return new Vector2(0, Position.Y - Height);
+                    return new Vector2(bounds.Left, bounds.Bottom);
                 case Alignment.BottomCenter:
-                    return new Vector2(Position.X - (Width / 2), Position.Y - Height);
+                    return new Vector2(bounds.Center.X, bounds.Bottom);
                 case Alignment.BottomRight:
-                    return new Vector2(Position.X - Width, Position.Y - Height);
+                    return new Vector2(bounds.Right, bounds.Bottom);
             }
         }
 
@@ -266,27 +279,33 @@ namespace Cyanch.UI
         public event EventHandler<MouseStateEventArgs> MouseExit;
         public event EventHandler<MouseStateEventArgs> MouseDown;
         public event EventHandler<MouseStateEventArgs> MouseUp;
+        public event EventHandler AlignmentChanged;
         public event EventHandler FontChanged;
         public event EventHandler RenderOrderChanged;
 
         protected virtual void OnMouseEnter(object sender, MouseStateEventArgs e)
         {
-            MouseEnter.Invoke(sender, e);
+            MouseEnter?.Invoke(sender, e);
         }
 
-        protected virtual void OnMouseExit(object sender, MouseStateEventArgs e) 
+        protected virtual void OnMouseExit(object sender, MouseStateEventArgs e)
         {
             MouseExit?.Invoke(sender, e);
         }
 
-        protected virtual void OnMouseDown(object sender, MouseStateEventArgs e) 
+        protected virtual void OnMouseDown(object sender, MouseStateEventArgs e)
         {
             MouseDown?.Invoke(sender, e);
         }
 
-        protected virtual void OnMouseUp(object sender, MouseStateEventArgs e) 
+        protected virtual void OnMouseUp(object sender, MouseStateEventArgs e)
         {
             MouseUp?.Invoke(sender, e);
+        }
+
+        protected virtual void OnAlignmentChanged(object sender, EventArgs e)
+        {
+            AlignmentChanged?.Invoke(sender, e);
         }
 
         protected virtual void OnFontChanged(object sender, EventArgs e)
