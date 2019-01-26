@@ -1,4 +1,5 @@
 ﻿using System;
+using Okroma.Input;
 
 namespace Okroma.Screens.TextMenus
 {
@@ -27,6 +28,15 @@ namespace Okroma.Screens.TextMenus
         private void OptionsEntry_OnSelected(object sender, EventArgs e)
         {
             ScreenManager.AddScreen(new OptionsMenuScreen(false));
+        }
+
+        public override void HandleInput()
+        {
+            base.HandleInput();
+            if (Game.Services.GetService<IInputManagerService>().IsHeld(Microsoft.Xna.Framework.Input.Keys.U))
+            {
+                ScreenManager.AddScreen(new UITestScreen());
+            }
         }
 
         public override void OnEscape()
