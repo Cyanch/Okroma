@@ -170,10 +170,12 @@ namespace Cyanch.UI
                 if (Input.IsDown(MouseButton.LeftButton) && !_isMouseDown)
                 {
                     MouseDown?.Invoke(this, Input);
+                    _isMouseDown = true;
                 }
                 else if (Input.IsUp(MouseButton.LeftButton) && _isMouseDown)
                 {
                     MouseUp?.Invoke(this, Input);
+                    _isMouseDown = false;
                 }
             }
         }
