@@ -14,11 +14,6 @@ namespace Cyanch.UI
         public string Text { get; set; }
         public Color TextColor { get; set; }
 
-        public override void Update(GameTime gameTime)
-        {
-            base.Update(gameTime);
-        }
-
         public override void Draw(GameTime gameTime)
         {
             //TODO: Align properly to actual text size.
