@@ -35,7 +35,7 @@ namespace Okroma.Screens
             {
                 Zoom = initialCameraZoom
             };
-            DarkenEffectWhenCovered = 0.5f;
+            DarkenEffectWhenNotFocused = 0.5f;
             collidables = new CollidableSourceCollection();
         }
 

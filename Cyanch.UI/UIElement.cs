@@ -165,15 +165,15 @@ namespace Cyanch.UI
                 _isMouseDown = false;
             }
 
-            //todo: implement. 
             if (_isMouseHovering)
             {
                 if (Input.IsDown(MouseButton.LeftButton) && !_isMouseDown)
                 {
+                    MouseDown?.Invoke(this, Input);
                 }
-                else
+                else if (Input.IsUp(MouseButton.LeftButton) && _isMouseDown)
                 {
-
+                    MouseUp?.Invoke(this, Input);
                 }
             }
         }
@@ -182,8 +182,6 @@ namespace Cyanch.UI
         public event EventHandler<InputState> MouseExit;
         public event EventHandler<InputState> MouseDown;
         public event EventHandler<InputState> MouseUp;
-        public event EventHandler<InputState> MousePressed;
-        public event EventHandler<InputState> MouseReleased;
         public event EventHandler RenderOrderChanged;
     }
 }

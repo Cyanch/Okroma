@@ -6,6 +6,8 @@ namespace Okroma.Screens
 {
     public abstract class GameScreen
     {
+        private float _darkenEffectWhenNotFocused;
+
         public bool IsPopup { get; protected set; }
 
         protected Game Game { get; private set; }
@@ -18,8 +20,15 @@ namespace Okroma.Screens
         public bool IsTransitioning { get; protected set; }
         public bool IsExiting { get; private set; }
 
-        public float DarkenEffectWhenCovered { get; protected set; }
-        private IGameScreenInfo info;
+        public float DarkenEffectWhenNotFocused
+        {
+            get { return _darkenEffectWhenNotFocused; }
+            protected set
+            {
+                _darkenEffectWhenNotFocused = MathHelper.Clamp(value, 0, 1);
+            }
+        }
+        protected IGameScreenInfo ScreenInfo { get; private set; }
 
         public void Initialize(ScreenManager screenManager)
         {
@@ -54,7 +63,7 @@ namespace Okroma.Screens
 
         public void UpdateScreen(GameTime gameTime, IGameScreenInfo info)
         {
-            this.info = info;
+            this.ScreenInfo = info;
             if (IsExiting)
             {
                 if (!UpdateTransition(gameTime, TransitionOutTime, 1))
@@ -95,8 +104,8 @@ namespace Okroma.Screens
         public void DrawScreen(GameTime gameTime)
         {
             Draw(gameTime);
-            if (!info.IsFocused && DarkenEffectWhenCovered != 0)
-                ScreenManager.FadeBackBufferToBlack(DarkenEffectWhenCovered);
+            if (!ScreenInfo.IsFocused && DarkenEffectWhenNotFocused > 0)
+                ScreenManager.FadeBackBufferToBlack(DarkenEffectWhenNotFocused);
             ScreenManager.FadeBackBufferToBlack(TransitionPosition);
         }
 

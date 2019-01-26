@@ -81,6 +81,7 @@ namespace Okroma.Screens
             screensToAdd.Clear();
 
             var screenCount = screens.Count;
+            bool isCovered = false;
             for (int i = screenCount - 1; i >= 0; i--)
             {
                 if (screens.Count <= i)
@@ -90,7 +91,8 @@ namespace Okroma.Screens
                 bool isFocused = i == screenCount - 1;
                 if (isFocused)
                     screen.HandleInput();
-                screen.UpdateScreen(gameTime, new GameScreenInfo(isFocused));
+                screen.UpdateScreen(gameTime, new GameScreenInfo(isFocused, isCovered));
+                isCovered |= !screen.IsPopup;
             }
         }
 
