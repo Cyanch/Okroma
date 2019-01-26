@@ -230,7 +230,7 @@ namespace Cyanch.UI
             }
         }
 
-        //TODO: Make overridable.
+        //TODO: Use Origin parameter instead. Related to TextElement#23.
         /// <summary>
         /// Gets the draw position.
         /// </summary>
