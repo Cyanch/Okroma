@@ -71,9 +71,9 @@ namespace Okroma.Screens
 
             spriteBatch.Begin();
             Primitives2D.DrawRectangle(spriteBatch, text.GetBounds(), Color.Orange);
+            Primitives2D.DrawRectangle(spriteBatch, text2.GetBounds(), Color.Orange);
             Primitives2D.DrawRectangle(spriteBatch, panel.GetBounds(), Color.Red);
-            Primitives2D.DrawRectangle(spriteBatch, panel2.GetBounds(), Color.Green);
-            Primitives2D.DrawRectangle(spriteBatch, text2.GetBounds(), Color.Yellow);
+            Primitives2D.DrawRectangle(spriteBatch, panel2.GetBounds(), Color.Red);
             spriteBatch.End();
         }
     }
