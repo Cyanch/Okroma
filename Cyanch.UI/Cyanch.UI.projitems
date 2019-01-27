@@ -12,6 +12,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)InputState.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)InputStateKeyboardExtensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)InputStateMouseExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Panel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Text.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)UIElement.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)TextElement.cs" />

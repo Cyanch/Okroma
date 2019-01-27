@@ -1,8 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Okroma.Utils.C3;
 using System;
-using System.Diagnostics;
 
 namespace Cyanch.UI
 {
@@ -35,16 +33,6 @@ namespace Cyanch.UI
         public override void Draw(GameTime gameTime)
         {
             SpriteBatch.DrawString(Font, Text, GetAlignedPosition(), TextColor, 0f, _textOrigin, 1f, SpriteEffects.None, 0f);
-        }
-
-        public void SetText(string text, bool sizeToText)
-        {
-            this.Text = text ?? throw new ArgumentNullException(nameof(text));
-            if (sizeToText)
-            {
-                Width = TextMeasure.X;
-                Height = TextMeasure.Y;
-            }
         }
 
         private void CalculateTextMeasure()

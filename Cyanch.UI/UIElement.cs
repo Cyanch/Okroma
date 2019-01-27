@@ -27,6 +27,7 @@ namespace Cyanch.UI
         event EventHandler AlignmentChanged;
         event EventHandler FontChanged;
         event EventHandler RenderOrderChanged;
+        event EventHandler SizeChanged;
 
         void AddChild(UIElement child);
         void Draw(GameTime gameTime);
@@ -95,12 +96,11 @@ namespace Cyanch.UI
         {
             get
             {
-                return LocalPosition + Parent?.Position ?? Vector2.Zero;
+                return LocalPosition + (Parent?.Position ?? Vector2.Zero);
             }
-
             set
             {
-                LocalPosition = value - Parent?.Position ?? Vector2.Zero;
+                LocalPosition = value - (Parent?.Position ?? Vector2.Zero);
             }
         }
 
@@ -108,7 +108,7 @@ namespace Cyanch.UI
         {
             get
             {
-                return _input ?? Parent.Input;
+                return _input ?? Parent?.Input ?? AddInputState();
             }
             set
             {
@@ -116,8 +116,24 @@ namespace Cyanch.UI
             }
         }
 
-        public float Width { get; set; }
-        public float Height { get; set; }
+        public float Width
+        {
+            get => _width;
+            set
+            {
+                _width = value;
+                OnSizeChanged(this, EventArgs.Empty);
+            }
+        }
+        public float Height
+        {
+            get => _height;
+            set
+            {
+                _height = value;
+                OnSizeChanged(this, EventArgs.Empty);
+            }
+        }
 
         public Alignment Alignment
         {
@@ -144,6 +160,8 @@ namespace Cyanch.UI
         private bool _isMouseDown;
         private SpriteBatch _spriteBatch;
         private Alignment _alignment;
+        private float _width;
+        private float _height;
 
         public virtual void HandleInput()
         {
@@ -202,6 +220,13 @@ namespace Cyanch.UI
         private void SortForDrawing()
         {
             _childElements.Sort((x, y) => x.RenderOrder.CompareTo(y.RenderOrder));
+        }
+
+        private InputState AddInputState()
+        {
+            var input = new InputState();
+            Input = input;
+            return input;
         }
 
         public IReadOnlyCollection<UIElement> GetChildren()
@@ -282,6 +307,7 @@ namespace Cyanch.UI
         public event EventHandler AlignmentChanged;
         public event EventHandler FontChanged;
         public event EventHandler RenderOrderChanged;
+        public event EventHandler SizeChanged;
 
         protected virtual void OnMouseEnter(object sender, MouseStateEventArgs e)
         {
@@ -325,6 +351,11 @@ namespace Cyanch.UI
         protected virtual void OnRenderOrderChanged(object sender, EventArgs e)
         {
             RenderOrderChanged?.Invoke(sender, e);
+        }
+
+        protected virtual void OnSizeChanged(object sender, EventArgs e)
+        {
+            SizeChanged?.Invoke(sender, e);
         }
     }
 }
