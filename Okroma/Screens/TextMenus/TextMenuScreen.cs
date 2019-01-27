@@ -1,8 +1,8 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Cyanch.Input;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Okroma.Common;
-using Okroma.Input;
 using System;
 using System.Collections.Generic;
 
@@ -66,23 +66,23 @@ namespace Okroma.Screens.TextMenus
 
         public override void HandleInput()
         {
-            var input = Game.Services.GetService<IInputManagerService>();
-            if (input.WasPressed(Keys.Up))
+            var input = Game.Services.GetService<IInputService>();
+            if (input.IsPressed(Keys.Up))
             {
                 selectedIndex--;
                 if (selectedIndex < 0)
                     selectedIndex = menuEntries.Count - 1;
             }
-            if (input.WasPressed(Keys.Down))
+            if (input.IsPressed(Keys.Down))
             {
                 selectedIndex = (selectedIndex + 1) % menuEntries.Count;
             }
 
-            if (input.WasPressed(Keys.Enter))
+            if (input.IsPressed(Keys.Enter))
             {
                 OnSelected(selectedIndex);
             }
-            else if (input.WasPressed(Keys.Escape))
+            else if (input.IsPressed(Keys.Escape))
             {
                 OnEscape();
             }

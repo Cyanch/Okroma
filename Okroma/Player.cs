@@ -1,7 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Okroma.GameControls;
-using Okroma.Input;
 using Okroma.Physics;
 using System;
 

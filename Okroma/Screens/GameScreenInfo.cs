@@ -14,6 +14,7 @@
         public GameScreenInfo(bool isFocused, bool isCovered) : this()
         {
             IsFocused = isFocused;
+            IsCovered = isCovered;
         }
     }
 }

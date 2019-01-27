@@ -1,7 +1,7 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Cyanch.Input;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Okroma.GameControls;
-using Okroma.Input;
 using Okroma.Screens;
 using Okroma.Screens.TextMenus;
 using System;
@@ -96,13 +96,9 @@ namespace Okroma
             Components.Add(screenManager);
             Services.AddService<IScreenManagerService>(screenManager);
 
-            var clickManager = new ClickManager(this);
-            Components.Add(clickManager);
-            Services.AddService<IClickService>(clickManager);
-
-            var inputManager = new InputManager(this);
-            Components.Add(inputManager);
-            Services.AddService<IInputManagerService>(inputManager);
+            var inputState = new InputState(this);
+            Components.Add(inputState);
+            Services.AddService<IInputService>(inputState);
 
             var controlsManager = new GameControlsManager(this);
             Components.Add(controlsManager);

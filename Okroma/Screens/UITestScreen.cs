@@ -1,6 +1,6 @@
-﻿using Cyanch.UI;
+﻿using Cyanch.Input;
+using Cyanch.UI;
 using Microsoft.Xna.Framework;
-using Okroma.Input;
 using Okroma.Utils.C3;
 
 namespace Okroma.Screens
@@ -21,6 +21,7 @@ namespace Okroma.Screens
                 Height = 100,
                 LocalPosition = new Vector2(32, 32),
                 ClipToBounds = true,
+                Input = Game.Services.GetService<IInputService>(),
                 GraphicsDevice = ScreenManager.GraphicsDevice,
                 Font = ScreenManager.Font,
                 SpriteBatch = ScreenManager.SpriteBatch
@@ -45,7 +46,7 @@ namespace Okroma.Screens
         {
             base.HandleInput();
 
-            if (Game.Services.GetService<IInputManagerService>().WasPressed(Microsoft.Xna.Framework.Input.Keys.Q))
+            if (Game.Services.GetService<IInputService>().IsPressed(Microsoft.Xna.Framework.Input.Keys.Q))
             {
                 textAlignIndex = (textAlignIndex + 1) % alignments;
                 text.Alignment = (Alignment)textAlignIndex;

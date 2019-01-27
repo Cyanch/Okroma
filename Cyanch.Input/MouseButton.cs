@@ -1,11 +1,11 @@
-﻿namespace Okroma.Input
+﻿namespace Cyanch.Input
 {
     public enum MouseButton
     {
         None,
         LeftButton,
-        MiddleButton,
         RightButton,
+        MiddleButton,
         XButton1,
         XButton2
     }

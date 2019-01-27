@@ -1,14 +1,16 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Cyanch.Input;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 using Okroma.Cameras;
 using Okroma.Common;
 using Okroma.Common.MonoGame;
 using Okroma.GameControls;
-using Okroma.Input;
 using Okroma.Physics;
 using Okroma.Screens.TextMenus;
 using Okroma.World;
 using System;
+using System.Diagnostics;
 
 namespace Okroma.Screens
 {
@@ -69,16 +71,14 @@ namespace Okroma.Screens
             texture.SetData(colorMap);
             return texture;
         }
-
-        bool paused = false;
+        
         public override void HandleInput()
         {
             player.HandleInput(Game.Services.GetService<IGameControlsService>());
 
-            if (Game.Services.GetService<IInputManagerService>().WasPressed(Microsoft.Xna.Framework.Input.Keys.Escape))
+            if (Game.Services.GetService<IInputService>().IsPressed(Keys.Escape))
             {
                 Game.Services.GetService<IScreenManagerService>().AddScreen(new OptionsMenuScreen(true));
-                paused = true;
             }
         }
 

@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Cyanch.Input;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
@@ -13,7 +14,7 @@ namespace Cyanch.UI
         int RenderOrder { get; set; }
         Vector2 LocalPosition { get; set; }
         Vector2 Position { get; set; }
-        InputState Input { get; set; }
+        IInputState Input { get; set; }
         float Width { get; set; }
         float Height { get; set; }
         Alignment Alignment { get; set; }
@@ -104,11 +105,11 @@ namespace Cyanch.UI
             }
         }
 
-        public InputState Input
+        public IInputState Input
         {
             get
             {
-                return _input ?? Parent?.Input ?? AddInputState();
+                return _input ?? Parent?.Input;
             }
             set
             {
@@ -155,7 +156,7 @@ namespace Cyanch.UI
         private SpriteFont _font;
         private GraphicsDevice _graphicsDevice;
         private int _renderOrder;
-        private InputState _input;
+        private IInputState _input;
         private bool _isMouseHovering;
         private bool _isMouseDown;
         private SpriteBatch _spriteBatch;
@@ -165,7 +166,6 @@ namespace Cyanch.UI
 
         public virtual void HandleInput()
         {
-            _input?.Update();
             HandleMouseEvents();
 
             foreach (var child in GetChildren())
@@ -220,13 +220,6 @@ namespace Cyanch.UI
         private void SortForDrawing()
         {
             _childElements.Sort((x, y) => x.RenderOrder.CompareTo(y.RenderOrder));
-        }
-
-        private InputState AddInputState()
-        {
-            var input = new InputState();
-            Input = input;
-            return input;
         }
 
         public IReadOnlyCollection<UIElement> GetChildren()

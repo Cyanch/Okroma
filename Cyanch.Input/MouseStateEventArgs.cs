@@ -2,15 +2,15 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 
-namespace Cyanch.UI
+namespace Cyanch.Input
 {
     public class MouseStateEventArgs : EventArgs
     {
         public MouseState Previous { get; }
         public MouseState Current { get; }
 
-        private InputState input;
-        public MouseStateEventArgs(InputState input)
+        private IInputState input;
+        public MouseStateEventArgs(IInputState input)
         {
             this.input = input;
         }

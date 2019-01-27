@@ -1,5 +1,5 @@
-﻿using System;
-using Okroma.Input;
+﻿using Cyanch.Input;
+using System;
 
 namespace Okroma.Screens.TextMenus
 {
@@ -33,7 +33,7 @@ namespace Okroma.Screens.TextMenus
         public override void HandleInput()
         {
             base.HandleInput();
-            if (Game.Services.GetService<IInputManagerService>().IsHeld(Microsoft.Xna.Framework.Input.Keys.U))
+            if (Game.Services.GetService<IInputService>().IsDown(Microsoft.Xna.Framework.Input.Keys.U))
             {
                 ScreenManager.AddScreen(new UITestScreen());
             }

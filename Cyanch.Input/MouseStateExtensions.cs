@@ -1,6 +1,6 @@
 ﻿using Microsoft.Xna.Framework.Input;
 
-namespace Okroma.Input
+namespace Cyanch.Input
 {
     public static class MouseStateExtensions
     {
