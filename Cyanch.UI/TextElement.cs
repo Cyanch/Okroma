@@ -37,6 +37,10 @@ namespace Cyanch.UI
 
         private void CalculateTextMeasure()
         {
+            // may cause problems, but is workaround for allowing the setting text before font.
+            if (Font == null)
+                return;
+
             var oldMeasure = TextMeasure;
             TextMeasure = Font.MeasureString(Text);
             if (oldMeasure != TextMeasure)
