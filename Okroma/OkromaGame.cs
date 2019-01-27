@@ -4,7 +4,6 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Okroma.GameControls;
 using Okroma.Screens;
-using Okroma.Screens.TextMenus;
 using System;
 using System.Collections.Generic;
 
@@ -22,6 +21,7 @@ namespace Okroma
             SkipSplash = true;
             ShowCameraBounds = new DebugSetting(false, Color.Orange, 8f);
             ShowRenderBounds = new DebugSetting(false, Color.Yellow, 4f);
+            Cyanch_UI_ShowGrid = new DebugSetting(true, Color.Red, Color.Orange);
         }
 
         /// <summary>
@@ -36,6 +36,8 @@ namespace Okroma
         /// Shows the boundaries of the designated render area.
         /// </summary>
         public static DebugSetting ShowRenderBounds { get; private set; }
+
+        public static DebugSetting Cyanch_UI_ShowGrid { get; private set; }
 
         public bool Enabled { get; private set; }
         public IReadOnlyList<object> Arguments { get; private set; }
@@ -143,13 +145,11 @@ namespace Okroma
             var screen = new BackgroundScreen("Background");
             screen.SetTransitionTime(TimeSpan.FromSeconds(0.5f), TimeSpan.FromSeconds(0.5f));
             screenManager.AddScreen(screen);
-            //screenManager.AddScreen(new MenuScreen());
-            screenManager.AddScreen(new MainMenuScreen());
+            screenManager.AddScreen(new Screens.Menus.MainMenuScreen());
         }
 
         protected override void Update(GameTime gameTime)
         {
-            Console.WriteLine("{0}", 1f / (float)gameTime.ElapsedGameTime.TotalSeconds);
             base.Update(gameTime);
         }
 

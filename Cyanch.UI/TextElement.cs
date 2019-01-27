@@ -4,7 +4,7 @@ using System;
 
 namespace Cyanch.UI
 {
-    public interface ITextElement : IUIElement
+    public interface ITextElement : IUIElement, IScalable
     {
         string Text { get; set; }
         Color TextColor { get; set; }
@@ -26,13 +26,22 @@ namespace Cyanch.UI
         }
         public Color TextColor { get; set; } = Color.White;
         public Vector2 TextMeasure { get; private set; }
+        public Vector2 Scale
+        {
+            get => _scale; set
+            {
+                _scale = value;
+                OnScaleChanged(this, EventArgs.Empty);
+            }
+        }
 
         private string _text;
-        private Vector2 _textOrigin;
+        private Vector2 _origin;
+        private Vector2 _scale = Vector2.One;
 
         public override void Draw(GameTime gameTime)
         {
-            SpriteBatch.DrawString(Font, Text, GetAlignedPosition(), TextColor, 0f, _textOrigin, 1f, SpriteEffects.None, 0f);
+            SpriteBatch.DrawString(Font, Text, GetAlignedPosition(), TextColor, 0f, _origin, Scale, SpriteEffects.None, 0f);
         }
 
         private void CalculateTextMeasure()
@@ -47,52 +56,53 @@ namespace Cyanch.UI
             {
                 OnTextMeasureChanged(this, EventArgs.Empty);
             }
-            UpdateTextOrigin();
+            UpdateOrigin();
         }
 
-        private void UpdateTextOrigin()
+        private void UpdateOrigin()
         {
             switch (Alignment)
             {
                 default:
                     //Inc. Alignment.TopLeft
-                    _textOrigin = new Vector2(0, 0);
+                    _origin = new Vector2(0, 0);
                     break;
 
                 case Alignment.TopCenter:
-                    _textOrigin = new Vector2(TextMeasure.X / 2, 0);
+                    _origin = new Vector2(TextMeasure.X / 2, 0);
                     break;
                 case Alignment.TopRight:
-                    _textOrigin = new Vector2(TextMeasure.X, 0);
+                    _origin = new Vector2(TextMeasure.X, 0);
                     break;
 
                 case Alignment.MiddleLeft:
-                    _textOrigin = new Vector2(0, TextMeasure.Y / 2);
+                    _origin = new Vector2(0, TextMeasure.Y / 2);
                     break;
                 case Alignment.MiddleCenter:
-                    _textOrigin = new Vector2(TextMeasure.X / 2, TextMeasure.Y / 2);
+                    _origin = new Vector2(TextMeasure.X / 2, TextMeasure.Y / 2);
                     break;
                 case Alignment.MiddleRight:
-                    _textOrigin = new Vector2(TextMeasure.X, TextMeasure.Y / 2);
+                    _origin = new Vector2(TextMeasure.X, TextMeasure.Y / 2);
                     break;
 
                 case Alignment.BottomLeft:
-                    _textOrigin = new Vector2(0, TextMeasure.Y);
+                    _origin = new Vector2(0, TextMeasure.Y);
                     break;
                 case Alignment.BottomCenter:
-                    _textOrigin = new Vector2(TextMeasure.X / 2, TextMeasure.Y);
+                    _origin = new Vector2(TextMeasure.X / 2, TextMeasure.Y);
                     break;
                 case Alignment.BottomRight:
-                    _textOrigin = new Vector2(TextMeasure.X, TextMeasure.Y);
+                    _origin = new Vector2(TextMeasure.X, TextMeasure.Y);
                     break;
             }
         }
 
         public event EventHandler TextMeasureChanged;
+        public event EventHandler ScaleChanged;
 
         protected override void OnAlignmentChanged(object sender, EventArgs e)
         {
-            UpdateTextOrigin();
+            UpdateOrigin();
             base.OnAlignmentChanged(sender, e);
         }
 
@@ -105,6 +115,11 @@ namespace Cyanch.UI
         protected virtual void OnTextMeasureChanged(object sender, EventArgs e)
         {
             TextMeasureChanged?.Invoke(sender, e);
+        }
+
+        protected virtual void OnScaleChanged(object sender, EventArgs e)
+        {
+            ScaleChanged?.Invoke(sender, e);
         }
     }
 }

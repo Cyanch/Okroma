@@ -64,5 +64,13 @@ namespace Cyanch.UI
             _elements.Remove(element);
             RemoveChild(element);
         }
+
+        public void ClearElements()
+        {
+            foreach (var element in _elements)
+            {
+                RemoveElement(element);
+            }
+        }
     }
 }

@@ -30,12 +30,12 @@
     <Compile Include="$(MSBuildThisFileDirectory)Physics\ICollidableSource.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Screens\BackgroundScreen.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Screens\LevelScreen.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Screens\TextMenus\ControlMenuScreen.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Screens\TextMenus\LevelSelectMenuScreen.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Screens\Menus\MainMenuScreen.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Screens\Menus\MenuScreen.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Screens\Menus\ControlMenuScreen.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Screens\Menus\LevelSelectMenuScreen.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Screens\LoadingScreen.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Screens\TextMenus\MainMenuScreen.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Screens\TextMenus\OptionsMenuScreen.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Screens\TextMenus\TextMenuScreen.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Screens\Menus\OptionsMenuScreen.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)SpriteExtensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Tileset.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)World\Tiles\CollidableTile.cs" />

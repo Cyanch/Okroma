@@ -45,6 +45,12 @@
 /processor:LevelProcessor
 /build:Levels/Test.json
 
+#begin SoundEffects/MenuSelect.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundEffects/MenuSelect.wav
+
 #begin Textures/Tiles/GrayTile.png
 /importer:TextureImporter
 /processor:TextureProcessor

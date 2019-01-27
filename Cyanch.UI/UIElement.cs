@@ -166,7 +166,7 @@ namespace Cyanch.UI
 
         public virtual void HandleInput()
         {
-            HandleMouseEvents();
+            HandleMouseEvents(GetEffectiveBounds());
 
             foreach (var child in GetChildren())
             {
@@ -227,19 +227,27 @@ namespace Cyanch.UI
             return _childElements.AsReadOnly();
         }
 
-        public Rectangle GetBounds()
+        public virtual Rectangle GetEffectiveBounds()
+        {
+            if (HasParent)
+                return Rectangle.Intersect(Parent.GetEffectiveBounds(), GetBounds());
+
+            return GetBounds();
+        }
+
+        public virtual Rectangle GetBounds()
         {
             return new Rectangle((int)Position.X, (int)Position.Y, (int)Width, (int)Height);
         }
 
-        private void HandleMouseEvents()
+        private void HandleMouseEvents(Rectangle bounds)
         {
-            if (GetBounds().Contains(Input.GetMousePosition()) && !_isMouseHovering)
+            if (bounds.Contains(Input.GetMousePosition()) && !_isMouseHovering)
             {
                 OnMouseEnter(this, new MouseStateEventArgs(Input));
                 _isMouseHovering = true;
             }
-            else if (!GetBounds().Contains(Input.GetMousePosition()) && _isMouseHovering)
+            else if (!bounds.Contains(Input.GetMousePosition()) && _isMouseHovering)
             {
                 OnMouseExit(this, new MouseStateEventArgs(Input));
                 _isMouseHovering = false;
@@ -248,12 +256,12 @@ namespace Cyanch.UI
 
             if (_isMouseHovering)
             {
-                if (Input.IsDown(MouseButton.LeftButton) && !_isMouseDown)
+                if (Input.IsPressed(MouseButton.LeftButton) && !_isMouseDown)
                 {
                     OnMouseDown(this, new MouseStateEventArgs(Input));
                     _isMouseDown = true;
                 }
-                else if (Input.IsUp(MouseButton.LeftButton) && _isMouseDown)
+                else if (Input.IsReleased(MouseButton.LeftButton) && _isMouseDown)
                 {
                     OnMouseUp(this, new MouseStateEventArgs(Input));
                     _isMouseDown = false;

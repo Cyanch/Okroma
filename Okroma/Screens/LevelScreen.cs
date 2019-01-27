@@ -8,7 +8,7 @@ using Microsoft.Xna.Framework.Input;
 using Okroma.Cameras;
 using Okroma.GameControls;
 using Okroma.Physics;
-using Okroma.Screens.TextMenus;
+using Okroma.Screens.Menus;
 using Okroma.World;
 using System;
 

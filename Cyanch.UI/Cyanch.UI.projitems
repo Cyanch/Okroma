@@ -9,6 +9,11 @@
     <Import_RootNamespace>Cyanch.UI</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)IScalable.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Orientation.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Spacer.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)StackPanel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)UniformGrid.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Image.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Panel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Text.cs" />
