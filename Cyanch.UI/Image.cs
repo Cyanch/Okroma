@@ -11,6 +11,26 @@ namespace Cyanch.UI
         /// The Texture being drawn.
         /// </summary>
         public Texture2D Texture { get; set; }
+
+        /// <summary>
+        /// Clipped area of Texture that is actually rendered.
+        /// </summary>
+        public Rectangle? SourceRectangle { get; set; }
+
+        public void SetTexture(Texture2D texture, Rectangle? sourceRectangle, bool autoSize)
+        {
+            Texture = texture;
+            SourceRectangle = sourceRectangle;
+            if (autoSize)
+                SizeToTexture();
+        }
+
+        public void SizeToTexture()
+        {
+            Width = SourceRectangle?.Width ?? Texture.Width;
+            Height = SourceRectangle?.Height ?? Texture.Height;
+        }
+
         /// <summary>
         /// Transparency, 0-1 ranging from fully transparent to opaque.
         /// </summary>
@@ -26,7 +46,7 @@ namespace Cyanch.UI
         {
             if (Texture != null)
             {
-                SpriteBatch.Draw(Texture, GetBounds(), Color.White * Alpha);
+                SpriteBatch.Draw(Texture, GetBounds(), SourceRectangle, Color.White * Alpha);
             }
         }
     }

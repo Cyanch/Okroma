@@ -2,6 +2,8 @@
 using Cyanch.Input;
 using Cyanch.UI;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using System.IO;
 
 namespace Okroma.Screens
 {
@@ -11,10 +13,11 @@ namespace Okroma.Screens
         Text text;
 
         Panel panel2;
-        Text text2;
+        Image image;
         public override void LoadContent()
         {
-            base.LoadContent();
+            var content = CreateContentManager();
+
             panel = new Panel()
             {
                 Width = 250,
@@ -35,8 +38,10 @@ namespace Okroma.Screens
             panel2.ClipToBounds = true;
             panel2.LocalPosition = new Vector2(40, 70);
 
-            text2 = panel2.AddElement<Text>();
-            text2.SetText("Hello", true);
+            image = panel2.AddElement<Image>();
+            image.SetTexture(content.Load<Texture2D>(Path.Combine("Textures", "Tiles", "GrayTile")),
+                new Rectangle(0, 0, 64, 64),
+                true);
         }
 
         int alignments = 9;
@@ -44,8 +49,6 @@ namespace Okroma.Screens
 
         public override void HandleInput()
         {
-            base.HandleInput();
-
             if (Game.Services.GetService<IInputService>().IsPressed(Microsoft.Xna.Framework.Input.Keys.Q))
             {
                 textAlignIndex = (textAlignIndex + 1) % alignments;
@@ -57,7 +60,6 @@ namespace Okroma.Screens
 
         protected override void Update(GameTime gameTime, IGameScreenInfo info)
         {
-            base.Update(gameTime, info);
             panel.Update(gameTime);
             panel.UpdateLayout(gameTime);
         }
@@ -72,7 +74,7 @@ namespace Okroma.Screens
 
             spriteBatch.Begin();
             Primitives2D.DrawRectangle(spriteBatch, text.GetBounds(), Color.Orange);
-            Primitives2D.DrawRectangle(spriteBatch, text2.GetBounds(), Color.Orange);
+            Primitives2D.DrawRectangle(spriteBatch, image.GetBounds(), Color.Yellow);
             Primitives2D.DrawRectangle(spriteBatch, panel.GetBounds(), Color.Red);
             Primitives2D.DrawRectangle(spriteBatch, panel2.GetBounds(), Color.Red);
             spriteBatch.End();
