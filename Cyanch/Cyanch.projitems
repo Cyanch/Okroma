@@ -9,6 +9,9 @@
     <Import_RootNamespace>Cyanch</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)ContentReference.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)FpsCounter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Primitives2D.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Sprite.cs" />
   </ItemGroup>
 </Project>

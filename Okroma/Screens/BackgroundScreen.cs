@@ -1,4 +1,4 @@
-﻿using Cyanch.Common.MonoGame;
+﻿using Cyanch;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;

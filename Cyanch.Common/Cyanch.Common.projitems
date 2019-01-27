@@ -10,8 +10,6 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)Invalidatable.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)MonoGame\ContentReference.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Range.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)MonoGame\Primitives2D.cs" />
   </ItemGroup>
 </Project>

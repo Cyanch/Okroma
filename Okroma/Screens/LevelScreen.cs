@@ -1,7 +1,6 @@
 ﻿using C3;
 using Cyanch;
 using Cyanch.Common;
-using Cyanch.Common.MonoGame;
 using Cyanch.Input;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;

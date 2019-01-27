@@ -7,6 +7,9 @@ namespace Okroma.Screens
 {
     public interface IScreenManagerService
     {
+        SpriteBatch SpriteBatch { get; }
+        SpriteFont Font { get; }
+        Texture2D WhitePixel { get; }
         void AddScreen(GameScreen screen);
         void AddPreloadedScreen(GameScreen screen);
         void RemoveScreen(GameScreen screen);

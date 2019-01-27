@@ -1,7 +1,7 @@
 ﻿using Microsoft.Xna.Framework.Content;
 using System;
 
-namespace Cyanch.Common.MonoGame
+namespace Cyanch
 {
     /// <summary>
     /// Allows <typeparamref name="TContent"/> to be passed as either a path to be loaded or as a preloaded <typeparamref name="TContent"/>

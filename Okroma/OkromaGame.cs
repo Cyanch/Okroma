@@ -1,4 +1,5 @@
-﻿using Cyanch.Input;
+﻿using Cyanch;
+using Cyanch.Input;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Okroma.GameControls;
@@ -69,6 +70,8 @@ namespace Okroma
     {
         GraphicsDeviceManager graphics;
 
+        public FpsCounter FpsCounter { get; private set; }
+
         public static readonly string Name = "Okroma";
 
         public OkromaGame()
@@ -83,7 +86,6 @@ namespace Okroma
 #if DEBUG
             Window.Title += " (Developmental build. Do not redistribute)";
 #endif
-
             graphics.PreferredBackBufferWidth = 1600;
             graphics.PreferredBackBufferHeight = 900;
             graphics.ApplyChanges();
@@ -104,12 +106,15 @@ namespace Okroma
             Components.Add(controlsManager);
             Services.AddService<IGameControlsService>(controlsManager);
 
+            FpsCounter = new FpsCounter(this);
+            Components.Add(FpsCounter);
+            FpsCounter.Enabled = false;
+
             base.Initialize();
         }
 
         private void Window_ClientSizeChanged(object sender, System.EventArgs e)
         {
-            //graphics.PreferredBackBufferWidth = MathHelper.Clamp(Window.ClientBounds.X);
             System.Console.WriteLine(Window.ClientBounds);
         }
 
@@ -117,6 +122,7 @@ namespace Okroma
         {
             //TODO: use this.Content to load your game content here 
             var screenManager = Services.GetService<IScreenManagerService>();
+            FpsCounter.Font = screenManager.Font;
 #if DEBUG
             if (DebugSetting.SkipSplash)
             {
@@ -143,6 +149,7 @@ namespace Okroma
 
         protected override void Update(GameTime gameTime)
         {
+            Console.WriteLine("{0}", 1f / (float)gameTime.ElapsedGameTime.TotalSeconds);
             base.Update(gameTime);
         }
 
