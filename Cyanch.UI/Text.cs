@@ -2,6 +2,9 @@
 
 namespace Cyanch.UI
 {
+    /// <summary>
+    /// UI Element that shows text.
+    /// </summary>
     public class Text : TextElement
     {
         public void SetText(string text, bool sizeToText)
