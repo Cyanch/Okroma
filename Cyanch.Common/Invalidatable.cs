@@ -1,4 +1,4 @@
-﻿namespace Okroma.Common
+﻿namespace Cyanch.Common
 {
     /// <summary>
     /// Used to more easily cache data.

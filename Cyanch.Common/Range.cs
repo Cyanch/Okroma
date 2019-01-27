@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Okroma.Common
+namespace Cyanch.Common
 {
     /// <summary>
     /// The <see cref="Range{T}"/> class.

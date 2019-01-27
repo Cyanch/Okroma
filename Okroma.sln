@@ -18,12 +18,20 @@ Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Cyanch.UI", "Cyanch.UI\Cyan
 EndProject
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Cyanch.Input", "Cyanch.Input\Cyanch.Input.shproj", "{90EE5BCA-5AF4-463A-A336-D8E1507F5D54}"
 EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Cyanch.Common", "Cyanch.Common\Cyanch.Common.shproj", "{293DF639-BDBA-4665-B23A-37D8BA901F6F}"
+EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Cyanch", "Cyanch\Cyanch.shproj", "{46DF70C9-320F-4C46-A071-06B6B7960365}"
+EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		Cyanch.Common\Cyanch.Common.projitems*{1923d4e0-f543-4bce-8aa1-0fbfc05e2257}*SharedItemsImports = 4
 		Cyanch.Input\Cyanch.Input.projitems*{1923d4e0-f543-4bce-8aa1-0fbfc05e2257}*SharedItemsImports = 4
 		Cyanch.UI\Cyanch.UI.projitems*{1923d4e0-f543-4bce-8aa1-0fbfc05e2257}*SharedItemsImports = 4
+		Cyanch\Cyanch.projitems*{1923d4e0-f543-4bce-8aa1-0fbfc05e2257}*SharedItemsImports = 4
 		Okroma\Okroma.projitems*{1923d4e0-f543-4bce-8aa1-0fbfc05e2257}*SharedItemsImports = 4
+		Cyanch.Common\Cyanch.Common.projitems*{293df639-bdba-4665-b23a-37d8ba901f6f}*SharedItemsImports = 13
 		Cyanch.UI\Cyanch.UI.projitems*{3499177e-4414-4ba5-9d69-cac5ec6d7cd6}*SharedItemsImports = 13
+		Cyanch\Cyanch.projitems*{46df70c9-320f-4c46-a071-06b6b7960365}*SharedItemsImports = 13
 		Cyanch.Input\Cyanch.Input.projitems*{90ee5bca-5af4-463a-a336-d8e1507f5d54}*SharedItemsImports = 13
 		Okroma\Okroma.projitems*{a0cdbd0e-3a41-42b7-9425-a838bc2c7383}*SharedItemsImports = 13
 	EndGlobalSection

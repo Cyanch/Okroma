@@ -3,7 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 
-namespace Okroma.Utils.C3
+namespace C3
 {
     /// <summary>
     /// https://bitbucket.org/C3/2d-xna-primitives/src/95c26ebe054db4409fd7056b20057671b581dc43/Primitives2D.cs

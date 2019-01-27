@@ -1,16 +1,17 @@
-﻿using Cyanch.Input;
+﻿using C3;
+using Cyanch;
+using Cyanch.Common;
+using Cyanch.Common.MonoGame;
+using Cyanch.Input;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Okroma.Cameras;
-using Okroma.Common;
-using Okroma.Common.MonoGame;
 using Okroma.GameControls;
 using Okroma.Physics;
 using Okroma.Screens.TextMenus;
 using Okroma.World;
 using System;
-using System.Diagnostics;
 
 namespace Okroma.Screens
 {
@@ -105,11 +106,11 @@ namespace Okroma.Screens
             {
                 if (DebugSetting.ShowCameraBounds)
                 {
-                    Utils.C3.Primitives2D.DrawRectangle(spriteBatch, camera.ViewRectangle, DebugSetting.ShowCameraBounds.GetArg<Color>(0), DebugSetting.ShowCameraBounds.GetArg<float>(1));
+                    Primitives2D.DrawRectangle(spriteBatch, camera.ViewRectangle, DebugSetting.ShowCameraBounds.GetArg<Color>(0), DebugSetting.ShowCameraBounds.GetArg<float>(1));
                 }
                 if (DebugSetting.ShowRenderBounds)
                 {
-                    Utils.C3.Primitives2D.DrawRectangle(spriteBatch, renderArea, DebugSetting.ShowRenderBounds.GetArg<Color>(0), DebugSetting.ShowRenderBounds.GetArg<float>(1));
+                    Primitives2D.DrawRectangle(spriteBatch, renderArea, DebugSetting.ShowRenderBounds.GetArg<Color>(0), DebugSetting.ShowRenderBounds.GetArg<float>(1));
                 }
             }
             spriteBatch.End();

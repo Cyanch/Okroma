@@ -1,7 +1,7 @@
-﻿using Cyanch.Input;
+﻿using C3;
+using Cyanch.Input;
 using Cyanch.UI;
 using Microsoft.Xna.Framework;
-using Okroma.Utils.C3;
 
 namespace Okroma.Screens
 {

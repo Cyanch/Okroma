@@ -1,8 +1,8 @@
-﻿using Cyanch.Input;
+﻿using Cyanch.Common;
+using Cyanch.Input;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using Okroma.Common;
 using System;
 using System.Collections.Generic;
 
