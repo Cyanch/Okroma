@@ -100,7 +100,7 @@ namespace Okroma.Screens.Menus
 
         private void backText_MouseDown(object sender, MouseStateEventArgs e)
         {
-            ExitScreen();
+            ScreenManager.RemoveScreen(this);
         }
 
         public override void UnloadContent()
@@ -115,7 +115,7 @@ namespace Okroma.Screens.Menus
                 _backText.HandleInput();
                 if (Game.Services.GetService<IInputService>().IsPressed(Keys.Escape))
                 {
-                    ExitScreen();
+                    ScreenManager.RemoveScreen(this);
                 }
             }
             _panel.HandleInput();
