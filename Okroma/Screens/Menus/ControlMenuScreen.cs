@@ -7,13 +7,13 @@ namespace Okroma.Screens.Menus
     {
         MenuEntry movementEntry;
 
-        int movementPresetIndex = 0;
+        private int _movementPresetIndex = 0;
         string[] movementPresets = new[] { "Arrows", "WASD" };
 
         protected override void Initialize()
         {
-            if (GameControl.MoveLeft.Key == Keys.A)
-                movementPresetIndex = 1;
+            // Set MovementPresetIndex.
+            _movementPresetIndex = GameControl.MoveUp.Key == Keys.A ? 1 : 0;
         }
 
         public override void LoadContent()
@@ -23,7 +23,7 @@ namespace Okroma.Screens.Menus
 
             AddTitle("Controls");
 
-            movementEntry = NewEntry(movementPresets[movementPresetIndex]);
+            movementEntry = NewEntry(movementPresets[_movementPresetIndex]);
             movementEntry.MouseDown += MovementEntry_MouseDown;
 
             ApplyChanges();
@@ -31,21 +31,21 @@ namespace Okroma.Screens.Menus
 
         private void MovementEntry_MouseDown(object sender, Cyanch.Input.MouseStateEventArgs e)
         {
-            movementPresetIndex = (movementPresetIndex + 1) % movementPresets.Length;
+            _movementPresetIndex = (_movementPresetIndex + 1) % movementPresets.Length;
 
-            if (movementPresetIndex == 0)
+            if (_movementPresetIndex == 0)
             {
                 GameControl.MoveUp.ChangeKey(Keys.Up);
                 GameControl.MoveLeft.ChangeKey(Keys.Left);
                 GameControl.MoveRight.ChangeKey(Keys.Right);
             }
-            else if (movementPresetIndex == 1)
+            else if (_movementPresetIndex == 1)
             {
                 GameControl.MoveUp.ChangeKey(Keys.W);
                 GameControl.MoveLeft.ChangeKey(Keys.A);
                 GameControl.MoveRight.ChangeKey(Keys.D);
             }
-            ModifyEntryText(movementEntry, movementPresets[movementPresetIndex]);
+            ModifyEntryText(movementEntry, movementPresets[_movementPresetIndex]);
             ApplyChanges();
         }
     }

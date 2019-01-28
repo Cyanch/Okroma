@@ -3,6 +3,7 @@ using Cyanch.UI;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Content;
+using Microsoft.Xna.Framework.Input;
 using System;
 using System.IO;
 using System.Linq;
@@ -84,17 +85,17 @@ namespace Okroma.Screens.Menus
                 SpriteBatch = ScreenManager.SpriteBatch,
                 GraphicsDevice = ScreenManager.GraphicsDevice,
                 Font = ScreenManager.Font,
-                ScaleHover = new Vector2(1.2f),
-                TransitionTime = TimeSpan.FromSeconds(0.7f),
+                ScaleHover = new Vector2(scalingWhenHoveredOver),
+                TransitionTime = TimeSpan.FromSeconds(scaleTransitionTime),
                 HoverSoundEffect = hoverSfx
             };
             _backText.SetText(" < ", true);
-            _backText.MouseDown += _backText_MouseDown;
+            _backText.MouseDown += backText_MouseDown;
         }
 
-        private void _backText_MouseDown(object sender, MouseStateEventArgs e)
+        private void backText_MouseDown(object sender, MouseStateEventArgs e)
         {
-            ScreenManager.RemoveScreen(this);
+            ExitScreen();
         }
 
         public override void UnloadContent()
@@ -107,6 +108,10 @@ namespace Okroma.Screens.Menus
             if (ShowBackButton)
             {
                 _backText.HandleInput();
+                if (Game.Services.GetService<IInputService>().IsPressed(Keys.Escape))
+                {
+                    ExitScreen();
+                }
             }
             _panel.HandleInput();
         }
