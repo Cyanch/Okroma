@@ -27,11 +27,16 @@ namespace Okroma.Screens.Menus
             base.Update(gameTime);
         }
 
+        public void PlayHoverSoundEffect()
+        {
+            HoverSoundEffect?.Play(0.5f, 0, 0);
+        }
+
         protected override void OnMouseEnter(object sender, MouseStateEventArgs e)
         {
             _targetScale = ScaleHover;
 
-            HoverSoundEffect?.Play(0.5f, 0, 0);
+            PlayHoverSoundEffect();
 
             elapsed = elapsed.TotalMilliseconds > 0 ? TransitionTime.Subtract(elapsed) : TransitionTime;
 
