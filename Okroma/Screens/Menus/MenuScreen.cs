@@ -53,7 +53,7 @@ namespace Okroma.Screens.Menus
         private MenuEntry _backText;
 
         const float scalingWhenHoveredOver = 1.2f;
-        const float scaleTransitionTime = 0.7f;
+        const float scaleTransitionTime = 0.5f;
         const int menuEntryHeight = 100;
         readonly string hoverSfxPath = Path.Combine("SoundEffects", "MenuSelect");
         SoundEffect hoverSfx;
