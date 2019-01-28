@@ -9,9 +9,6 @@ namespace Okroma.Screens.Menus
 
         int movementPresetIndex = 0;
         string[] movementPresets = new[] { "Arrows", "WASD" };
-        public ControlMenuScreen()
-        {
-        }
 
         protected override void Initialize()
         {
@@ -48,7 +45,7 @@ namespace Okroma.Screens.Menus
                 GameControl.MoveLeft.ChangeKey(Keys.A);
                 GameControl.MoveRight.ChangeKey(Keys.D);
             }
-            movementEntry.SetText(movementPresets[movementPresetIndex], true);
+            ModifyEntryText(movementEntry, movementPresets[movementPresetIndex]);
             ApplyChanges();
         }
     }

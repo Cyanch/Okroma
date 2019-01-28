@@ -173,6 +173,12 @@ namespace Okroma.Screens.Menus
             return menuEntry;
         }
 
+        public void ModifyEntryText(MenuEntry entry, string text)
+        {
+            entry.SetText(text, true);
+            entry.Height = menuEntryHeight;
+        }
+
         public void ApplyChanges()
         {
             _panel.Width = _panel.GetChildren().Max(element => element.Width * (element is MenuEntry menuText ? menuText.ScaleHover.X : 1));
