@@ -46,7 +46,6 @@ namespace Okroma.Screens.Menus
                 GameControl.MoveRight.ChangeKey(Keys.D);
             }
             ModifyEntryText(movementEntry, movementPresets[_movementPresetIndex]);
-            movementEntry.PlayHoverSoundEffect();
             ApplyChanges();
         }
     }

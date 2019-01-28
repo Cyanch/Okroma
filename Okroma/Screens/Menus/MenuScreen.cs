@@ -12,17 +12,23 @@ namespace Okroma.Screens.Menus
 {
     public class MenuEntry : Text
     {
-        public Vector2 ScaleHover { get; set; } = Vector2.One;
+        public Vector2 HoverScale { get; set; } = Vector2.One;
         public TimeSpan TransitionTime { get; set; }
         public SoundEffect HoverSoundEffect { get; set; }
-        private Vector2 _targetScale = Vector2.One;
-        TimeSpan elapsed;
+
+        private int _direction;
+        private float _scaleTime;
+        
         public override void Update(GameTime gameTime)
         {
-            if (elapsed.TotalSeconds < TransitionTime.TotalSeconds)
+            if ((_scaleTime <= 0 && _direction == -1) || (_scaleTime >= TransitionTime.TotalSeconds && _direction == 1))
             {
-                elapsed += gameTime.ElapsedGameTime;
-                Scale = Vector2.Lerp(Scale, _targetScale, MathHelper.Clamp((float)elapsed.TotalSeconds / (float)TransitionTime.TotalSeconds, 0, 1));
+                _direction = 0;
+            }
+            else
+            {
+                _scaleTime += (float)gameTime.ElapsedGameTime.TotalSeconds * _direction;
+                Scale = Vector2.Lerp(Vector2.One, HoverScale, MathHelper.Clamp(_scaleTime / (float)TransitionTime.TotalSeconds, 0, 1));
             }
             base.Update(gameTime);
         }
@@ -32,22 +38,24 @@ namespace Okroma.Screens.Menus
             HoverSoundEffect?.Play(0.5f, 0, 0);
         }
 
-        protected override void OnMouseEnter(object sender, MouseStateEventArgs e)
+        protected override void OnMouseDown(object sender, MouseStateEventArgs e)
         {
-            _targetScale = ScaleHover;
-
             PlayHoverSoundEffect();
 
-            elapsed = elapsed.TotalMilliseconds > 0 ? TransitionTime.Subtract(elapsed) : TransitionTime;
+            base.OnMouseDown(sender, e);
+        }
+
+        protected override void OnMouseEnter(object sender, MouseStateEventArgs e)
+        {
+            _direction = 1;
+            PlayHoverSoundEffect();
 
             base.OnMouseEnter(sender, e);
         }
 
         protected override void OnMouseExit(object sender, MouseStateEventArgs e)
         {
-            _targetScale = Vector2.One;
-
-            elapsed = elapsed.TotalMilliseconds > 0 ? TransitionTime.Subtract(elapsed) : TransitionTime;
+            _direction = -1;
 
             base.OnMouseExit(sender, e);
         }
@@ -59,7 +67,7 @@ namespace Okroma.Screens.Menus
         private MenuEntry _backText;
 
         const float scalingWhenHoveredOver = 1.2f;
-        const float scaleTransitionTime = 0.5f;
+        const float scaleTransitionTime = 0.15f;
         const int menuEntryHeight = 100;
         readonly string hoverSfxPath = Path.Combine("SoundEffects", "MenuSelect");
         SoundEffect hoverSfx;
@@ -90,7 +98,7 @@ namespace Okroma.Screens.Menus
                 SpriteBatch = ScreenManager.SpriteBatch,
                 GraphicsDevice = ScreenManager.GraphicsDevice,
                 Font = ScreenManager.Font,
-                ScaleHover = new Vector2(scalingWhenHoveredOver),
+                HoverScale = new Vector2(scalingWhenHoveredOver),
                 TransitionTime = TimeSpan.FromSeconds(scaleTransitionTime),
                 HoverSoundEffect = hoverSfx
             };
@@ -175,7 +183,7 @@ namespace Okroma.Screens.Menus
             menuEntry.Text = text;
             menuEntry.Width = menuEntry.TextMeasure.X;
             menuEntry.Height = menuEntryHeight;
-            menuEntry.ScaleHover = new Vector2(scalingWhenHoveredOver);
+            menuEntry.HoverScale = new Vector2(scalingWhenHoveredOver);
             menuEntry.TransitionTime = TimeSpan.FromSeconds(scaleTransitionTime);
             menuEntry.Alignment = Alignment.MiddleCenter;
             menuEntry.HoverSoundEffect = hoverSfx;
@@ -191,7 +199,7 @@ namespace Okroma.Screens.Menus
 
         public void ApplyChanges()
         {
-            _panel.Width = _panel.GetChildren().Max(element => element.Width * (element is MenuEntry menuText ? menuText.ScaleHover.X : 1));
+            _panel.Width = _panel.GetChildren().Max(element => element.Width * (element is MenuEntry menuText ? menuText.HoverScale.X : 1));
 
             var height = 0f;
             foreach (var element in _panel.GetChildren())
