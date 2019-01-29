@@ -1,5 +1,5 @@
-﻿using Microsoft.Xna.Framework;
-using Okroma.Input;
+﻿using Cyanch.Input;
+using Microsoft.Xna.Framework;
 
 namespace Okroma.GameControls
 {
@@ -21,15 +21,15 @@ namespace Okroma.GameControls
 
         public ControlProperty Get(GameControl control)
         {
-            var input = Game.Services.GetService<IInputManagerService>();
+            var input = Game.Services.GetService<IInputService>();
 
             var controlProperty = ControlProperty.None;
-            if (input.WasPressed(control))
+            if (input.IsPressed(control))
             {
                 controlProperty |= ControlProperty.JustPressed;
             }
 
-            if (input.IsHeld(control))
+            if (input.IsDown(control))
             {
                 controlProperty |= ControlProperty.Held;
             }

@@ -1,9 +1,9 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Cyanch;
+using Cyanch.Input;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Okroma.GameControls;
-using Okroma.Input;
 using Okroma.Screens;
-using Okroma.Screens.TextMenus;
 using System;
 using System.Collections.Generic;
 
@@ -21,6 +21,7 @@ namespace Okroma
             SkipSplash = true;
             ShowCameraBounds = new DebugSetting(false, Color.Orange, 8f);
             ShowRenderBounds = new DebugSetting(false, Color.Yellow, 4f);
+            Cyanch_UI_ShowGrid = new DebugSetting(true, Color.Red, Color.Orange);
         }
 
         /// <summary>
@@ -35,6 +36,8 @@ namespace Okroma
         /// Shows the boundaries of the designated render area.
         /// </summary>
         public static DebugSetting ShowRenderBounds { get; private set; }
+
+        public static DebugSetting Cyanch_UI_ShowGrid { get; private set; }
 
         public bool Enabled { get; private set; }
         public IReadOnlyList<object> Arguments { get; private set; }
@@ -69,6 +72,8 @@ namespace Okroma
     {
         GraphicsDeviceManager graphics;
 
+        public FpsCounter FpsCounter { get; private set; }
+
         public static readonly string Name = "Okroma";
 
         public OkromaGame()
@@ -83,7 +88,6 @@ namespace Okroma
 #if DEBUG
             Window.Title += " (Developmental build. Do not redistribute)";
 #endif
-
             graphics.PreferredBackBufferWidth = 1600;
             graphics.PreferredBackBufferHeight = 900;
             graphics.ApplyChanges();
@@ -96,24 +100,23 @@ namespace Okroma
             Components.Add(screenManager);
             Services.AddService<IScreenManagerService>(screenManager);
 
-            var clickManager = new ClickManager(this);
-            Components.Add(clickManager);
-            Services.AddService<IClickService>(clickManager);
-
-            var inputManager = new InputManager(this);
-            Components.Add(inputManager);
-            Services.AddService<IInputManagerService>(inputManager);
+            var inputState = new InputState(this);
+            Components.Add(inputState);
+            Services.AddService<IInputService>(inputState);
 
             var controlsManager = new GameControlsManager(this);
             Components.Add(controlsManager);
             Services.AddService<IGameControlsService>(controlsManager);
+
+            FpsCounter = new FpsCounter(this);
+            Components.Add(FpsCounter);
+            FpsCounter.Enabled = false;
 
             base.Initialize();
         }
 
         private void Window_ClientSizeChanged(object sender, System.EventArgs e)
         {
-            //graphics.PreferredBackBufferWidth = MathHelper.Clamp(Window.ClientBounds.X);
             System.Console.WriteLine(Window.ClientBounds);
         }
 
@@ -121,7 +124,7 @@ namespace Okroma
         {
             //TODO: use this.Content to load your game content here 
             var screenManager = Services.GetService<IScreenManagerService>();
-
+            FpsCounter.Font = screenManager.Font;
 #if DEBUG
             if (DebugSetting.SkipSplash)
             {
@@ -142,8 +145,7 @@ namespace Okroma
             var screen = new BackgroundScreen("Background");
             screen.SetTransitionTime(TimeSpan.FromSeconds(0.5f), TimeSpan.FromSeconds(0.5f));
             screenManager.AddScreen(screen);
-            //screenManager.AddScreen(new MenuScreen());
-            screenManager.AddScreen(new MainMenuScreen());
+            screenManager.AddScreen(new Screens.Menus.MainMenuScreen());
         }
 
         protected override void Update(GameTime gameTime)

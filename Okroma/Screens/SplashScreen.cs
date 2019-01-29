@@ -1,7 +1,7 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Cyanch;
+using Cyanch.Common;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Okroma.Common;
-using Okroma.Common.MonoGame;
 
 namespace Okroma.Screens
 {

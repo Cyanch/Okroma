@@ -7,6 +7,9 @@ namespace Okroma.Screens
 {
     public interface IScreenManagerService
     {
+        SpriteBatch SpriteBatch { get; }
+        SpriteFont Font { get; }
+        Texture2D WhitePixel { get; }
         void AddScreen(GameScreen screen);
         void AddPreloadedScreen(GameScreen screen);
         void RemoveScreen(GameScreen screen);
@@ -81,6 +84,7 @@ namespace Okroma.Screens
             screensToAdd.Clear();
 
             var screenCount = screens.Count;
+            bool isCovered = false;
             for (int i = screenCount - 1; i >= 0; i--)
             {
                 if (screens.Count <= i)
@@ -88,9 +92,10 @@ namespace Okroma.Screens
 
                 var screen = screens[i];
                 bool isFocused = i == screenCount - 1;
-                if (isFocused)
+                if (isFocused && Game.IsActive)
                     screen.HandleInput();
-                screen.UpdateScreen(gameTime, new GameScreenInfo(isFocused));
+                screen.UpdateScreen(gameTime, new GameScreenInfo(isFocused, isCovered));
+                isCovered |= !screen.IsPopup;
             }
         }
 
