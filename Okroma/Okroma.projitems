@@ -29,7 +29,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Physics\ICollidableGameObject2D.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Physics\ICollidableSource.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Screens\BackgroundScreen.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Screens\LevelScreen.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Screens\GameplayScreen.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Screens\Menus\MainMenuScreen.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Screens\Menus\MenuScreen.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Screens\Menus\ControlMenuScreen.cs" />

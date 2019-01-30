@@ -11,7 +11,11 @@
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)ContentReference.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)FpsCounter.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Primitives2D.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)C3\Primitives2D.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)C3\QuadTree.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Sprite.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="$(MSBuildThisFileDirectory)C3\" />
   </ItemGroup>
 </Project>

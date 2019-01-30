@@ -1,6 +1,7 @@
 ﻿using C3;
 using Cyanch;
 using Cyanch.Common;
+using Cyanch.Entities;
 using Cyanch.Input;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -14,7 +15,7 @@ using System;
 
 namespace Okroma.Screens
 {
-    public class LevelScreen : GameScreen
+    public class GameplayScreen : GameScreen
     {
         Player player;
         Camera camera;
@@ -24,7 +25,7 @@ namespace Okroma.Screens
         ContentReference<Level> levelReference;
 
         CollidableSourceCollection collidables;
-        public LevelScreen(ContentReference<Level> levelReference)
+        public GameplayScreen(ContentReference<Level> levelReference)
         {
             this.levelReference = levelReference;
         }

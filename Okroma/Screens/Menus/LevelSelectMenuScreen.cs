@@ -32,7 +32,7 @@ namespace Okroma.Screens.Menus
         {
             if (sender is MenuEntry text)
             {
-                LoadingScreen.Load(ScreenManager, new LevelScreen(Path.Combine("Levels", text.Text)));
+                LoadingScreen.Load(ScreenManager, new GameplayScreen(Path.Combine("Levels", text.Text)));
             }
         }
     }
