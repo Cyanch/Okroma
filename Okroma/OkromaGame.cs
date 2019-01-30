@@ -9,6 +9,7 @@ using System.Collections.Generic;
 
 namespace Okroma
 {
+#if DEBUG
     /// <summary>
     /// Settings that are applied when <see cref="DebugSetting.EnableDebugSettings"/> is true.
     /// </summary>
@@ -21,7 +22,7 @@ namespace Okroma
             SkipSplash = true;
             ShowCameraBounds = new DebugSetting(false, Color.Orange, 8f);
             ShowRenderBounds = new DebugSetting(false, Color.Yellow, 4f);
-            Cyanch_UI_ShowGrid = new DebugSetting(true, Color.Red, Color.Orange);
+            Cyanch_UI_ShowGrid = new DebugSetting(false, Color.Red, Color.Orange);
         }
 
         /// <summary>
@@ -67,6 +68,7 @@ namespace Okroma
             return new DebugSetting(enabled);
         }
     }
+#endif
 
     public class OkromaGame : Game
     {
