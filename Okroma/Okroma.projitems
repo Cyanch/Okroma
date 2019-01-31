@@ -16,6 +16,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)ContentReaders\LevelContentReader.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ContentReaders\TileContentReader.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ContentReaders\TilesetContentReader.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Editor\EditorTile.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)GameControls\ControlProperty.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)GameControls\GameControl.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)GameObject2D.cs" />
@@ -37,6 +38,9 @@
     <Compile Include="$(MSBuildThisFileDirectory)Screens\LoadingScreen.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Screens\Menus\OptionsMenuScreen.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)SpriteExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)TileEngine\Map.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)TileEngine\Tile.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)TileEngine\TileProperties\TileWallJumpProperty.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Tileset.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)World\Tiles\CollidableTile.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)World\Tiles\Objects\CollidableTileObject.cs" />
