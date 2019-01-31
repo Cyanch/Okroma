@@ -40,6 +40,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)SpriteExtensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)TileEngine\Map.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)TileEngine\Tile.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)TileEngine\TileProperties\TileProperty.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)TileEngine\TileProperties\TileWallJumpProperty.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Tileset.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)World\Tiles\CollidableTile.cs" />

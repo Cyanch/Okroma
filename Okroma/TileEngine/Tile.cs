@@ -10,19 +10,23 @@ namespace Okroma.TileEngine
         public ushort Id { get; } // [ Tileset ]
         public byte Meta { get; } // [ Subset ]
 
-        private Dictionary<byte, byte> _smallProperties;
+        private Dictionary<byte, byte> _properties;
 
         public Tile(ushort id, byte meta) : this()
         {
             Id = id;
             Meta = meta;
 
-            _smallProperties = new Dictionary<byte, byte>();
+            _properties = new Dictionary<byte, byte>();
         }
 
-        public void SetProperty<TProperty>(TProperty value) where TProperty : Enum
+        public void SetProperty<TProperty>(TileProperty property, TProperty value) where TProperty : Enum
         {
-
+            byte propKey = (byte)property;
+            //Enum.GetUnderlyingType(typeof(TProperty));
+            if (_properties.ContainsKey(propKey))
+            {
+            }
         }
 
 
