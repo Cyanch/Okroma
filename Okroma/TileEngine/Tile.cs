@@ -22,13 +22,30 @@ namespace Okroma.TileEngine
 
         public void SetProperty<TProperty>(TileProperty property, TProperty value) where TProperty : Enum
         {
+            //Assumes Enum is of byte.
             byte propKey = (byte)property;
-            //Enum.GetUnderlyingType(typeof(TProperty));
+            byte propValue = (byte)Convert.ChangeType(value, Enum.GetUnderlyingType(value.GetType()));
+
             if (_properties.ContainsKey(propKey))
             {
+                _properties[propKey] = propValue;
+            }
+            else
+            {
+                _properties.Add(propKey, propValue);
             }
         }
 
+        /// <summary>
+        /// Get's the properties value.
+        /// </summary>
+        /// <typeparam name="TProperty">The returning enum type.</typeparam>
+        /// <param name="property">The property to get</param>
+        /// <returns></returns>
+        public TProperty GetProperty<TProperty>(TileProperty property)
+        {
+            return (TProperty)Enum.ToObject(typeof(TProperty), (byte)property);
+        }
 
         public static void Write(BinaryWriter writer, Tile tile)
         {
@@ -43,7 +60,5 @@ namespace Okroma.TileEngine
 
             return new Tile(id, meta);
         }
-
-        public TileWallJumpProperty WallJumpProperty { get; set; }
     }
 }
