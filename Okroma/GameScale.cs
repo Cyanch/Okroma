@@ -1,4 +1,6 @@
-﻿namespace Okroma
+﻿using Microsoft.Xna.Framework;
+
+namespace Okroma
 {
     /// <summary>
     /// Game Scale class.
@@ -6,6 +8,7 @@
     public struct GameScale
     {
         public const int TileSize = 64;
+        public static Point TileSizePoint => new Point(TileSize);
 
         public int Pixels { get; }
         public int Tiles => Pixels / TileSize;
