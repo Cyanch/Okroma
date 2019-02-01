@@ -70,11 +70,7 @@ namespace Okroma
 
         public bool Equals(RectTransform2D other)
         {
-            return X == other.X &&
-                Y == other.Y &&
-                Width == other.Width &&
-                Height == other.Height &&
-                Rotation == other.Rotation;
+            return (X, Y, Width, Height, Rotation) == (other.X, other.Y, other.Width, other.Height, other.Rotation);
         }
 
         public override bool Equals(object obj)
@@ -84,24 +80,14 @@ namespace Okroma
             return false;
         }
 
-        public static bool operator ==(RectTransform2D rect1, RectTransform2D rect2)
-        {
-            return rect1.Equals(rect2);
-        }
-
-        public static bool operator !=(RectTransform2D rect1, RectTransform2D rect2)
-        {
-            return !(rect1 == rect2);
-        }
-
         public override string ToString()
         {
-            return "{Rectangle" + Rectangle.ToString() + " Rotation{" + Rotation.ToString() + "}}";
+            return string.Join(", ", Rectangle, Rotation);
         }
 
         public override int GetHashCode()
         {
-            return X.GetHashCode() ^ Y.GetHashCode() ^ Width ^ Height ^ Rotation.GetHashCode();
+            return (X, Y, Width, Height, Rotation).GetHashCode();
         }
     }
 }

@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
+using System.Collections.Generic;
 
 namespace Okroma
 {
@@ -54,12 +55,25 @@ namespace Okroma
 
         public bool Equals(Transform2D other)
         {
-            return Position.Equals(other.Position) && Rotation.Equals(other.Rotation) && Scale.Equals(other.Scale);
+            return (Position, Rotation, Scale) == (other.Position, other.Rotation, other.Scale);
         }
 
         public override string ToString()
         {
             return "{Position" + Position.ToString() + " Rotation{" + Rotation.ToString() + "} Scale" + Scale.ToString() + "}";
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (obj is Transform2D transform)
+                return transform.Equals(this);
+
+            return false;
+        }
+
+        public override int GetHashCode()
+        {
+            return (Position, Rotation, Scale).GetHashCode();
         }
     }
 

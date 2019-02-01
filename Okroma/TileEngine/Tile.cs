@@ -1,64 +1,40 @@
-﻿using Okroma.TileEngine.TileProperties;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.IO;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace Okroma.TileEngine
 {
-    public struct Tile
+    public struct Tile : IEquatable<Tile>
     {
-        public ushort Id { get; } // [ Tileset ]
-        public byte Meta { get; } // [ Subset ]
+        public ushort Id { get; }
+        public byte Variant { get; }
 
-        private Dictionary<byte, byte> _properties;
+        public Texture2D Texture { get; }
+        private Dictionary<byte, Point> _texturePositions;
 
-        public Tile(ushort id, byte meta) : this()
+        public void Draw(SpriteBatch spriteBatch, Vector2 drawPosition, byte variant, Color color)
         {
-            Id = id;
-            Meta = meta;
-
-            _properties = new Dictionary<byte, byte>();
+            spriteBatch.Draw(Texture, drawPosition, new Rectangle(_texturePositions[variant], GameScale.TileSizePoint), color);
         }
 
-        public void SetProperty<TProperty>(TileProperty property, TProperty value) where TProperty : Enum
+        public override bool Equals(object obj)
         {
-            //Assumes Enum is of byte.
-            byte propKey = (byte)property;
-            byte propValue = (byte)Convert.ChangeType(value, Enum.GetUnderlyingType(value.GetType()));
-
-            if (_properties.ContainsKey(propKey))
-            {
-                _properties[propKey] = propValue;
-            }
-            else
-            {
-                _properties.Add(propKey, propValue);
-            }
+            return obj is Tile && Equals((Tile)obj);
         }
 
-        /// <summary>
-        /// Get's the properties value.
-        /// </summary>
-        /// <typeparam name="TProperty">The returning enum type.</typeparam>
-        /// <param name="property">The property to get</param>
-        /// <returns></returns>
-        public TProperty GetProperty<TProperty>(TileProperty property)
+        public bool Equals(Tile other)
         {
-            return (TProperty)Enum.ToObject(typeof(TProperty), (byte)property);
+            return Id == other.Id &&
+                   Variant == other.Variant;
         }
 
-        public static void Write(BinaryWriter writer, Tile tile)
+        public override int GetHashCode()
         {
-            writer.Write(tile.Id);
-            writer.Write(tile.Meta);
-        }
-
-        public static Tile Read(BinaryReader reader)
-        {
-            ushort id = reader.ReadUInt16();
-            byte meta = reader.ReadByte();
-
-            return new Tile(id, meta);
+            var hashCode = 31871270;
+            hashCode = hashCode * -1521134295 + Id.GetHashCode();
+            hashCode = hashCode * -1521134295 + Variant.GetHashCode();
+            return hashCode;
         }
     }
 }
