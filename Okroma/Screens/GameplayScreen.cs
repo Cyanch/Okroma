@@ -19,7 +19,7 @@ namespace Okroma.Screens
     {
         Player player;
         Camera camera;
-        const float initialCameraZoom = 0.5f;
+        const float initialCameraZoom = 1f;
         
         World2D world;
         ContentReference<Level> levelReference;
@@ -53,7 +53,7 @@ namespace Okroma.Screens
 
             //Player
             //Temp Texture.
-            Point playerSize = new Point(64, 64);
+            Point playerSize = new Point(GameScale.TileSize, GameScale.TileSize);
             var playerTexture = CreateSingleColorTexture(Color.BurlyWood, playerSize.X, playerSize.Y);
             player = new Player("Player", new Sprite(playerTexture, null, new Vector2(playerSize.X / 2, playerSize.Y)), new Transform2D(level.PlayerSpawnLocation.X, level.PlayerSpawnLocation.Y), collidables);
             (camera as PlayerCamera)?.SetTargetPlayer(player);

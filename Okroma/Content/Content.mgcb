@@ -51,7 +51,7 @@
 /processorParam:Quality=Best
 /build:SoundEffects/MenuSelect.wav
 
-#begin Textures/Tiles/GrayTile.png
+#begin Textures/BackgroundTiles.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -61,7 +61,19 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:Textures/Tiles/GrayTile.png
+/build:Textures/BackgroundTiles.png
+
+#begin Textures/Tiles.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Textures/Tiles.png
 
 #begin TileMaps/Test.png
 /importer:TextureImporter

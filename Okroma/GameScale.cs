@@ -7,7 +7,7 @@ namespace Okroma
     /// </summary>
     public struct GameScale
     {
-        public const int TileSize = 64;
+        public const int TileSize = 32;
         public static Point TileSizePoint => new Point(TileSize);
 
         public int Pixels { get; }
