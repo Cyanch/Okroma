@@ -8,9 +8,9 @@ namespace Okroma.TileEngine
     {
         public int Id { get; }
 
-        public void Draw(SpriteBatch spriteBatch, Vector2 drawPosition, byte variant, Color color)
+        public void Draw(SpriteBatch spriteBatch, Vector2 drawPosition, Color color)
         {
-            //spriteBatch.Draw(Texture, drawPosition, new Rectangle(_texturePositions[variant], GameScale.TileSizePoint), color);
+            throw new System.NotImplementedException();
         }
 
         public override bool Equals(object obj)
@@ -26,6 +26,14 @@ namespace Okroma.TileEngine
         public override int GetHashCode()
         {
             return Id;
+        }
+    }
+
+    public static class TileExtensions
+    {
+        public static void DrawTile(this SpriteBatch spriteBatch, Tile tile, Vector2 drawPosition, Color color)
+        {
+            tile.Draw(spriteBatch, drawPosition, color);
         }
     }
 }
