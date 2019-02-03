@@ -9,6 +9,6 @@
         "TileMaps/TestBackground",
         "TileMaps/Test"
     ],
-    "playerSpawnPosition":"64 8128",
+    "playerSpawnPosition":"48 4000",
     "playerLayer":1
 }

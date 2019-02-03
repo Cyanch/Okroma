@@ -23,6 +23,7 @@ namespace Okroma
             ShowCameraBounds = new DebugSetting(false, Color.Orange, 8f);
             ShowRenderBounds = new DebugSetting(false, Color.Yellow, 4f);
             Cyanch_UI_ShowGrid = new DebugSetting(false, Color.Red, Color.Orange);
+            ShowPlayerBoundingBox = new DebugSetting(false, Color.Blue);
         }
 
         /// <summary>
@@ -39,6 +40,8 @@ namespace Okroma
         public static DebugSetting ShowRenderBounds { get; private set; }
 
         public static DebugSetting Cyanch_UI_ShowGrid { get; private set; }
+
+        public static DebugSetting ShowPlayerBoundingBox { get; private set; }
 
         public bool Enabled { get; private set; }
         public IReadOnlyList<object> Arguments { get; private set; }

@@ -1,7 +1,6 @@
 ﻿using C3;
 using Cyanch;
 using Cyanch.Common;
-using Cyanch.Entities;
 using Cyanch.Input;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -106,11 +105,15 @@ namespace Okroma.Screens
             {
                 if (DebugSetting.ShowCameraBounds)
                 {
-                    Primitives2D.DrawRectangle(spriteBatch, camera.ViewRectangle, DebugSetting.ShowCameraBounds.GetArg<Color>(0), DebugSetting.ShowCameraBounds.GetArg<float>(1));
+                    spriteBatch.DrawRectangle(camera.ViewRectangle, DebugSetting.ShowCameraBounds.GetArg<Color>(0), DebugSetting.ShowCameraBounds.GetArg<float>(1));
                 }
                 if (DebugSetting.ShowRenderBounds)
                 {
-                    Primitives2D.DrawRectangle(spriteBatch, renderArea, DebugSetting.ShowRenderBounds.GetArg<Color>(0), DebugSetting.ShowRenderBounds.GetArg<float>(1));
+                    spriteBatch.DrawRectangle(renderArea, DebugSetting.ShowRenderBounds.GetArg<Color>(0), DebugSetting.ShowRenderBounds.GetArg<float>(1));
+                }
+                if (DebugSetting.ShowPlayerBoundingBox)
+                {
+                    spriteBatch.DrawRectangle(player.Bounds, DebugSetting.ShowPlayerBoundingBox.GetArg<Color>(0));
                 }
             }
             spriteBatch.End();
