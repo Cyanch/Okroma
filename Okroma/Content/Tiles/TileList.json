@@ -1,7 +1,0 @@
-{
-    "backgroundTiles": [2],
-    "tiles": [0, 1],
-
-    "wallJumpLeft": [1],
-    "wallJumpRight": [1]
-}

@@ -1,17 +1,19 @@
-﻿namespace OkromaContentPipeline.TilePipeline
+﻿using System;
+using System.Collections.Generic;
+
+namespace OkromaContentPipeline.TilePipelline
 {
     public class TileProcessorResult
     {
         public string Type { get; }
+        public string TexturePath { get; }
+        public Dictionary<int, byte> Properties { get; }
 
-        public Sprite Sprite { get; }
-
-        public bool IsWallJumpable { get; }
-        public TileProcessorResult(TileFile tileFile)
+        public TileProcessorResult(string type, string texturePath, Dictionary<int, byte> properties)
         {
-            this.Type = tileFile.Type;
-            this.Sprite = tileFile.Sprite;
-            this.IsWallJumpable = tileFile.IsWallJumpable;
+            Type = type ?? throw new ArgumentNullException(nameof(type));
+            TexturePath = texturePath ?? throw new ArgumentNullException(nameof(texturePath));
+            Properties = properties ?? throw new ArgumentNullException(nameof(properties));
         }
     }
 }

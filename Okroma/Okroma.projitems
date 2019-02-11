@@ -24,6 +24,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)GameControls\GameControlsManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Level.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Physics\CollidableSourceCollection.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Physics\Collision.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Physics\CollisionData.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Physics\CollisionProperties.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Physics\Controller2D.cs" />
@@ -40,8 +41,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)SpriteExtensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)TileEngine\Map.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)TileEngine\Tile.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)TileEngine\TileProperties\TileProperty.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)TileEngine\TileProperties\TileWallJumpProperty.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Tileset.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)World\Tiles\CollidableTile.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)World\Tiles\Objects\CollidableTileObject.cs" />

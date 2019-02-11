@@ -1,0 +1,8 @@
+{
+    "type":"normal",
+    "texture":"Textures/Tiles",
+    "properties":
+    [
+        {"walljump":"both"}
+    ]
+}

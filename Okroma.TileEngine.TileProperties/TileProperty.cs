@@ -2,6 +2,11 @@
 
 namespace Okroma.TileEngine.TileProperties
 {
+    public enum TileProperty
+    {
+        WallJump = 0
+    }
+
     [Flags]
     public enum TileWallJumpProperty : byte
     {

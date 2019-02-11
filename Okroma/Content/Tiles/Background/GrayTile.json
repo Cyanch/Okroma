@@ -1,8 +1,0 @@
-{
-    "type":"background",
-    "sprite": {
-        "texture":"Textures/Tiles",
-        "sourceRectangle":"64 0 32 32",
-        "origin":"16 16"
-    }
-}

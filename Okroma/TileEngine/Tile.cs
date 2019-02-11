@@ -1,16 +1,91 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Cyanch;
+using Cyanch.Physics;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Okroma.Physics;
+using Okroma.TileEngine.TileProperties;
 using System;
+using System.IO;
 
 namespace Okroma.TileEngine
 {
-    public struct Tile : IEquatable<Tile>
+    public class TileData
     {
-        public int Id { get; }
+        public ISprite Sprite { get; }
+        public Rectangle Bounds { get; }
 
-        public void Draw(SpriteBatch spriteBatch, Vector2 drawPosition, Color color)
+        public TileProperties Properties { get; }
+
+        public TileData(ISprite sprite, Rectangle bounds)
         {
-            throw new System.NotImplementedException();
+            this.Sprite = sprite;
+            this.Bounds = bounds;
+        }
+
+        public void Draw(GameTime gameTime, SpriteBatch spriteBatch, Vector2 drawPosition, Color color)
+        {
+            spriteBatch.DrawSprite(Sprite, gameTime, drawPosition, 0, Vector2.One, color);
+        }
+
+        public class TileProperties
+        {
+            public TileWallJumpProperty WallJump { get; set; }
+        }
+    }
+
+    public enum GameTile
+    {
+        None = 0,
+    }
+
+    public struct Tile : ICollider, IEquatable<Tile>
+    {
+        public Map Map { get; }
+
+        public int Id { get; private set; }
+
+        //Bounding Box.
+        public Rectangle Rect { get; private set; }
+
+        public TileData Data { get; private set; }
+
+        public int MapX { get; }
+        public int MapY { get; }
+
+        private readonly Vector2 _drawPosition;
+
+        public event EventHandler Moved;
+
+        public Tile(Map map, int mapX, int mapY)
+        {
+            this.Map = map;
+
+            this.Id = (int)GameTile.None;
+            this.Rect = Rectangle.Empty;
+
+            this.Data = null;
+
+            this.MapX = mapX;
+            this.MapY = mapY;
+
+            _drawPosition = new Vector2(GameScale.FromTile(mapX).Pixels, GameScale.FromTile(mapY).Pixels);
+
+            Moved = default;
+        }
+
+        public void SetId(int id)
+        {
+            this.Id = id;
+            this.Data = Map.Content.Load<TileData>(Path.Combine("Tiles", id.ToString()));
+
+            var bounds = Data.Bounds;
+            bounds.Offset(_drawPosition);
+            this.Rect = bounds;
+        }
+
+        public void Draw(GameTime gameTime, SpriteBatch spriteBatch)
+        {
+            Data.Draw(gameTime, spriteBatch, _drawPosition, Color.White);
         }
 
         public override bool Equals(object obj)
@@ -27,13 +102,10 @@ namespace Okroma.TileEngine
         {
             return Id;
         }
-    }
 
-    public static class TileExtensions
-    {
-        public static void DrawTile(this SpriteBatch spriteBatch, Tile tile, Vector2 drawPosition, Color color)
+        public bool CanCollide(ICollider collider)
         {
-            tile.Draw(spriteBatch, drawPosition, color);
+            return Collision.CanCollide(this, collider);
         }
     }
 }

@@ -1,9 +1,0 @@
-{
-    "type":"normal",
-    "sprite": {
-        "texture":"Textures/Tiles",
-        "sourceRectangle":"32 0 32 32",
-        "origin":"16 16"
-    },
-    "isWallJumpable":"true"
-}

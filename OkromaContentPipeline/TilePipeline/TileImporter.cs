@@ -1,9 +1,8 @@
 ﻿using Microsoft.Xna.Framework.Content.Pipeline;
 using Newtonsoft.Json;
-using OkromaContentPipeline.JsonConverters;
 using System.IO;
 
-namespace OkromaContentPipeline.TilePipeline
+namespace OkromaContentPipeline.TilePipelline
 {
     [ContentImporter(
         ".json",
