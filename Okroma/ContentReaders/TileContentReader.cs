@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Okroma.TileEngine;
+using Okroma.TileEngine.TileProperties;
 using System;
 
 namespace Okroma.ContentReaders
@@ -28,6 +29,14 @@ namespace Okroma.ContentReaders
 
             var bounds = new Rectangle(0, 0, GameScale.TileSize, GameScale.TileSize);
 
+            TileData data = NewDataFromType(type, texture, sourceRect, bounds);
+            ApplyProperties(input, data);
+
+            return data;
+        }
+
+        private TileData NewDataFromType(string type, Texture2D texture, Rectangle sourceRect, Rectangle bounds)
+        {
             switch (type)
             {
                 case "normal":
@@ -40,6 +49,22 @@ namespace Okroma.ContentReaders
 
                 default:
                     throw new ContentLoadException(string.Format(nameof(Tile) + " could not load. What is '{0}'?", type));
+            }
+        }
+
+        private void ApplyProperties(ContentReader reader, TileData data)
+        {
+            int propertyCount = reader.ReadInt32();
+            for (int i = 0; i < propertyCount; i++)
+            {
+                TileProperty property = (TileProperty)Enum.ToObject((typeof(TileProperty)), reader.ReadInt32());
+
+                switch (property)
+                {
+                    case TileProperty.WallJump:
+                        data.Properties.WallJump = (TileWallJumpProperty)Enum.ToObject(typeof(TileWallJumpProperty), reader.ReadByte());
+                        break;
+                }
             }
         }
     }

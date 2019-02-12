@@ -11,6 +11,8 @@ namespace Okroma.TileEngine
 {
     public class TileData
     {
+        public static TileData None { get; } = new TileData(null, Rectangle.Empty);
+
         public ISprite Sprite { get; }
         public Rectangle Bounds { get; }
 
@@ -24,7 +26,10 @@ namespace Okroma.TileEngine
 
         public void Draw(GameTime gameTime, SpriteBatch spriteBatch, Vector2 drawPosition, Color color)
         {
-            spriteBatch.DrawSprite(Sprite, gameTime, drawPosition, 0, Vector2.One, color);
+            if (Sprite != null)
+            {
+                spriteBatch.DrawSprite(Sprite, gameTime, drawPosition, 0, Vector2.One, color);
+            }
         }
 
         public class TileProperties
@@ -76,11 +81,14 @@ namespace Okroma.TileEngine
         public void SetId(int id)
         {
             this.Id = id;
-            this.Data = Map.Content.Load<TileData>(Path.Combine("Tiles", id.ToString()));
+
+            this.Data = id <= 0 ? TileData.None : Map.Content.Load<TileData>(Path.Combine("Tiles", id.ToString()));
 
             var bounds = Data.Bounds;
             bounds.Offset(_drawPosition);
             this.Rect = bounds;
+
+            Moved?.Invoke(this, EventArgs.Empty);
         }
 
         public void Draw(GameTime gameTime, SpriteBatch spriteBatch)
