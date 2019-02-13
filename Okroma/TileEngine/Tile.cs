@@ -80,6 +80,9 @@ namespace Okroma.TileEngine
 
         public void SetId(int id)
         {
+            if (id == this.Id)
+                return;
+
             this.Id = id;
 
             this.Data = id <= 0 ? TileData.None : Map.Content.Load<TileData>(Path.Combine("Tiles", id.ToString()));

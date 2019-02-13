@@ -1,50 +1,67 @@
-﻿using Cyanch.Physics;
+﻿using Cyanch.Entities;
+using Cyanch.Physics;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
-using Microsoft.Xna.Framework.Graphics;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 
 namespace Okroma.TileEngine
 {
-    public class Map
+    public interface ISaveGameService
     {
-        public Point Dimensions { get; set; }
+        void SaveMap(Map map);
+        MapState GetMapState(int mapId);
+    }
+
+    public class SaveGame : ISaveGameService
+    {
+        Dictionary<int, MapState> _mapStates = new Dictionary<int, MapState>();
+
+        public void SaveMap(Map map)
+        {
+            _mapStates[map.Id] = map.CurrentState;
+        }
+
+        public MapState GetMapState(int mapId)
+        {
+            return _mapStates[mapId];
+        }
+    }
+
+    public class Map : IEquatable<Map>
+    {
+        public int Id { get; }
+
+        public Vector2 PlayerSpawnLocation { get; }
+        public List<MapLayer> Layers { get; }
+        private  MapLayer[] _nonModifiedLayers;
+
+        public Point Dimensions { get; }
         public ContentManager Content { get; }
-
-        MapLayer _backgroundTiles;
-        MapLayer _tiles;
-
-        Game _game;
-        SpriteBatch _spriteBatch;
-        protected Map(Game game)
+        
+        public MapState CurrentState { get; private set; }
+        public override bool Equals(object obj)
         {
-            this._game = game;
-            this._spriteBatch = new SpriteBatch(game.GraphicsDevice);
-            this.Content = new ContentManager(game.Content.ServiceProvider, game.Content.RootDirectory);
+            return Equals(obj as Map);
         }
 
-        public void Update(GameTime gameTime)
+        public bool Equals(Map other)
         {
-
+            return other != null &&
+                   Id == other.Id;
         }
 
-        public void Draw(GameTime gameTime)
+        public override int GetHashCode()
         {
-            foreach (var tile in _backgroundTiles)
-            {
-                tile.Draw(gameTime, _spriteBatch);
-            }
-
-            foreach (var tile in _tiles)
-            {
-                tile.Draw(gameTime, _spriteBatch);
-            }
+            return Id;
         }
 
-        public void LoadContent()
+        public Map(int id, Vector2 playerSpawnLocation, List<MapLayer> layers, List<Entity> entities)
         {
-
+            Id = id;
+            PlayerSpawnLocation = playerSpawnLocation;
+            Layers = layers ?? throw new ArgumentNullException(nameof(layers));
         }
 
         public void UnloadContent()
@@ -52,16 +69,43 @@ namespace Okroma.TileEngine
             Content.Unload();
         }
 
-        public static Map Load(Game game, string mapPath)
+        public void UpdateFromSave(SaveGame saveGame)
         {
-            var map = new Map(game);
-
-            return map;
+            _nonModifiedLayers = Layers.ToArray();
+            MapState state = saveGame.GetMapState(this.Id);
+            if (state != null)
+                SetState(state);
         }
+
+        private void SetState(MapState state)
+        {
+            foreach (var tileState in state.TileStates)
+            {
+                (int layer, Point position) = tileState.Key;
+                int value = tileState.Value;
+
+                Layers[layer].SetTile(position.X, position.Y, value);
+            }
+            CurrentState = state;
+        }
+
+        public void SetTile(int layer, int x, int y, int id)
+        {
+            Layers[layer].SetTile(x, y, id);
+        }
+    }
+
+    public class MapState
+    {
+        private Dictionary<(int, Point), int> _tileMap = new Dictionary<(int, Point), int>();
+        public IReadOnlyDictionary<(int, Point), int> TileStates => _tileMap;
     }
 
     public class MapLayer : IEnumerable<Tile>
     {
+        public const int Background = 0;
+        public const int Foreground = 1;
+
         Tile[,] _tileArray;
         ICollisionService _collisionService;
 
@@ -88,7 +132,7 @@ namespace Okroma.TileEngine
             throw new System.NotImplementedException();
         }
         
-        public void SetCollisionSerice(ICollisionService collisionService)
+        public void SetCollisionService(ICollisionService collisionService)
         {
             foreach (var tile in _tileArray)
             {
@@ -97,6 +141,16 @@ namespace Okroma.TileEngine
             }
 
             _collisionService = collisionService;
+        }
+
+        public Tile GetTile(int x, int y)
+        {
+            return _tileArray[x, y];
+        }
+
+        public void SetTile(int x, int y, int id)
+        {
+            _tileArray[x, y].SetId(id);
         }
     }
 }
