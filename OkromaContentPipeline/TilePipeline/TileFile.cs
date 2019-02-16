@@ -1,5 +1,4 @@
 ﻿using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
 using Okroma.TileEngine.TileProperties;
 using System.Collections.Generic;
 
@@ -14,7 +13,6 @@ namespace OkromaContentPipeline.TilePipeline
         public string TexturePath { get; set; }
 
         [JsonProperty("properties")]
-        [JsonConverter(typeof(StringEnumConverter))]
-        public Dictionary<TileProperty, string> Properties { get; set; }
+        public Dictionary<TileProperty, string> Properties { get; set; } = new Dictionary<TileProperty, string>();
     }
 }
