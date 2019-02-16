@@ -100,7 +100,6 @@ namespace Okroma
 
             IsMouseVisible = true;
             Window.AllowUserResizing = true;
-            Window.ClientSizeChanged += Window_ClientSizeChanged;
 
             var screenManager = new ScreenManager(this);
             Components.Add(screenManager);
@@ -119,11 +118,6 @@ namespace Okroma
             FpsCounter.Enabled = false;
 
             base.Initialize();
-        }
-
-        private void Window_ClientSizeChanged(object sender, System.EventArgs e)
-        {
-            System.Console.WriteLine(Window.ClientBounds);
         }
 
         protected override void LoadContent()

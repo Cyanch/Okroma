@@ -14,41 +14,21 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DesktopGL", "Platforms\Desk
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OkromaContentPipeline", "OkromaContentPipeline\OkromaContentPipeline.csproj", "{B02DB3A8-BB6F-4821-B0C8-C7AFBDBE2E82}"
 EndProject
-Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Cyanch.UI", "Cyanch.UI\Cyanch.UI.shproj", "{3499177E-4414-4BA5-9D69-CAC5EC6D7CD6}"
-EndProject
-Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Cyanch.Input", "Cyanch.Input\Cyanch.Input.shproj", "{90EE5BCA-5AF4-463A-A336-D8E1507F5D54}"
-EndProject
-Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Cyanch.Common", "Cyanch.Common\Cyanch.Common.shproj", "{293DF639-BDBA-4665-B23A-37D8BA901F6F}"
-EndProject
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Cyanch", "Cyanch\Cyanch.shproj", "{46DF70C9-320F-4C46-A071-06B6B7960365}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "CyanchLibrary", "CyanchLibrary", "{D6C91561-C014-4600-8FA9-D4508816120C}"
-EndProject
-Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Cyanch.Entities", "Cyanch.Entities\Cyanch.Entities.shproj", "{F8D701CD-8D6A-442D-A2B8-2FD1FEB4588A}"
-EndProject
-Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Cyanch.Physics", "Cyanch.Physics\Cyanch.Physics.shproj", "{99BDB78A-F19A-44A5-AD91-C05B386C9AD2}"
 EndProject
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Okroma.TileEngine.TileProperties", "Okroma.TileEngine.TileProperties\Okroma.TileEngine.TileProperties.shproj", "{3A395638-F541-499D-B1F8-79ED7B8F9993}"
 EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
-		Cyanch.Common\Cyanch.Common.projitems*{1923d4e0-f543-4bce-8aa1-0fbfc05e2257}*SharedItemsImports = 4
-		Cyanch.Entities\Cyanch.Entities.projitems*{1923d4e0-f543-4bce-8aa1-0fbfc05e2257}*SharedItemsImports = 4
-		Cyanch.Input\Cyanch.Input.projitems*{1923d4e0-f543-4bce-8aa1-0fbfc05e2257}*SharedItemsImports = 4
-		Cyanch.Physics\Cyanch.Physics.projitems*{1923d4e0-f543-4bce-8aa1-0fbfc05e2257}*SharedItemsImports = 4
-		Cyanch.UI\Cyanch.UI.projitems*{1923d4e0-f543-4bce-8aa1-0fbfc05e2257}*SharedItemsImports = 4
 		Cyanch\Cyanch.projitems*{1923d4e0-f543-4bce-8aa1-0fbfc05e2257}*SharedItemsImports = 4
 		Okroma.TileEngine.TileProperties\Okroma.TileEngine.TileProperties.projitems*{1923d4e0-f543-4bce-8aa1-0fbfc05e2257}*SharedItemsImports = 4
 		Okroma\Okroma.projitems*{1923d4e0-f543-4bce-8aa1-0fbfc05e2257}*SharedItemsImports = 4
-		Cyanch.Common\Cyanch.Common.projitems*{293df639-bdba-4665-b23a-37d8ba901f6f}*SharedItemsImports = 13
-		Cyanch.UI\Cyanch.UI.projitems*{3499177e-4414-4ba5-9d69-cac5ec6d7cd6}*SharedItemsImports = 13
 		Okroma.TileEngine.TileProperties\Okroma.TileEngine.TileProperties.projitems*{3a395638-f541-499d-b1f8-79ed7b8f9993}*SharedItemsImports = 13
 		Cyanch\Cyanch.projitems*{46df70c9-320f-4c46-a071-06b6b7960365}*SharedItemsImports = 13
-		Cyanch.Input\Cyanch.Input.projitems*{90ee5bca-5af4-463a-a336-d8e1507f5d54}*SharedItemsImports = 13
-		Cyanch.Physics\Cyanch.Physics.projitems*{99bdb78a-f19a-44a5-ad91-c05b386c9ad2}*SharedItemsImports = 13
 		Okroma\Okroma.projitems*{a0cdbd0e-3a41-42b7-9425-a838bc2c7383}*SharedItemsImports = 13
 		Okroma.TileEngine.TileProperties\Okroma.TileEngine.TileProperties.projitems*{b02db3a8-bb6f-4821-b0c8-c7afbdbe2e82}*SharedItemsImports = 4
-		Cyanch.Entities\Cyanch.Entities.projitems*{f8d701cd-8d6a-442d-a2b8-2fd1feb4588a}*SharedItemsImports = 13
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -69,12 +49,7 @@ Global
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{1923D4E0-F543-4BCE-8AA1-0FBFC05E2257} = {7F7BEBFD-F9B8-429D-8ED6-4320AE1162E1}
-		{3499177E-4414-4BA5-9D69-CAC5EC6D7CD6} = {D6C91561-C014-4600-8FA9-D4508816120C}
-		{90EE5BCA-5AF4-463A-A336-D8E1507F5D54} = {D6C91561-C014-4600-8FA9-D4508816120C}
-		{293DF639-BDBA-4665-B23A-37D8BA901F6F} = {D6C91561-C014-4600-8FA9-D4508816120C}
 		{46DF70C9-320F-4C46-A071-06B6B7960365} = {D6C91561-C014-4600-8FA9-D4508816120C}
-		{F8D701CD-8D6A-442D-A2B8-2FD1FEB4588A} = {D6C91561-C014-4600-8FA9-D4508816120C}
-		{99BDB78A-F19A-44A5-AD91-C05B386C9AD2} = {D6C91561-C014-4600-8FA9-D4508816120C}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {93FD26D9-0863-4B05-BE3B-CD090A23096F}

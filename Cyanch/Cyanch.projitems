@@ -9,11 +9,34 @@
     <Import_RootNamespace>Cyanch</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)BinaryReaderExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)BinaryWriterExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Common\Invalidatable.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Common\Range.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ContentReference.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\Entity.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\EntityManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)FpsCounter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)C3\Primitives2D.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)C3\QuadTree.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Input\InputState.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Input\MouseButton.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Input\MouseStateEventArgs.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Input\MouseStateExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Physics\Collisions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Physics\ICollider.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Sprite.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)UI\Alignment.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)UI\Image.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)UI\IScalable.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)UI\Orientation.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)UI\Panel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)UI\Spacer.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)UI\StackPanel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)UI\Text.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)UI\TextElement.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)UI\UIElement.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)UI\UniformGrid.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)C3\" />

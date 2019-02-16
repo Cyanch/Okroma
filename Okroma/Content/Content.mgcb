@@ -87,28 +87,18 @@
 /processorParam:TextureFormat=Color
 /build:TileMaps/TestBackground.png
 
-#begin Tiles/Background/GrayTile.json
+#begin Tiles/0.json
 /importer:TileImporter
 /processor:TileProcessor
-/build:Tiles/Background/GrayTile.json
+/build:Tiles/0.json
 
-#begin Tiles/Normal/CoatedGrayTile.json
+#begin Tiles/1.json
 /importer:TileImporter
 /processor:TileProcessor
-/build:Tiles/Normal/CoatedGrayTile.json
+/build:Tiles/1.json
 
-#begin Tiles/Normal/GrayTile.json
+#begin Tiles/2.json
 /importer:TileImporter
 /processor:TileProcessor
-/build:Tiles/Normal/GrayTile.json
-
-#begin Tilesets/Test.json
-/importer:TilesetImporter
-/processor:TilesetProcessor
-/build:Tilesets/Test.json
-
-#begin Tilesets/TestBackground.json
-/importer:TilesetImporter
-/processor:TilesetProcessor
-/build:Tilesets/TestBackground.json
+/build:Tiles/2.json
 

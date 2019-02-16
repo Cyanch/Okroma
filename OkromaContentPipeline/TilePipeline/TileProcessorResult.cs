@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace OkromaContentPipeline.TilePipelline
+namespace OkromaContentPipeline.TilePipeline
 {
     public class TileProcessorResult
     {

@@ -1,7 +1,7 @@
 ﻿using Microsoft.Xna.Framework.Content.Pipeline;
 using Microsoft.Xna.Framework.Content.Pipeline.Serialization.Compiler;
 
-namespace OkromaContentPipeline.TilePipelline
+namespace OkromaContentPipeline.TilePipeline
 {
     [ContentTypeWriter]
     public class TileWriter : ContentTypeWriter<TileProcessorResult>

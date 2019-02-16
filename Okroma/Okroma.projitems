@@ -30,6 +30,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Physics\Controller2D.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Physics\ICollidableGameObject2D.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Physics\ICollidableSource.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SaveGame.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Screens\BackgroundScreen.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Screens\GameplayScreen.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Screens\Menus\MainMenuScreen.cs" />

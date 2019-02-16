@@ -1,34 +1,15 @@
-﻿using Cyanch.Entities;
+﻿using Cyanch;
+using Cyanch.Entities;
 using Cyanch.Physics;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 
 namespace Okroma.TileEngine
 {
-    public interface ISaveGameService
-    {
-        void SaveMap(Map map);
-        MapState GetMapState(int mapId);
-    }
-
-    public class SaveGame : ISaveGameService
-    {
-        Dictionary<int, MapState> _mapStates = new Dictionary<int, MapState>();
-
-        public void SaveMap(Map map)
-        {
-            _mapStates[map.Id] = map.CurrentState;
-        }
-
-        public MapState GetMapState(int mapId)
-        {
-            return _mapStates[mapId];
-        }
-    }
-
     public class Map : IEquatable<Map>
     {
         public int Id { get; }
@@ -79,7 +60,7 @@ namespace Okroma.TileEngine
 
         private void SetState(MapState state)
         {
-            foreach (var tileState in state.TileStates)
+            foreach (var tileState in state.TileMap)
             {
                 (int layer, Point position) = tileState.Key;
                 int value = tileState.Value;
@@ -98,7 +79,38 @@ namespace Okroma.TileEngine
     public class MapState
     {
         private Dictionary<(int, Point), int> _tileMap = new Dictionary<(int, Point), int>();
-        public IReadOnlyDictionary<(int, Point), int> TileStates => _tileMap;
+        public IReadOnlyDictionary<(int, Point), int> TileMap => _tileMap;
+
+        public void WriteToBinary(BinaryWriter writer)
+        {
+            writer.Write(TileMap.Count);
+            foreach (var tile in TileMap)
+            {
+                (int layer, Point position) = tile.Key;
+                int tileId = tile.Value;
+
+                writer.Write(layer);
+                writer.Write(position);
+                writer.Write(tileId);
+            }
+        }
+
+        public static MapState ReadFromBinary(BinaryReader reader)
+        {
+            var mapState = new MapState();
+
+            int tileCount = reader.ReadInt32();
+            for (int i = 0; i < tileCount; i++)
+            {
+                int layer = reader.ReadInt32();
+                Point pos = reader.ReadPoint();
+                int tileId = reader.ReadInt32();
+
+                mapState._tileMap.Add((layer, pos), tileId);
+            }
+
+            return mapState;
+        }
     }
 
     public class MapLayer : IEnumerable<Tile>

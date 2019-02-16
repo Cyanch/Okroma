@@ -3,7 +3,7 @@ using Newtonsoft.Json.Converters;
 using Okroma.TileEngine.TileProperties;
 using System.Collections.Generic;
 
-namespace OkromaContentPipeline.TilePipelline
+namespace OkromaContentPipeline.TilePipeline
 {
     public class TileFile
     {

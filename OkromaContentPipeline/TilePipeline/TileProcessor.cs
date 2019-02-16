@@ -3,19 +3,20 @@ using Okroma.TileEngine.TileProperties;
 using System;
 using System.Collections.Generic;
 
-namespace OkromaContentPipeline.TilePipelline
+namespace OkromaContentPipeline.TilePipeline
 {
     [ContentProcessor(DisplayName = "Tile -- " + nameof(OkromaContentPipeline))]
     public class TileProcessor : ContentProcessor<TileFile, TileProcessorResult>
     {
         public override TileProcessorResult Process(TileFile input, ContentProcessorContext context)
         {
-            var properties = new Dictionary<int, byte>();
+            // Todo: Does not work!??? -- Investigate
+            Dictionary<int, byte> props = new Dictionary<int, byte>();
 
             foreach (var property in input.Properties)
             {
                 Type propValueType;
-                switch(property.Key)
+                switch (property.Key)
                 {
                     case TileProperty.WallJump:
                         propValueType = typeof(TileWallJumpProperty);
@@ -25,11 +26,10 @@ namespace OkromaContentPipeline.TilePipelline
                         propValueType = default;
                         break;
                 }
-
-                properties.Add((int)property.Key, (byte)Enum.Parse(propValueType, property.Value, true));
+                props.Add((int)property.Key, (byte)Enum.Parse(propValueType, property.Value, true));
             }
 
-            return new TileProcessorResult(input.Type, input.TexturePath, properties);
+            return new TileProcessorResult(input.Type, input.TexturePath, props);
         }
     }
 }
