@@ -13,7 +13,7 @@ namespace Okroma.Screens.Menus
         protected override void Initialize()
         {
             // Set MovementPresetIndex.
-            _movementPresetIndex = GameControl.MoveUp.Key == Keys.A ? 1 : 0;
+            _movementPresetIndex = GameControl.MoveUp.Key == Keys.W ? 1 : 0;
         }
 
         public override void LoadContent()
@@ -38,12 +38,14 @@ namespace Okroma.Screens.Menus
                 GameControl.MoveUp.ChangeKey(Keys.Up);
                 GameControl.MoveLeft.ChangeKey(Keys.Left);
                 GameControl.MoveRight.ChangeKey(Keys.Right);
+                System.Console.WriteLine("Using Arrow");
             }
             else if (_movementPresetIndex == 1)
             {
                 GameControl.MoveUp.ChangeKey(Keys.W);
                 GameControl.MoveLeft.ChangeKey(Keys.A);
                 GameControl.MoveRight.ChangeKey(Keys.D);
+                System.Console.WriteLine("Using WASD");
             }
             ModifyEntryText(movementEntry, movementPresets[_movementPresetIndex]);
             ApplyChanges();
