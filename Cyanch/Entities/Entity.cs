@@ -1,44 +1,59 @@
 ﻿using C3;
+using Cyanch.Physics;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using System;
 
 namespace Cyanch.Entities
 {
-    public class Entity : IQuadStorable
+    public abstract class Entity : ICollider, IQuadStorable
     {
-        protected EntityManager EntityManager { get; private set; }
+        public int Id { get; }
 
+        private Rectangle _bounds;
+        public Rectangle Bounds
+        {
+            get
+            {
+                return _bounds;
+            }
+            private set
+            {
+                if (_bounds != value)
+                {
+                    _bounds = value;
+                    EntityMoved?.Invoke(this, EventArgs.Empty);
+                }
+            }
+        }
         Rectangle IQuadStorable.Rect => Bounds;
 
-        public Vector2 Position { get; set; }
-        public Vector2 Size { get; set; }
-
-        public Rectangle Bounds => new Rectangle(Position.ToPoint(), Size.ToPoint());
-        
-        public void Initialize(EntityManager entityManager)
+        public virtual void Update(GameTime gameTime)
         {
-            this.EntityManager = entityManager;
+
         }
 
-        public virtual EntityUpdateResult Update(GameTime gameTime)
-        {
-            return EntityUpdateResult.Empty;
-        }
-
-        public virtual void Draw(GameTime gameTime)
+        public virtual void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
 
         }
 
         public void Destroy()
         {
-            EntityManager.Remove(this);
+            EntityDestroyed?.Invoke(this, EventArgs.Empty);
         }
-    }
 
-    public struct EntityUpdateResult
-    {
-        public bool HasMoved { get; set; }
+        public virtual void IsPassable(ICollider collider)
+        {
+            throw new System.NotImplementedException();
+        }
 
-        public static EntityUpdateResult Empty { get; } = new EntityUpdateResult();
+        public virtual void Collide(ICollider collider)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public event EventHandler EntityMoved;
+        public event EventHandler EntityDestroyed;
     }
 }

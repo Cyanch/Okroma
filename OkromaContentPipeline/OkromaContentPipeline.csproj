@@ -61,10 +61,6 @@
     <Compile Include="TilePipeline\TileProcessor.cs" />
     <Compile Include="TilePipeline\TileProcessorResult.cs" />
     <Compile Include="TilePipeline\TileWriter.cs" />
-    <Compile Include="TilesetPipeline\TilesetProcessorResult.cs" />
-    <Compile Include="TilesetPipeline\TilesetImporter.cs" />
-    <Compile Include="TilesetPipeline\TilesetProcessor.cs" />
-    <Compile Include="TilesetPipeline\TilesetWriter.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

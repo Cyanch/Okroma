@@ -25,6 +25,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Input\MouseStateExtensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Physics\Collisions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Physics\ICollider.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Physics\ICollisionProvider.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Sprite.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)UI\Alignment.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)UI\Image.cs" />

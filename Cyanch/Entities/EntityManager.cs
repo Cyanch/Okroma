@@ -1,13 +1,25 @@
 ﻿using C3;
+using Cyanch.Physics;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
 
 namespace Cyanch.Entities
 {
-    public class EntityManager
+    public interface IEntityMap : ICollisionProvider
     {
-        public SpriteBatch SpriteBatch { get; set; }
+        void AddEntity(Entity entity);
+        void RemoveEntity(Entity entity);
+
+        void Update(GameTime gameTime);
+        void Draw(GameTime gameTime, SpriteBatch spriteBatch);
+
+        IReadOnlyList<Entity> GetEntities(Rectangle rectangle);
+        IReadOnlyList<Entity> GetAllEntities();
+    }
+
+    public class EntityManager : IEntityMap
+    {
         private readonly QuadTree<Entity> _entityMap;
 
         public EntityManager(Rectangle mapSize)
@@ -15,23 +27,32 @@ namespace Cyanch.Entities
             _entityMap = new QuadTree<Entity>(mapSize);
         }
 
-        public void Add(Entity entity)
+        public void AddEntity(Entity entity)
         {
             _entityMap.Add(entity);
-            entity.Initialize(this);
+            entity.EntityMoved += Entity_Moved;
         }
 
-        public void Remove(Entity entity)
+        public void RemoveEntity(Entity entity)
         {
             _entityMap.Remove(entity);
+            entity.EntityMoved -= Entity_Moved;
         }
 
-        public IList<Entity> GetAllEntities()
+        private void Entity_Moved(object sender, System.EventArgs e)
+        {
+            if (sender is Entity entity)
+            {
+                _entityMap.Move(sender as Entity);
+            }
+        }
+
+        public IReadOnlyList<Entity> GetAllEntities()
         {
             return _entityMap.GetAllObjects();
         }
 
-        public IList<Entity> GetEntitiesIn(Rectangle rectangle)
+        public IReadOnlyList<Entity> GetEntities(Rectangle rectangle)
         {
             return _entityMap.GetObjects(rectangle);
         }
@@ -40,24 +61,26 @@ namespace Cyanch.Entities
         {
             foreach (var entity in _entityMap)
             {
-                if (entity != null)
-                {
-                    var updateResult = entity.Update(gameTime);
-
-                    if (updateResult.HasMoved)
-                    {
-                        _entityMap.Move(entity);
-                    }
-                }
+                entity.Update(gameTime);
             }
         }
 
-        public void Draw(GameTime gameTime)
+        public void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
             foreach (var entity in _entityMap)
             {
-                entity?.Draw(gameTime);
+                entity.Draw(gameTime, spriteBatch);
             }
+        }
+
+        public IReadOnlyList<ICollider> GetColliders(Rectangle rect)
+        {
+            return GetEntities(rect) as IReadOnlyList<ICollider>;
+        }
+
+        public IReadOnlyList<ICollider> GetAllColliders()
+        {
+            return GetAllEntities() as IReadOnlyList<ICollider>;
         }
     }
 }

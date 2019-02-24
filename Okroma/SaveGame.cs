@@ -1,6 +1,4 @@
-﻿using Okroma.TileEngine;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.IO;
 
 namespace Okroma
@@ -9,18 +7,6 @@ namespace Okroma
     {
         public string Name { get; }
         public const string Folder = "saves";
-
-        Dictionary<int, MapState> _mapStates = new Dictionary<int, MapState>();
-
-        public void SaveMap(Map map)
-        {
-            _mapStates[map.Id] = map.CurrentState;
-        }
-
-        public MapState GetMapState(int mapId)
-        {
-            return _mapStates[mapId];
-        }
 
         protected SaveGame(string name)
         {
@@ -34,15 +20,15 @@ namespace Okroma
             {
                 using (var reader = new BinaryReader(fileStream))
                 {
-                    // read map states
-                    var mapStateCount = reader.ReadInt32();
-                    for (int i = 0; i < mapStateCount; i++)
-                    {
-                        var mapId = reader.ReadInt32();
-                        var mapState = MapState.ReadFromBinary(reader);
+                    //// read map states
+                    //var mapStateCount = reader.ReadInt32();
+                    //for (int i = 0; i < mapStateCount; i++)
+                    //{
+                    //    var mapId = reader.ReadInt32();
+                    //    var mapState = MapState.ReadFromBinary(reader);
 
-                        _mapStates.Add(mapId, mapState);
-                    }
+                    //    _mapStates.Add(mapId, mapState);
+                    //}
                 }
             }
         }
@@ -51,7 +37,9 @@ namespace Okroma
         {
             var saveGame = new SaveGame(path);
 
-            saveGame.Load();
+            // if exists try to load via
+            // saveGame.Load();
+            // else create file.
 
             return saveGame;
         }
@@ -63,14 +51,14 @@ namespace Okroma
             {
                 using (var writer = new BinaryWriter(fileStream))
                 {
-                    // write map states
-                    writer.Write(_mapStates.Count); // map state count.
+                    //// write map states
+                    //writer.Write(_mapStates.Count); // map state count.
                     
-                    foreach (var mapstate in _mapStates)
-                    {
-                        writer.Write(mapstate.Key);
-                        mapstate.Value.WriteToBinary(writer);
-                    }
+                    //foreach (var mapstate in _mapStates)
+                    //{
+                    //    writer.Write(mapstate.Key);
+                    //    mapstate.Value.WriteToBinary(writer);
+                    //}
                 }
             }
         }

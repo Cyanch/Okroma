@@ -1,56 +1,19 @@
-﻿using Cyanch;
-using Cyanch.Physics;
+﻿using Cyanch.Physics;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Okroma.Physics;
-using Okroma.TileEngine.TileProperties;
 using System;
 using System.IO;
 
 namespace Okroma.TileEngine
 {
-    public class TileData
-    {
-        public static TileData None { get; } = new TileData(null, Rectangle.Empty);
-
-        public ISprite Sprite { get; }
-        public Rectangle Bounds { get; }
-
-        public TileProperties Properties { get; }
-
-        public TileData(ISprite sprite, Rectangle bounds)
-        {
-            this.Sprite = sprite;
-            this.Bounds = bounds;
-        }
-
-        public void Draw(GameTime gameTime, SpriteBatch spriteBatch, Vector2 drawPosition, Color color)
-        {
-            if (Sprite != null)
-            {
-                spriteBatch.DrawSprite(Sprite, gameTime, drawPosition, 0, Vector2.One, color);
-            }
-        }
-
-        public class TileProperties
-        {
-            public TileWallJumpProperty WallJump { get; set; }
-        }
-    }
-
-    public enum GameTile
-    {
-        None = 0,
-    }
-
     public struct Tile : ICollider, IEquatable<Tile>
     {
-        public Map Map { get; }
+        public TileMap Map { get; }
 
         public int Id { get; private set; }
 
         //Bounding Box.
-        public Rectangle Rect { get; private set; }
+        public Rectangle Bounds { get; private set; }
 
         public TileData Data { get; private set; }
 
@@ -59,14 +22,12 @@ namespace Okroma.TileEngine
 
         private readonly Vector2 _drawPosition;
 
-        public event EventHandler Moved;
-
-        public Tile(Map map, int mapX, int mapY)
+        public Tile(TileMap map, int mapX, int mapY)
         {
             this.Map = map;
 
-            this.Id = (int)GameTile.None;
-            this.Rect = Rectangle.Empty;
+            this.Id = 0;
+            this.Bounds = Rectangle.Empty;
 
             this.Data = null;
 
@@ -74,24 +35,21 @@ namespace Okroma.TileEngine
             this.MapY = mapY;
 
             _drawPosition = new Vector2(GameScale.FromTile(mapX).Pixels, GameScale.FromTile(mapY).Pixels);
-
-            Moved = default;
         }
 
-        public void SetId(int id)
+        public void Set(ITileDataSource tileDataSource, int id)
         {
             if (id == this.Id)
                 return;
 
             this.Id = id;
 
-            this.Data = id <= 0 ? TileData.None : Map.Content.Load<TileData>(Path.Combine("Tiles", id.ToString()));
+            this.Data = id <= 0 ? TileData.None : tileDataSource.LoadTileData(Path.Combine("Tiles", id.ToString()));
 
             var bounds = Data.Bounds;
             bounds.Offset(_drawPosition);
-            this.Rect = bounds;
 
-            Moved?.Invoke(this, EventArgs.Empty);
+            this.Bounds = bounds;
         }
 
         public void Draw(GameTime gameTime, SpriteBatch spriteBatch)
@@ -113,10 +71,17 @@ namespace Okroma.TileEngine
         {
             return Id;
         }
-
-        public bool CanCollide(ICollider collider)
+        
+        public void IsPassable(ICollider collider)
         {
-            return Collision.CanCollide(this, collider);
+            //get from tiledata.
+            throw new NotImplementedException();
+        }
+
+        public void Collide(ICollider collider)
+        {
+            // get reaction from tiledata.
+            throw new NotImplementedException();
         }
     }
 }

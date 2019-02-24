@@ -23,6 +23,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)GameScale.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)GameControls\GameControlsManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Level.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)LevelMap\Map.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Physics\CollidableSourceCollection.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Physics\Collision.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Physics\CollisionData.cs" />
@@ -40,7 +41,8 @@
     <Compile Include="$(MSBuildThisFileDirectory)Screens\LoadingScreen.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Screens\Menus\OptionsMenuScreen.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)SpriteExtensions.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)TileEngine\Map.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)TileEngine\TileData.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)TileEngine\TileMap.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)TileEngine\Tile.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Tileset.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)World\Tiles\CollidableTile.cs" />
