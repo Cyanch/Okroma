@@ -1,8 +1,0 @@
-{
-    "type":"normal",
-    "sprite": {
-        "texture":"Textures/Tiles/GrayTile",
-        "sourceRectangle":"0 0 64 64",
-        "origin":"32 32"
-    }
-}

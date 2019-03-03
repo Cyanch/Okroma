@@ -13,7 +13,7 @@ namespace DesktopGL
         [STAThread]
         static void Main()
         {
-            using (var game = new OkromaGame())
+            using (var game = new Okroma.Game())
                 game.Run();
         }
     }

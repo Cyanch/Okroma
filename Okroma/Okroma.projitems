@@ -3,66 +3,20 @@
   <PropertyGroup>
     <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
     <HasSharedItems>true</HasSharedItems>
-    <SharedGUID>450f053b-9c74-4776-8850-885b858daad8</SharedGUID>
+    <SharedGUID>a7b7b521-dab3-4af8-847c-43c560c70b50</SharedGUID>
   </PropertyGroup>
   <PropertyGroup Label="Configuration">
     <Import_RootNamespace>Okroma</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="$(MSBuildThisFileDirectory)Cameras\Camera.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Cameras\PlayerCamera.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)CollisionMask.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ContentReaders\ContentReaderExtensions.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ContentReaders\LevelContentReader.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ContentReaders\TileContentReader.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ContentReaders\TilesetContentReader.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)GameControls\ControlProperty.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)GameControls\GameControl.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)GameObject2D.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)GameScale.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)GameControls\GameControlsManager.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Level.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Physics\CollidableSourceCollection.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Physics\CollisionData.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Physics\CollisionProperties.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Physics\Controller2D.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Physics\ICollidableGameObject2D.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Physics\ICollidableSource.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Screens\BackgroundScreen.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Screens\GameplayScreen.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Screens\Menus\MainMenuScreen.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Screens\Menus\MenuScreen.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Screens\Menus\ControlMenuScreen.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Screens\Menus\LevelSelectMenuScreen.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Screens\LoadingScreen.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Screens\Menus\OptionsMenuScreen.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)SpriteExtensions.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Tileset.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)World\Tiles\CollidableTile.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)World\Tiles\Objects\CollidableTileObject.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Player.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)World\Chunk2D.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)World\ChunkLocation.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)World\Tiles\Tile.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)World\TileLocation.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)World\Tiles\Objects\TileObject.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)World\World2D.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)OkromaGame.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)RectTransform2D.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Screens\GameScreen.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Screens\GameScreenInfo.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Screens\ScreenManager.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Screens\SplashScreen.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Transform2D.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Screens\UITestScreen.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Game.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ThirdParty\Primitives2D.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ThirdParty\QuadTree.cs" />
   </ItemGroup>
   <ItemGroup>
     <MonoGameContentReference Include="$(MSBuildThisFileDirectory)Content\Content.mgcb" />
   </ItemGroup>
   <ItemGroup>
     <None Include="$(MSBuildThisFileDirectory)Content\Content.mgcb" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="$(MSBuildThisFileDirectory)World\Tiles\Objects\" />
   </ItemGroup>
 </Project>

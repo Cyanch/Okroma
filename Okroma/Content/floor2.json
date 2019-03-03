@@ -1,7 +1,0 @@
-{
-    "type":"normal",
-    "sprite": {
-        "texture":"Textures\\floor2",
-		"origin":"32 32"
-    }
-}

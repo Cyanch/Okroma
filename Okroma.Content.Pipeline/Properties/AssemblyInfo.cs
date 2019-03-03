@@ -5,8 +5,8 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("OkromaContentPipeline")]
-[assembly: AssemblyProduct("OkromaContentPipeline")]
+[assembly: AssemblyTitle("Okroma.Content.Pipeline")]
+[assembly: AssemblyProduct("Okroma.Content.Pipeline")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyCompany("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("c1352566-2074-4911-910d-e02d86b461f0")]
+[assembly: Guid("552f5c38-1b14-4efe-804a-e15cc6cfc93a")]
 
 // Version information for an assembly consists of the following four values:
 //

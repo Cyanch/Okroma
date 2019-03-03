@@ -1,72 +1,42 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.28307.168
+VisualStudioVersion = 15.0.28307.421
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Okroma", "Okroma\Okroma.shproj", "{A0CDBD0E-3A41-42B7-9425-A838BC2C7383}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Platforms", "Platforms", "{7F7BEBFD-F9B8-429D-8ED6-4320AE1162E1}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Platforms", "Platforms", "{472AD529-2B7F-45AD-B5CC-41C08593C061}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DesktopGL", "Platforms\DesktopGL\DesktopGL.csproj", "{1923D4E0-F543-4BCE-8AA1-0FBFC05E2257}"
-	ProjectSection(ProjectDependencies) = postProject
-		{B02DB3A8-BB6F-4821-B0C8-C7AFBDBE2E82} = {B02DB3A8-BB6F-4821-B0C8-C7AFBDBE2E82}
-	EndProjectSection
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DesktopGL", "Platforms\DesktopGL\DesktopGL.csproj", "{6903A5DB-31B2-4607-B5B7-23273FCD4173}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OkromaContentPipeline", "OkromaContentPipeline\OkromaContentPipeline.csproj", "{B02DB3A8-BB6F-4821-B0C8-C7AFBDBE2E82}"
-EndProject
-Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Cyanch.UI", "Cyanch.UI\Cyanch.UI.shproj", "{3499177E-4414-4BA5-9D69-CAC5EC6D7CD6}"
-EndProject
-Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Cyanch.Input", "Cyanch.Input\Cyanch.Input.shproj", "{90EE5BCA-5AF4-463A-A336-D8E1507F5D54}"
-EndProject
-Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Cyanch.Common", "Cyanch.Common\Cyanch.Common.shproj", "{293DF639-BDBA-4665-B23A-37D8BA901F6F}"
-EndProject
-Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Cyanch", "Cyanch\Cyanch.shproj", "{46DF70C9-320F-4C46-A071-06B6B7960365}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "CyanchLibrary", "CyanchLibrary", "{D6C91561-C014-4600-8FA9-D4508816120C}"
-EndProject
-Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Cyanch.Entities", "Cyanch.Entities\Cyanch.Entities.shproj", "{F8D701CD-8D6A-442D-A2B8-2FD1FEB4588A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Okroma.Content.Pipeline", "Okroma.Content.Pipeline\Okroma.Content.Pipeline.csproj", "{BE43D247-2F67-498A-B30A-2FDD29E1EC5E}"
 EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
-		Cyanch.Common\Cyanch.Common.projitems*{1923d4e0-f543-4bce-8aa1-0fbfc05e2257}*SharedItemsImports = 4
-		Cyanch.Entities\Cyanch.Entities.projitems*{1923d4e0-f543-4bce-8aa1-0fbfc05e2257}*SharedItemsImports = 4
-		Cyanch.Input\Cyanch.Input.projitems*{1923d4e0-f543-4bce-8aa1-0fbfc05e2257}*SharedItemsImports = 4
-		Cyanch.UI\Cyanch.UI.projitems*{1923d4e0-f543-4bce-8aa1-0fbfc05e2257}*SharedItemsImports = 4
-		Cyanch\Cyanch.projitems*{1923d4e0-f543-4bce-8aa1-0fbfc05e2257}*SharedItemsImports = 4
-		Okroma\Okroma.projitems*{1923d4e0-f543-4bce-8aa1-0fbfc05e2257}*SharedItemsImports = 4
-		Cyanch.Common\Cyanch.Common.projitems*{293df639-bdba-4665-b23a-37d8ba901f6f}*SharedItemsImports = 13
-		Cyanch.UI\Cyanch.UI.projitems*{3499177e-4414-4ba5-9d69-cac5ec6d7cd6}*SharedItemsImports = 13
-		Cyanch\Cyanch.projitems*{46df70c9-320f-4c46-a071-06b6b7960365}*SharedItemsImports = 13
-		Cyanch.Input\Cyanch.Input.projitems*{90ee5bca-5af4-463a-a336-d8e1507f5d54}*SharedItemsImports = 13
+		Okroma\Okroma.projitems*{6903a5db-31b2-4607-b5b7-23273fcd4173}*SharedItemsImports = 4
 		Okroma\Okroma.projitems*{a0cdbd0e-3a41-42b7-9425-a838bc2c7383}*SharedItemsImports = 13
-		Cyanch.Entities\Cyanch.Entities.projitems*{f8d701cd-8d6a-442d-a2b8-2fd1feb4588a}*SharedItemsImports = 13
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{1923D4E0-F543-4BCE-8AA1-0FBFC05E2257}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{1923D4E0-F543-4BCE-8AA1-0FBFC05E2257}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{1923D4E0-F543-4BCE-8AA1-0FBFC05E2257}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{1923D4E0-F543-4BCE-8AA1-0FBFC05E2257}.Release|Any CPU.Build.0 = Release|Any CPU
-		{B02DB3A8-BB6F-4821-B0C8-C7AFBDBE2E82}.Debug|Any CPU.ActiveCfg = Release|Any CPU
-		{B02DB3A8-BB6F-4821-B0C8-C7AFBDBE2E82}.Debug|Any CPU.Build.0 = Release|Any CPU
-		{B02DB3A8-BB6F-4821-B0C8-C7AFBDBE2E82}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B02DB3A8-BB6F-4821-B0C8-C7AFBDBE2E82}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6903A5DB-31B2-4607-B5B7-23273FCD4173}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6903A5DB-31B2-4607-B5B7-23273FCD4173}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6903A5DB-31B2-4607-B5B7-23273FCD4173}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6903A5DB-31B2-4607-B5B7-23273FCD4173}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BE43D247-2F67-498A-B30A-2FDD29E1EC5E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BE43D247-2F67-498A-B30A-2FDD29E1EC5E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BE43D247-2F67-498A-B30A-2FDD29E1EC5E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BE43D247-2F67-498A-B30A-2FDD29E1EC5E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{1923D4E0-F543-4BCE-8AA1-0FBFC05E2257} = {7F7BEBFD-F9B8-429D-8ED6-4320AE1162E1}
-		{3499177E-4414-4BA5-9D69-CAC5EC6D7CD6} = {D6C91561-C014-4600-8FA9-D4508816120C}
-		{90EE5BCA-5AF4-463A-A336-D8E1507F5D54} = {D6C91561-C014-4600-8FA9-D4508816120C}
-		{293DF639-BDBA-4665-B23A-37D8BA901F6F} = {D6C91561-C014-4600-8FA9-D4508816120C}
-		{46DF70C9-320F-4C46-A071-06B6B7960365} = {D6C91561-C014-4600-8FA9-D4508816120C}
-		{F8D701CD-8D6A-442D-A2B8-2FD1FEB4588A} = {D6C91561-C014-4600-8FA9-D4508816120C}
+		{6903A5DB-31B2-4607-B5B7-23273FCD4173} = {472AD529-2B7F-45AD-B5CC-41C08593C061}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {93FD26D9-0863-4B05-BE3B-CD090A23096F}
+		SolutionGuid = {796E89FF-D0C1-49D5-BAEC-0747ACC6831D}
 	EndGlobalSection
 EndGlobal
