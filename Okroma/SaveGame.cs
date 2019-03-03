@@ -3,6 +3,11 @@ using System.IO;
 
 namespace Okroma
 {
+    public interface ISaveDataProvider
+    {
+        void Save();
+    }
+
     public class SaveGame
     {
         public string Name { get; }

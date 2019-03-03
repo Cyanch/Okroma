@@ -8,5 +8,4 @@ namespace Cyanch.Physics
         IReadOnlyList<ICollider> GetColliders(Rectangle rect);
         IReadOnlyList<ICollider> GetAllColliders();
     }
-
 }
