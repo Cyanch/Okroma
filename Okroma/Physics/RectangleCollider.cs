@@ -3,7 +3,7 @@ using Microsoft.Xna.Framework;
 
 namespace Okroma.Physics
 {
-    class RectangleCollider : Collider, IIntersect<RectangleCollider>
+    class RectangleCollider : Collider, ICanIntersect<RectangleCollider>
     {
         public Rectangle Bounds { get; set; }
 

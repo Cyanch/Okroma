@@ -9,8 +9,8 @@
     <ProjectGuid>{6903A5DB-31B2-4607-B5B7-23273FCD4173}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>DesktopGL</RootNamespace>
-    <AssemblyName>DesktopGL</AssemblyName>
+    <RootNamespace>Okroma</RootNamespace>
+    <AssemblyName>Okroma</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <MonoGamePlatform>DesktopGL</MonoGamePlatform>
     <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>

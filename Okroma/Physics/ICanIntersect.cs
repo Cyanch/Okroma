@@ -1,6 +1,6 @@
 ﻿namespace Okroma.Physics
 {
-    interface IIntersect<TCollider> where TCollider : Collider
+    interface ICanIntersect<TCollider> where TCollider : Collider
     {
         bool Intersects(TCollider other);
     }

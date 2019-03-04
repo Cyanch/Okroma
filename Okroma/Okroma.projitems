@@ -16,7 +16,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Physics\CollisionAction.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Physics\CollisionHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Physics\CouldNotFindValidIntersectsMethod.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Physics\IIntersect.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Physics\ICanIntersect.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Physics\RectangleCollider.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Sprites\Sprite.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Sprites\SpriteFactory.cs" />

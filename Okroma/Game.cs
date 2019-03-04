@@ -14,6 +14,7 @@ namespace Okroma
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
+        public const string Name = "Okroma";
         const string tileListPath = "TileList";
 
         public Game()
@@ -25,6 +26,9 @@ namespace Okroma
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
+
+            IsMouseVisible = true;
+            Window.Title = Name;
 
             base.Initialize();
         }
@@ -59,6 +63,9 @@ namespace Okroma
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
             //TODO: Add your drawing code here
+            spriteBatch.Begin();
+            Services.GetService<TileList>().GetTile(0).Sprite.Draw(gameTime, spriteBatch, Vector2.Zero);
+            spriteBatch.End();
 
             base.Draw(gameTime);
         }

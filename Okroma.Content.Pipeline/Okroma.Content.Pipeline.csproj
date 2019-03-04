@@ -37,10 +37,22 @@
     <Reference Include="MonoGame.Framework.Content.Pipeline, Version=3.7.1.189, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\MonoGame.Framework.Content.Pipeline.Portable.3.7.1.189\lib\portable-net45+win8+wpa81\MonoGame.Framework.Content.Pipeline.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RectangleJsonConverter.cs" />
+    <Compile Include="TexturedSprite.cs" />
+    <Compile Include="TileList\Tile.cs" />
+    <Compile Include="TileList\TileListFile.cs" />
+    <Compile Include="TileList\TileListImporter.cs" />
+    <Compile Include="TileList\TileListProcessor.cs" />
+    <Compile Include="TileList\TileListProcessorResult.cs" />
+    <Compile Include="TileList\TileListWriter.cs" />
+    <Compile Include="Vector2JsonConverter.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

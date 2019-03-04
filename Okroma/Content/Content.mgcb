@@ -10,6 +10,24 @@
 
 #-------------------------------- References --------------------------------#
 
+/reference:..\..\Okroma.Content.Pipeline\bin\Release\Okroma.Content.Pipeline.dll
 
 #---------------------------------- Content ---------------------------------#
+
+#begin GrayTile.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:GrayTile.png
+
+#begin TileList.json
+/importer:TileListImporter
+/processor:TileListProcessor
+/build:TileList.json
 

@@ -14,17 +14,24 @@ namespace Okroma.TileEngine
             Tile[] tiles = new Tile[tileCount];
             for (int i = 0; i < tileCount; i++)
             {
-                string texturePath = reader.ReadString();
-                int sourceRectangleX = reader.ReadInt32();
-                int sourceRectangleY = reader.ReadInt32();
-                int sourceRectangleW = reader.ReadInt32();
-                int sourceRectangleH = reader.ReadInt32();
-                Vector2 origin = reader.ReadVector2();
+                var spriteCount = reader.ReadInt32();
 
-                var texture = reader.ContentManager.Load<Texture2D>(texturePath);
-                var sourceRectangle = new Rectangle(sourceRectangleX, sourceRectangleY, sourceRectangleW, sourceRectangleH);
+                var sprites = new Sprite[spriteCount];
+                for (int k = 0; k < spriteCount; k++)
+                {
+                    string texturePath = reader.ReadString();
+                    int sourceRectangleX = reader.ReadInt32();
+                    int sourceRectangleY = reader.ReadInt32();
+                    int sourceRectangleW = reader.ReadInt32();
+                    int sourceRectangleH = reader.ReadInt32();
+                    Vector2 origin = reader.ReadVector2();
 
-                Tile tile = TileFactory.Create(i, SpriteFactory.Create(texture, sourceRectangle, origin));
+                    var texture = reader.ContentManager.Load<Texture2D>(texturePath);
+                    Rectangle? sourceRectangle = new Rectangle(sourceRectangleX, sourceRectangleY, sourceRectangleW, sourceRectangleH);
+                    sprites[k] = SpriteFactory.Create(texture, sourceRectangle == Rectangle.Empty ? null : sourceRectangle, origin);
+                }
+
+                tiles[i] = TileFactory.Create(i, sprites[0]);
             }
 
             return new TileList(tiles);
