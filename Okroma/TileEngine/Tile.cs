@@ -18,7 +18,7 @@ namespace Okroma.TileEngine
         public Tile(int id, Sprite sprite, Collider collider) : this()
         {
             this.Sprite = sprite ?? throw new ArgumentNullException(nameof(sprite));
-            this.Collider = collider ?? throw new ArgumentException(nameof(collider));
+            this.Collider = collider ?? throw new ArgumentNullException(nameof(collider));
         }
 
         public override bool Equals(object obj)
