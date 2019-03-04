@@ -2,10 +2,29 @@
     "tiles":
     [
         {
+            "//":"0, Gray Tile",
             "sprites":
             [
                 {
                     "texture":"GrayTile"
+                }
+            ]
+        },
+        {
+            "//":"1, Green Tile",
+            "sprites":
+            [
+                {
+                    "texture":"GreenTile"
+                }
+            ]
+        },
+        {
+            "//":"2, Oarnge Tile",
+            "sprites":
+            [
+                {
+                    "texture":"OrangeTile"
                 }
             ]
         }

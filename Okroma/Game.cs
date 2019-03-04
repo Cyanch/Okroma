@@ -17,6 +17,7 @@ namespace Okroma
         public const string Name = "Okroma";
         const string tileListPath = "TileList";
 
+        TileMap tMap;
         public Game()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -41,6 +42,18 @@ namespace Okroma
 
             var tileList = Content.Load<TileList>(tileListPath);
             Services.AddService(tileList);
+
+            tMap = new TileMap(4, 4, tileList[0]);
+            tMap[0, 0, 0] = tileList[1];
+            tMap[1, 1, 0] = tileList[1];
+            tMap[2, 2, 0] = tileList[1];
+            tMap[3, 3, 0] = tileList[1];
+
+
+            tMap[3, 0, 0] = tileList[2];
+            tMap[2, 1, 0] = tileList[2];
+            tMap[1, 2, 0] = tileList[2];
+            tMap[0, 3, 0] = tileList[2];
         }
 
         protected override void Update(GameTime gameTime)
@@ -64,7 +77,7 @@ namespace Okroma
 
             //TODO: Add your drawing code here
             spriteBatch.Begin();
-            Services.GetService<TileList>().GetTile(0).Sprite.Draw(gameTime, spriteBatch, Vector2.Zero);
+            tMap.DrawLayers(gameTime, spriteBatch);
             spriteBatch.End();
 
             base.Draw(gameTime);
