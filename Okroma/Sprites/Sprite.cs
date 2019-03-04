@@ -19,4 +19,14 @@ namespace Okroma.Sprites
         public void Draw(GameTime gameTime, SpriteBatch spriteBatch, Vector2 position) => Draw(gameTime, spriteBatch, position, SpriteProperties.Default);
         public abstract void Draw(GameTime gameTime, SpriteBatch spriteBatch, Vector2 position, SpriteProperties properties);
     }
+
+    /// <summary>
+    /// Sprite that does nothing.
+    /// </summary>
+    sealed class NullSprite : Sprite
+    {
+        public override void Draw(GameTime gameTime, SpriteBatch spriteBatch, Vector2 position, SpriteProperties properties)
+        {
+        }
+    }
 }

@@ -18,6 +18,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)ThirdParty\Primitives2D.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ThirdParty\QuadTree.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)TileEngine\Tile.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)TileEngine\TileMap.cs" />
   </ItemGroup>
   <ItemGroup>
     <MonoGameContentReference Include="$(MSBuildThisFileDirectory)Content\Content.mgcb" />

@@ -1,4 +1,5 @@
 ﻿using System;
+using Game = Okroma.Game;
 
 namespace DesktopGL
 {
@@ -13,7 +14,7 @@ namespace DesktopGL
         [STAThread]
         static void Main()
         {
-            using (var game = new Okroma.Game())
+            using (var game = new Game())
                 game.Run();
         }
     }
