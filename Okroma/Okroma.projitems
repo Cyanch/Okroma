@@ -12,12 +12,21 @@
     <Compile Include="$(MSBuildThisFileDirectory)Camera.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Game.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)GameObject.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Physics\Collider.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Physics\CollisionAction.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Physics\CollisionHelper.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Physics\CouldNotFindValidIntersectsMethod.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Physics\IIntersect.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Physics\RectangleCollider.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Sprites\Sprite.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Sprites\SpriteFactory.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Sprites\TexturedSprite.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ThirdParty\Primitives2D.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ThirdParty\QuadTree.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)TileEngine\Tile.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)TileEngine\TileFactory.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)TileEngine\TileList.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)TileEngine\TileListReader.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)TileEngine\TileMap.cs" />
   </ItemGroup>
   <ItemGroup>

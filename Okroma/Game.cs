@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Okroma.TileEngine;
 using XnaGame = Microsoft.Xna.Framework.Game;
 
 namespace Okroma
@@ -13,6 +14,8 @@ namespace Okroma
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
+        const string tileListPath = "TileList";
+
         public Game()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -22,6 +25,7 @@ namespace Okroma
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
+
             base.Initialize();
         }
         
@@ -29,7 +33,10 @@ namespace Okroma
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            //TODO: use this.Content to load your game content here 
+            //TODO: use this.Content to load your game content here
+
+            var tileList = Content.Load<TileList>(tileListPath);
+            Services.AddService(tileList);
         }
 
         protected override void Update(GameTime gameTime)

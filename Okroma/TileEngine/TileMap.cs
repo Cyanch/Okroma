@@ -4,7 +4,7 @@
     {
         class TileMapLayer
         {
-            Tile[,] tiles;
+            readonly Tile[,] _tiles;
 
             /// <summary>
             /// <see cref="TileMapLayer"/> constructor.
@@ -14,17 +14,17 @@
             /// <param name="initializingTile">Initial tile</param>
             public TileMapLayer(int mapWidth, int mapHeight, Tile initializingTile)
             {
-                tiles = new Tile[mapWidth, mapHeight];
+                _tiles = new Tile[mapWidth, mapHeight];
             }
 
             public void SetTile(int x, int y, Tile tile)
             {
-                tiles[x, y] = tile;
+                _tiles[x, y] = tile;
             }
 
             public Tile GetTile(int x, int y)
             {
-                return tiles[x, y];
+                return _tiles[x, y];
             }
         }
     }

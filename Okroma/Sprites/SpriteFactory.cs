@@ -23,7 +23,7 @@ namespace Okroma.Sprites
         public static Sprite Create(Texture2D texture, Rectangle? sourceRectangle, Vector2 origin)
         {
             if (texture == null)
-                return new NullSprite();
+                return Sprite.Null;
             return new TexturedSprite(texture, sourceRectangle, origin);
         }
     }
