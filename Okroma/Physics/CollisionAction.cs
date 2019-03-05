@@ -2,6 +2,7 @@
 {
     enum CollisionAction
     {
-        Ignore
+        Ignore,
+        Block
     }
 }

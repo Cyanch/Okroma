@@ -1,13 +1,15 @@
-﻿using System;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using Okroma.Common;
+using Okroma.Debug;
 
 namespace Okroma.Physics
 {
-    class RectangleCollider : Collider, ICanIntersect<RectangleCollider>
+    class RectangleCollider : Collider, ICanIntersect<RectangleCollider>, IDebuggable
     {
         public Rectangle Bounds { get; set; }
 
-        public RectangleCollider(Func<Collider, CollisionAction> onCollision, Rectangle rectangle) : base(onCollision)
+        public RectangleCollider(CollisionFunction onCollision, Rectangle rectangle) : base(onCollision)
         {
             this.Bounds = rectangle;
         }
@@ -15,6 +17,12 @@ namespace Okroma.Physics
         public bool Intersects(RectangleCollider other)
         {
             return this.Bounds.Intersects(other.Bounds);
+        }
+
+        void IDebuggable.DrawDebug(GameTime gameTime, SpriteBatch spriteBatch, Color color, params DebugOption[] debugOptions)
+        {
+            if (debugOptions.Exists(DebugOption.DrawColliderBounds))
+                C3.Primitives2D.DrawRectangle(spriteBatch, Bounds, color);
         }
     }
 }

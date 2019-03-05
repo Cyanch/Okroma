@@ -1,12 +1,13 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Okroma.Sprites;
 
 namespace Okroma.TileEngine
 {
     class TileMap
     {
-        public int Width { get; }
-        public int Height { get; }
+        public GameScale Width { get; }
+        public GameScale Height { get; }
 
         public TileMapLayer[] Layers { get; }
 
@@ -16,22 +17,25 @@ namespace Okroma.TileEngine
             set => Layers[layer].SetTile(x, y, value);
         }
 
-        public TileMap(int mapWidth, int mapHeight, params Tile[] initializingTiles)
+        public TileMap(int mapWidthInTiles, int mapHeightInTiles, int mapLayers)
         {
-            this.Layers = new TileMapLayer[initializingTiles.Length];
+            this.Width = GameScale.FromTiles(mapWidthInTiles);
+            this.Height = GameScale.FromTiles(mapHeightInTiles);
+
+            this.Layers = new TileMapLayer[mapLayers];
 
             for (int i = 0; i < this.Layers.Length; i++)
             {
-                Layers[i] = new TileMapLayer(mapWidth, mapHeight, initializingTiles[i]);
+                Layers[i] = new TileMapLayer(mapWidthInTiles, mapHeightInTiles, TileList.NullTile);
             }
         }
 
-        public void DrawLayers(GameTime gameTime, SpriteBatch spriteBatch)
+        public void DrawTiles(GameTime gameTime, SpriteBatch spriteBatch, Rectangle renderArea)
         {
-            foreach (var layer in Layers)
+            this.ForEach((x, y, layer, tile) =>
             {
-                layer.DrawTiles(gameTime, spriteBatch);
-            }
+                spriteBatch.DrawSprite(tile.Sprite, gameTime, new Vector2(x, y) * Tile.Vector2Size);
+            }, renderArea);
         }
 
         public class TileMapLayer
@@ -46,41 +50,48 @@ namespace Okroma.TileEngine
             /// </summary>
             /// <param name="mapWidth">Width of map</param>
             /// <param name="mapHeight">Height of map</param>
-            /// <param name="initializingTile">Initial tile</param>
+            /// <param name="initializingTile">The 'default' <see cref="Tile"/></param>
             public TileMapLayer(int mapWidth, int mapHeight, Tile initializingTile)
             { 
                 this._mapWidth = mapWidth;
                 this._mapHeight = mapHeight;
 
                 this._tiles = new Tile[mapWidth, mapHeight];
-                for (int x = 0; x < mapWidth; x++)
-                {
-                    for (int y = 0; y < mapHeight; y++)
-                    {
-                        this._tiles[x, y] = initializingTile;
-                    }
-                }
+
+                Initialize(initializingTile);
             }
 
-            public void SetTile(int x, int y, Tile tile)
-            {
-                _tiles[x, y] = tile;
-            }
-
-            public Tile GetTile(int x, int y)
-            {
-                return _tiles[x, y];
-            }
-
-            public void DrawTiles(GameTime gameTime, SpriteBatch spriteBatch)
+            private void Initialize(Tile tile)
             {
                 for (int x = 0; x < _mapWidth; x++)
                 {
                     for (int y = 0; y < _mapHeight; y++)
                     {
-                        _tiles[x, y].Sprite.Draw(gameTime, spriteBatch, new Vector2(x, y) * Tile.Size);
+                        SetTile(x, y, tile);
                     }
                 }
+            }
+
+            /// <summary>
+            /// Sets <see cref="Tile"/> at given position.
+            /// </summary>
+            /// <param name="x">X position of <see cref="Tile"/></param>
+            /// <param name="y">Y position of <see cref="Tile"/></param>
+            /// <param name="tile">Tile to put at location</param>
+            public void SetTile(int x, int y, Tile tile)
+            {
+                _tiles[x, y] = tile;
+            }
+
+            /// <summary>
+            /// Gets <see cref="Tile"/> at given position.
+            /// </summary>
+            /// <param name="x">X position of <see cref="Tile"/></param>
+            /// <param name="y">Y position of <see cref="Tile"/></param>
+            /// <returns>The tile at the provided X and Y.</returns>
+            public Tile GetTile(int x, int y)
+            {
+                return _tiles[x, y];
             }
         }
     }

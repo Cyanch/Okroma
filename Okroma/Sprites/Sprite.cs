@@ -18,9 +18,7 @@ namespace Okroma.Sprites
     {
         public static readonly Sprite Null = new NullSprite();
 
-        public void Draw(GameTime gameTime, SpriteBatch spriteBatch, Vector2 position) => Draw(gameTime, spriteBatch, position, SpriteProperties.Default);
         public abstract void Draw(GameTime gameTime, SpriteBatch spriteBatch, Vector2 position, SpriteProperties properties);
-
 
         private sealed class NullSprite : Sprite
         {

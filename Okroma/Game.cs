@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Okroma.Debug;
 using Okroma.TileEngine;
 using XnaGame = Microsoft.Xna.Framework.Game;
 
@@ -15,7 +16,8 @@ namespace Okroma
         SpriteBatch spriteBatch;
 
         public const string Name = "Okroma";
-        const string tileListPath = "TileList";
+
+        public const string TileListPath = "TileList";
 
         TileMap tMap;
         public Game()
@@ -40,20 +42,23 @@ namespace Okroma
 
             //TODO: use this.Content to load your game content here
 
-            var tileList = Content.Load<TileList>(tileListPath);
+            var tileList = Content.Load<TileList>(TileListPath);
             Services.AddService(tileList);
 
-            tMap = new TileMap(4, 4, tileList[0]);
-            tMap[0, 0, 0] = tileList[1];
-            tMap[1, 1, 0] = tileList[1];
-            tMap[2, 2, 0] = tileList[1];
-            tMap[3, 3, 0] = tileList[1];
+            int width = 1024;
+            int height = 1024;
+            tMap = new TileMap(width, height, 1);
 
-
-            tMap[3, 0, 0] = tileList[2];
-            tMap[2, 1, 0] = tileList[2];
-            tMap[1, 2, 0] = tileList[2];
-            tMap[0, 3, 0] = tileList[2];
+            var task = System.Threading.Tasks.Task.Run(() =>
+            {
+                for (int x = 0; x < width; x++)
+                {
+                    for (int y = 0; y < height; y++)
+                    {
+                        tMap[x, y, 0] = tileList[(x % 2) + 16 + (y % 2)];
+                    }
+                }
+            });
         }
 
         protected override void Update(GameTime gameTime)
@@ -68,6 +73,7 @@ namespace Okroma
             }
 #endif
             // TODO: Add your update logic here			
+
             base.Update(gameTime);
         }
 
@@ -76,8 +82,15 @@ namespace Okroma
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
             //TODO: Add your drawing code here
+
             spriteBatch.Begin();
-            tMap.DrawLayers(gameTime, spriteBatch);
+            tMap.DrawTiles(gameTime, spriteBatch, new Rectangle(0, 0, Window.ClientBounds.Width, Window.ClientBounds.Height));
+
+            var colliders = tMap.GetColliders(new Rectangle(0, 0, Window.ClientBounds.Width, Window.ClientBounds.Height));
+            foreach (var coll in colliders)
+            {
+                (coll as IDebuggable)?.DrawDebug(gameTime, spriteBatch, Color.White, DebugOption.DrawColliderBounds);
+            }
             spriteBatch.End();
 
             base.Draw(gameTime);

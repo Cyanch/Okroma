@@ -30,7 +30,7 @@ namespace Okroma.TileEngine
                     Rectangle? sourceRectangle = new Rectangle(sourceRectangleX, sourceRectangleY, sourceRectangleW, sourceRectangleH);
                     sprites[k] = SpriteFactory.Create(texture, sourceRectangle == Rectangle.Empty ? null : sourceRectangle, origin);
                 }
-
+                
                 tiles[i] = TileFactory.Create(i, sprites[0]);
             }
 

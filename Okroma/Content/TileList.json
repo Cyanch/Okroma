@@ -1,8 +1,9 @@
 {
+    "//":"0-15 is Reserved by game.",
     "tiles":
     [
         {
-            "//":"0, Gray Tile",
+            "//":"16, Gray Tile",
             "sprites":
             [
                 {
@@ -11,7 +12,7 @@
             ]
         },
         {
-            "//":"1, Green Tile",
+            "//":"17, Green Tile",
             "sprites":
             [
                 {
@@ -20,7 +21,7 @@
             ]
         },
         {
-            "//":"2, Oarnge Tile",
+            "//":"18, Orange Tile",
             "sprites":
             [
                 {

@@ -1,13 +1,11 @@
-﻿using System;
-
-namespace Okroma.Physics
+﻿namespace Okroma.Physics
 {
     abstract class Collider
     {
         public static readonly Collider None = new NoCollider();
 
-        readonly Func<Collider, CollisionAction> _onCollision;
-        public Collider(Func<Collider, CollisionAction> onCollision)
+        readonly CollisionFunction _onCollision;
+        public Collider(CollisionFunction onCollision)
         {
             this._onCollision = onCollision;
         }
@@ -19,9 +17,12 @@ namespace Okroma.Physics
 
         private sealed class NoCollider : Collider
         {
-            public NoCollider() : base((_) => { return CollisionAction.Ignore; })
+            public NoCollider() : base(_ => CollisionAction.Ignore )
             {
             }
         }
+
+        public delegate CollisionAction CollisionFunction(Collider other);
     }
+
 }
