@@ -25,10 +25,10 @@ namespace Okroma.Content.Pipeline
             }
         }
 
-        public static void Write<T>(this ContentWriter writer, IEnumerable<T> collection) where T : IContentWriteable
+        public static void Write<T>(this ContentWriter writer, IEnumerable<T> enumerable) where T : IContentWriteable
         {
-            writer.Write(collection.Count());
-            foreach (var item in collection)
+            writer.Write(enumerable.Count());
+            foreach (var item in enumerable)
             {
                 writer.Write(item);
             }
