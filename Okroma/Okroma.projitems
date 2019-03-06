@@ -11,6 +11,7 @@
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)Camera.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Common\ArrayExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ContentExtensions\ContentReaderExtensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Debug\DebugOption.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Debug\IDebugDraw.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Game.cs" />

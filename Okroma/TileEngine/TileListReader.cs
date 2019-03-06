@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
+using Okroma.ContentExtensions;
 using Okroma.Sprites;
 
 namespace Okroma.TileEngine
@@ -20,18 +21,21 @@ namespace Okroma.TileEngine
                 for (int k = 0; k < spriteCount; k++)
                 {
                     string texturePath = reader.ReadString();
-                    int sourceRectangleX = reader.ReadInt32();
-                    int sourceRectangleY = reader.ReadInt32();
-                    int sourceRectangleW = reader.ReadInt32();
-                    int sourceRectangleH = reader.ReadInt32();
                     Vector2 origin = reader.ReadVector2();
+                    Rectangle? sourceRectangle = reader.ReadNullableRectangle();
 
                     var texture = reader.ContentManager.Load<Texture2D>(texturePath);
-                    Rectangle? sourceRectangle = new Rectangle(sourceRectangleX, sourceRectangleY, sourceRectangleW, sourceRectangleH);
                     sprites[k] = SpriteFactory.Create(texture, sourceRectangle == Rectangle.Empty ? null : sourceRectangle, origin);
                 }
-                
-                tiles[i] = TileFactory.Create(i, sprites[0]);
+
+                var tileProperties = TileProperties.BeginConstruct();
+                Rectangle? tileBounds = reader.ReadNullableRectangle();
+                if (tileBounds.HasValue)
+                {
+                    tileProperties.UseCustomBounds(tileBounds.Value);
+                }
+
+                tiles[i] = TileFactory.Create(i, sprites[0], tileProperties.EndConstruct());
             }
 
             return new TileList(tiles);

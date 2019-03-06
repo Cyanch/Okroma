@@ -43,6 +43,8 @@
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ContentWriterExtensions.cs" />
+    <Compile Include="IContentWriteable.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RectangleJsonConverter.cs" />
     <Compile Include="TexturedSprite.cs" />
@@ -52,6 +54,7 @@
     <Compile Include="TileList\TileListProcessor.cs" />
     <Compile Include="TileList\TileListProcessorResult.cs" />
     <Compile Include="TileList\TileListWriter.cs" />
+    <Compile Include="TileList\TileProperties.cs" />
     <Compile Include="Vector2JsonConverter.cs" />
   </ItemGroup>
   <ItemGroup>

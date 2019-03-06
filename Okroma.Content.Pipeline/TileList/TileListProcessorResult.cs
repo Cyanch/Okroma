@@ -1,14 +1,15 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Okroma.Content.Pipeline.TileList
 {
     public class TileListProcessorResult
     {
-        public TileListFile Data { get; }
+        public IEnumerable<Tile> Tiles { get; }
 
-        public TileListProcessorResult(TileListFile data)
+        public TileListProcessorResult(IEnumerable<Tile> tiles)
         {
-            Data = data ?? throw new ArgumentNullException(nameof(data));
+            Tiles = tiles ?? throw new ArgumentNullException(nameof(tiles));
         }
     }
 }

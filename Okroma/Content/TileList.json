@@ -1,33 +1,30 @@
 {
+    "presets": 
+    {
+        "testVariant":
+        {
+            "bounds":"4 4 4 4"
+        }
+    },
     "//":"0-15 is Reserved by game.",
     "tiles":
     [
         {
             "//":"16, Gray Tile",
-            "sprites":
-            [
-                {
-                    "texture":"GrayTile"
-                }
-            ]
+            "sprites": [{"texture":"GrayTile"}]
         },
         {
             "//":"17, Green Tile",
-            "sprites":
-            [
-                {
-                    "texture":"GreenTile"
-                }
-            ]
+            "sprites":[{"texture":"GreenTile"}],
+            "inherits_from":["testVariant"]
         },
         {
             "//":"18, Orange Tile",
-            "sprites":
-            [
-                {
-                    "texture":"OrangeTile"
-                }
-            ]
+            "sprites":[{"texture":"OrangeTile"}],
+            "properties":
+            {
+                "bounds":"8 8 16 16"
+            }
         }
     ]
 }
