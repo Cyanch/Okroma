@@ -117,7 +117,19 @@ namespace Okroma.Screens
         {
             return _screens.ToArray();
         }
-        
+
+        /// <summary>
+        /// Draws a black sprite across the entire screen.
+        /// </summary>
+        /// <param name="alpha">0-1 transparency</param>
+        public void FadeBackBufferToBlack(float alpha)
+        {
+            var viewport = GraphicsDevice.Viewport;
+            SpriteBatch.Begin();
+            SpriteBatch.Draw(WhitePixel.Get(GraphicsDevice), GraphicsDevice.Viewport.Bounds, Color.Black * alpha);
+            SpriteBatch.End();
+        }
+
         protected virtual void OnScreenChanged(GameScreen changedScreen)
         {
             ScreenChanged?.Invoke(this, changedScreen);
