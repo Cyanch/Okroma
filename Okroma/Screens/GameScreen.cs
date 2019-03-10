@@ -5,10 +5,20 @@ namespace Okroma.Screens
 {
     abstract class GameScreen
     {
+        public enum ScreenState
+        {
+            TransitionIn,
+            Active,
+            TransitionOff,
+            Inactive
+        }
+        
         /// <summary>
         /// Determines if input will fallthrough to screen below.
         /// </summary>
         public bool AllowInputPassthrough { get; private set; }
+        
+        public ScreenState State { get; private set; }
 
         public void Initialize(ScreenManager screenManager) { }
         public virtual void LoadContent() { }
