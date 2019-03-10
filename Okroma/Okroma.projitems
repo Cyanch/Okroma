@@ -17,6 +17,9 @@
     <Compile Include="$(MSBuildThisFileDirectory)Debug\IDebugDraw.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Game.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)GameScale.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Input\InputManager.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Input\MouseButton.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Input\MouseStateExtensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Physics\Collider.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Physics\Colliders.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Physics\CollisionAction.cs" />

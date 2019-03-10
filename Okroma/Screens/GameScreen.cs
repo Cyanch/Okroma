@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using Okroma.Input;
 
 namespace Okroma.Screens
 {
@@ -13,7 +14,7 @@ namespace Okroma.Screens
         public virtual void LoadContent() { }
         public virtual void UnloadContent() { }
 
-        public virtual void HandleInput()
+        public virtual void HandleInput(InputManager input)
         {
 
         }

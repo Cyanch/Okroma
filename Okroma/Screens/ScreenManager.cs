@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Okroma.Config;
+using Okroma.Input;
 using System;
 using System.Collections.Generic;
 using XnaGame = Microsoft.Xna.Framework.Game;
@@ -24,6 +25,7 @@ namespace Okroma.Screens
     {
         private readonly List<GameScreen> _screens = new List<GameScreen>();
         private IScreenManagerState _state;
+        private InputManager _input;
 
         public SpriteBatch SpriteBatch { get; private set; }
         public SpriteFont Font { get; private set; }
@@ -44,9 +46,21 @@ namespace Okroma.Screens
 
         public override void Update(GameTime gameTime)
         {
-            foreach (var screen in GetScreens())
+            var screens = GetScreens();
+            bool inputBlocked = false;
+            _input.Update();
+            for (int i = screens.Length; i > 0; i--)
             {
-                screen.Update(gameTime);
+                var screen = screens[i - 1];
+
+                if (Game.IsActive && !inputBlocked)
+                {
+                    screen.HandleInput(_input);
+                    if (!screen.AllowInputPassthrough)
+                        inputBlocked = true;
+
+                    screen.Update(gameTime);
+                }
             }
         }
 
