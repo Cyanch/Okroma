@@ -11,6 +11,7 @@
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)Camera.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Common\ArrayExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Config\Configuration.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ContentExtensions\ContentReaderExtensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Debug\DebugOption.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Debug\IDebugDraw.cs" />
@@ -23,6 +24,8 @@
     <Compile Include="$(MSBuildThisFileDirectory)Physics\CouldNotFindValidIntersectsMethod.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Physics\ICanIntersect.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Physics\RectangleCollider.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Screens\GameScreen.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Screens\ScreenManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Sprites\Sprite.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Sprites\SpriteExtensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Sprites\SpriteFactory.cs" />
@@ -37,6 +40,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)TileEngine\TileMap.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)TileEngine\TileMapExtensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)TileEngine\TileProperties.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)WhitePixel.cs" />
   </ItemGroup>
   <ItemGroup>
     <MonoGameContentReference Include="$(MSBuildThisFileDirectory)Content\Content.mgcb" />
