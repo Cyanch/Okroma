@@ -25,7 +25,7 @@ namespace Okroma.Screens
     {
         private readonly List<GameScreen> _screens = new List<GameScreen>();
         private IScreenManagerState _state;
-        private InputManager _input;
+        private InputManager _input = new InputManager();
 
         public SpriteBatch SpriteBatch { get; private set; }
         public SpriteFont Font { get; private set; }
@@ -143,7 +143,7 @@ namespace Okroma.Screens
 
         private class InitializedScreenManagerState : IScreenManagerState
         {
-            private List<GameScreen> _screens;
+            private readonly List<GameScreen> _screens;
 
             public InitializedScreenManagerState(List<GameScreen> screens)
             {
@@ -159,7 +159,7 @@ namespace Okroma.Screens
 
         private class UninitializedScreenManagerState : IScreenManagerState
         {
-            private List<GameScreen> _screens;
+            private readonly List<GameScreen> _screens;
 
             public UninitializedScreenManagerState(List<GameScreen> screens)
             {

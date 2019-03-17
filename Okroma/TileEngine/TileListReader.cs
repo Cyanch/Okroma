@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Okroma.ContentExtensions;
 using Okroma.Sprites;
+using Okroma.TileEngine.TileProperties;
 
 namespace Okroma.TileEngine
 {
@@ -28,14 +29,15 @@ namespace Okroma.TileEngine
                     sprites[k] = SpriteFactory.Create(texture, sourceRectangle == Rectangle.Empty ? null : sourceRectangle, origin);
                 }
 
-                var tileProperties = TileProperties.BeginConstruct();
+                var tileProperties = new TilePropertyCollection();
+
                 Rectangle? tileBounds = reader.ReadNullableRectangle();
                 if (tileBounds.HasValue)
                 {
-                    tileProperties.UseCustomBounds(tileBounds.Value);
+                    tileProperties.AddProperty(new CustomCollisionBoundsTileProperty(tileBounds.Value));
                 }
 
-                tiles[i] = TileFactory.Create(i, sprites[0], tileProperties.EndConstruct());
+                tiles[i] = TileFactory.Create(i, sprites[0], tileProperties);
             }
 
             return new TileList(tiles);

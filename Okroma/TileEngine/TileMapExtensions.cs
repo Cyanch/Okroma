@@ -12,7 +12,7 @@ namespace Okroma.TileEngine
             var colliders = new List<Collider>();
             map.ForEach((mapX, mapY, layer, tile) =>
             {
-                colliders.Add(new TileCollider(mapX, mapY, tile.Properties));
+                colliders.Add(new TileCollider(mapX, mapY, tile));
             }, area);
             return new Colliders(colliders);
         }

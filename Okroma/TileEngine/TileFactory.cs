@@ -1,4 +1,5 @@
 ﻿using Okroma.Sprites;
+using Okroma.TileEngine.TileProperties;
 
 namespace Okroma.TileEngine
 {
@@ -6,10 +7,10 @@ namespace Okroma.TileEngine
     {
         public static Tile Create(int id, Sprite sprite)
         {
-            return Create(id, sprite, TileProperties.None);
+            return Create(id, sprite, TilePropertyCollection.Empty);
         }
 
-        public static Tile Create(int id, Sprite sprite, TileProperties property)
+        public static Tile Create(int id, Sprite sprite, IReadOnlyTilePropertyCollection property)
         {
             return new Tile(id, sprite, property);
         }
@@ -19,9 +20,9 @@ namespace Okroma.TileEngine
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public static Tile CreateBlankTile(int id)
+        public static Tile CreateFake(int id)
         {
-            return Create(0, Sprite.Null, TileProperties.None);
+            return Create(id, Sprite.Null, TilePropertyCollection.Empty);
         }
     }
 }

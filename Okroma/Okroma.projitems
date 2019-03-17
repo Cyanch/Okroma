@@ -42,7 +42,12 @@
     <Compile Include="$(MSBuildThisFileDirectory)TileEngine\TileListReader.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)TileEngine\TileMap.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)TileEngine\TileMapExtensions.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)TileEngine\TileProperties.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)TileEngine\TileProperties\CollisionEventTileProperty.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)TileEngine\TileProperties\CustomCollisionBoundsTileProperty.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)TileEngine\TileProperties\RequiredPropertyNotAvailableException.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)TileEngine\TileProperties\RequirePropertyAttribute.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)TileEngine\TileProperties\TileProperty.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)TileEngine\TileProperties\TilePropertyCollection.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)WhitePixel.cs" />
   </ItemGroup>
   <ItemGroup>

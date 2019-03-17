@@ -1,13 +1,11 @@
-﻿using Okroma.Sprites;
-
-namespace Okroma.TileEngine
+﻿namespace Okroma.TileEngine
 {
     sealed class TileList
     {
         readonly Tile[] _tiles;
         const int Reserved = 16;
 
-        public static readonly Tile NullTile = TileFactory.Create(0, Sprite.Null, TileProperties.None);
+        public static readonly Tile NullTile = TileFactory.CreateFake(0);
 
         public TileList(Tile[] tiles)
         {
