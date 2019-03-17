@@ -37,6 +37,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)ThirdParty\QuadTree.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)TileEngine\Tile.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)TileEngine\TileCollider.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)TileEngine\TileExtensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)TileEngine\TileFactory.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)TileEngine\TileList.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)TileEngine\TileListReader.cs" />

@@ -34,26 +34,5 @@ namespace Okroma.TileEngine
         {
             return Id;
         }
-
-        // TilePropertyCollection visibility extensions
-        public bool HasProperty<T>() where T : TileProperty
-        {
-            return Properties.HasProperty<T>();
-        }
-
-        public bool HasProperty(Type propertyType)
-        {
-            return Properties.HasProperty(propertyType);
-        }
-
-        public T GetProperty<T>() where T : TileProperty
-        {
-            return Properties.GetProperty<T>();
-        }
-
-        public T GetPropertyOrDefault<T>(T valIfNone) where T : TileProperty
-        {
-            return Properties.GetPropertyOrDefault(valIfNone);
-        }
     }
 }
